@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <color name="gray_dark">#424242</color>
+
+  <color name="loading_view_color_1">#D32F2F</color>
+  <color name="loading_view_color_2">#000000</color>
+
+  <!-- LoadingView colors -->
+  <integer-array name="loading_view_colors">
+    <item>@color/loading_view_color_1</item>
+    <item>@color/loading_view_color_2</item>
+  </integer-array>
+
+</resources>

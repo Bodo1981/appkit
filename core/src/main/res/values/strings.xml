@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="empty_view_text">Leider sind keine Daten für den gewünschten Bereich vorhanden.
+  </string>
+  <string name="error_view_text">Ein Fehler beim Laden der Daten ist aufgetreten. Hier klicken
+    um es erneut zu versuchen.
+  </string>
+
+</resources>
