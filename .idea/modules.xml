@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/appkit.iml" filepath="$PROJECT_DIR$/appkit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appkit/appkit-appkit.iml" filepath="$PROJECT_DIR$/appkit/appkit-appkit.iml" />
     </modules>
   </component>
 </project>

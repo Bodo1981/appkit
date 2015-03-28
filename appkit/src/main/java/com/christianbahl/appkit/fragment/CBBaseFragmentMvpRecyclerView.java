@@ -79,7 +79,7 @@ public abstract class CBBaseFragmentMvpRecyclerView<D, V extends CBBaseMvpView<D
   }
 
   /**
-   * Creates the {@link A}. <br />
+   * Creates the {@link A}. <br>
    * Called in {@link #onViewCreated(View, Bundle)}
    *
    * @return {@link A}

@@ -47,7 +47,7 @@ public abstract class CBBaseActivity extends ActionBarActivity {
   }
 
   /**
-   * Return the layout res id. <br />
+   * Return the layout res id. <br>
    * Called in {@link #onCreate(Bundle)}
    *
    * @return layout res id

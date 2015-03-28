@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 // This is the library version used when deploying the artifact
 version = "1.0.0"
@@ -52,7 +53,7 @@ def siteUrl = 'https://github.com/Bodo1981/appkit'
 // Git repository URL
 def gitUrl = 'https://github.com/Bodo1981/appkit.git'
 
-group = "com.christianbahl.appkit"
+group = "com.christianbahl"
 
 install {
   repositories.mavenInstaller {
@@ -74,7 +75,7 @@ install {
         }
         developers {
           developer {
-            id '<your user ID>'
+            id 'Bodo1981'
             name 'Christian Bahl'
             email 'christian.bahl@gmail.com'
           }
@@ -95,6 +96,7 @@ task sourcesJar(type: Jar) {
 }
 
 task javadoc(type: Javadoc) {
+  failOnError false
   source = android.sourceSets.main.java.srcDirs
   classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
@@ -106,4 +108,22 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
   archives javadocJar
   archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+  user = properties.getProperty("bintray.user")
+  key = properties.getProperty("bintray.apikey")
+
+  configurations = ['archives']
+  pkg {
+    repo = "maven"
+    name = "AppKit"
+    websiteUrl = siteUrl
+    vcsUrl = gitUrl
+    licenses = ["Apache-2.0"]
+    publish = true
+  }
 }

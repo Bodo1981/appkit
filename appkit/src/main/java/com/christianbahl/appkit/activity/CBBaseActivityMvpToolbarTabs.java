@@ -48,7 +48,7 @@ public abstract class CBBaseActivityMvpToolbarTabs<A extends FragmentStatePagerA
   }
 
   /**
-   * Creates the {@link A} for the {@link ViewPager}. <br />
+   * Creates the {@link A} for the {@link ViewPager}. <br>
    * Called in {@link #onCreate(Bundle)}
    *
    * @return {@link A}

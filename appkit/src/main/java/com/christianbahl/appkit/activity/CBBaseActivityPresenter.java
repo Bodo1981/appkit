@@ -28,7 +28,7 @@ public abstract class CBBaseActivityPresenter<P extends CBBasePresenter> extends
   }
 
   /**
-   * Creates the {@link P} instance. <br />
+   * Creates the {@link P} instance. <br>
    * Called in {@link #onCreate(Bundle)}
    *
    * @return {@link P}

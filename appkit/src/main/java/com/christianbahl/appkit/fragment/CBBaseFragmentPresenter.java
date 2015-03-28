@@ -38,7 +38,7 @@ public abstract class CBBaseFragmentPresenter<P extends CBBasePresenter> extends
   }
 
   /**
-   * Creates the {@link P}. <br />
+   * Creates the {@link P}. <br>
    * Called in {@link #onViewCreated(View, Bundle)}
    *
    * @return {@link P}
