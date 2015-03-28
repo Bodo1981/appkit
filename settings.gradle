@@ -1,1 +1,1 @@
-include ':app', ':core', ':mvp', ':templates'
+include ':lib'

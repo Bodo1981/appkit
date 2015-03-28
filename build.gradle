@@ -5,8 +5,8 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:1.0.1'
-    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    classpath 'com.android.tools.build:gradle:1.1.3'
+    classpath 'com.github.dcendents:android-maven-plugin:1.2'
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
   }
@@ -15,21 +15,30 @@ buildscript {
 allprojects {
   repositories {
     jcenter()
+
+    maven {
+      url 'http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/'
+    }
+
+    maven {
+      url "https://clojars.org/repo/"
+    }
   }
 }
 
 ext {
   minSdk = 15
-  targetSdk = 21
-  buildToolsVersion = '21.1.2'
-  compileSdkVersion = 21
+  targetSdk = 22
+  buildToolsVersion = '22.0.1'
+  compileSdkVersion = 22
 
   // Libraries
-  appcompat7Version = '21.0.3'
-  recyclerviewVersion ='21.0.+'
+  appcompat7Version = '22.+'
+  recyclerviewVersion ='22.+'
   fragmentargsVersion ='2.0.1'
-  butterknifeVersion = '6.0.0'
-  icepickVersion = '2.3.6'
-  materialtabstripVersion = '1.0.8'
-  smoothprogressbarVersion = '1.0.2'
+  butterknifeVersion = '6.1.0'
+  icepickVersion = '3.0.2'
+  materialtabstripVersion = '1.0.9'
+  smoothprogressbarVersion = '1.1.0'
+  materialdesigncolorVersion = '2.0.0'
 }
