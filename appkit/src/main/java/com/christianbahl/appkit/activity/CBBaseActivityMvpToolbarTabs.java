@@ -1,18 +1,17 @@
-package com.christianbahl.appkit.lib.activity;
+package com.christianbahl.appkit.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import com.astuetz.PagerSlidingTabStrip;
 import com.christianbahl.appkit.R;
-import com.christianbahl.appkit.activity.CBBaseActivityMvpToolbar;
 import com.christianbahl.appkit.presenter.CBBasePresenter;
 import com.christianbahl.appkit.view.CBBaseMvpView;
 
 /**
  * Created by cbahl on 17.01.15.
  */
-public abstract class CBBaseActivityMvpToolbarTabs<A extends FragmentStatePagerAdapter, D, V extends CBBaseMvpView<D>, P extends CBBasePresenter<V>>
+public abstract class CBBaseActivityMvpToolbarTabs<A extends PagerAdapter, D, V extends CBBaseMvpView<D>, P extends CBBasePresenter<V>>
     extends CBBaseActivityMvpToolbar<ViewPager, D, V, P> {
 
   protected PagerSlidingTabStrip tabs;
