@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!-- SwipeRefreshLayout -->
+  <dimen name="cb_swiperefresh_layout_width">40dp</dimen>
+  <dimen name="cb_swiperefresh_layout_height">40dp</dimen>
+
+  <!-- PagerSlidingTabStrip -->
+  <dimen name="cb_pagerslidingtabstrip_height">25dp</dimen>
+  <dimen name="cb_pagerslidingtabstrip_indicator_height">0dp</dimen>
+
+  <!-- Elevation -->
+  <dimen name="cb_elevation_depth">8dp</dimen>
+
+</resources>
