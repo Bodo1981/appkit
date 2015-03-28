@@ -1,8 +1,8 @@
-package com.christianbahl.appkit.lib.activity;
+package com.christianbahl.appkit.activity;
 
 import android.os.Bundle;
-import com.christianbahl.appkit.lib.presenter.CBBasePresenter;
-import com.christianbahl.appkit.lib.view.CBBaseView;
+import com.christianbahl.appkit.presenter.CBBasePresenter;
+import com.christianbahl.appkit.view.CBBaseView;
 
 /**
  * Created by cbahl on 28.03.15.

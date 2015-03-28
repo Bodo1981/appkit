@@ -1,6 +1,6 @@
-package com.christianbahl.appkit.lib.presenter;
+package com.christianbahl.appkit.presenter;
 
-import com.christianbahl.appkit.lib.view.CBBaseView;
+import com.christianbahl.appkit.view.CBBaseView;
 import java.lang.ref.WeakReference;
 
 /**

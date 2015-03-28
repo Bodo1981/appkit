@@ -4,9 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import com.astuetz.PagerSlidingTabStrip;
-import com.christianbahl.appkit.lib.R;
-import com.christianbahl.appkit.lib.presenter.CBBasePresenter;
-import com.christianbahl.appkit.lib.view.CBBaseMvpView;
+import com.christianbahl.appkit.R;
+import com.christianbahl.appkit.activity.CBBaseActivityMvpToolbar;
+import com.christianbahl.appkit.presenter.CBBasePresenter;
+import com.christianbahl.appkit.view.CBBaseMvpView;
 
 /**
  * Created by cbahl on 17.01.15.

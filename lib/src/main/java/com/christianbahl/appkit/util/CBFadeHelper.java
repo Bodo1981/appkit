@@ -1,4 +1,4 @@
-package com.christianbahl.appkit.lib.util;
+package com.christianbahl.appkit.util;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

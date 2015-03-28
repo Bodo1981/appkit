@@ -1,13 +1,13 @@
-package com.christianbahl.appkit.lib.fragment;
+package com.christianbahl.appkit.fragment;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.christianbahl.appkit.lib.R;
-import com.christianbahl.appkit.lib.presenter.CBBasePresenter;
-import com.christianbahl.appkit.lib.util.CBFadeHelper;
-import com.christianbahl.appkit.lib.view.CBBaseMvpView;
+import com.christianbahl.appkit.R;
+import com.christianbahl.appkit.presenter.CBBasePresenter;
+import com.christianbahl.appkit.util.CBFadeHelper;
+import com.christianbahl.appkit.view.CBBaseMvpView;
 
 /**
  * Created by cbahl on 18.01.15.

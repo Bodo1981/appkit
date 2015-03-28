@@ -1,13 +1,13 @@
-package com.christianbahl.appkit.lib.fragment;
+package com.christianbahl.appkit.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import com.christianbahl.appkit.lib.R;
-import com.christianbahl.appkit.lib.adapter.CBBaseAdapterRecyclerView;
-import com.christianbahl.appkit.lib.presenter.CBBasePresenter;
-import com.christianbahl.appkit.lib.view.CBBaseMvpView;
+import com.christianbahl.appkit.R;
+import com.christianbahl.appkit.adapter.CBBaseAdapterRecyclerView;
+import com.christianbahl.appkit.presenter.CBBasePresenter;
+import com.christianbahl.appkit.view.CBBaseMvpView;
 
 /**
  * Created by cbahl on 18.01.15.

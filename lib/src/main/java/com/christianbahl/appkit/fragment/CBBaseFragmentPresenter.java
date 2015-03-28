@@ -1,9 +1,9 @@
-package com.christianbahl.appkit.lib.fragment;
+package com.christianbahl.appkit.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import com.christianbahl.appkit.lib.presenter.CBBasePresenter;
-import com.christianbahl.appkit.lib.view.CBBaseView;
+import com.christianbahl.appkit.presenter.CBBasePresenter;
+import com.christianbahl.appkit.view.CBBaseView;
 
 /**
  * @author Christian Bahl

@@ -1,8 +1,8 @@
-package com.christianbahl.appkit.lib.presenter;
+package com.christianbahl.appkit.presenter;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
-import com.christianbahl.appkit.lib.view.CBBaseView;
+import com.christianbahl.appkit.view.CBBaseView;
 
 /**
  * Created by cbahl on 28.03.15.

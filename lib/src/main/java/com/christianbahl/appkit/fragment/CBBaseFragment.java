@@ -1,4 +1,4 @@
-package com.christianbahl.appkit.lib.fragment;
+package com.christianbahl.appkit.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

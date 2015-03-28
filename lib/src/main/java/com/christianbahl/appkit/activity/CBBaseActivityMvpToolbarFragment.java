@@ -1,11 +1,11 @@
-package com.christianbahl.appkit.lib.activity;
+package com.christianbahl.appkit.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import com.christianbahl.appkit.lib.R;
-import com.christianbahl.appkit.lib.presenter.CBBasePresenter;
-import com.christianbahl.appkit.lib.view.CBBaseMvpView;
+import com.christianbahl.appkit.R;
+import com.christianbahl.appkit.presenter.CBBasePresenter;
+import com.christianbahl.appkit.view.CBBaseMvpView;
 
 /**
  * Created by cbahl on 17.01.15.

@@ -1,4 +1,4 @@
-package com.christianbahl.appkit.lib.activity;
+package com.christianbahl.appkit.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
