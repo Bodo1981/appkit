@@ -23,21 +23,21 @@ public abstract class CBBaseFragmentMvpRecyclerView<D, V extends CBBaseMvpView<D
   }
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
-    emptyView = view.findViewById(R.id.empty_view);
-
-    if (emptyView == null) {
-      throw new IllegalStateException(
-          "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?");
-    }
-
     adapter = createAdapter();
     if (adapter == null) {
       throw new IllegalStateException(
           "Adapter is null. Did you forget to return an adapter in #createAdapter()?");
     }
+
+    super.onViewCreated(view, savedInstanceState);
+
     contentView.setAdapter(adapter);
+
+    emptyView = view.findViewById(R.id.empty_view);
+    if (emptyView == null) {
+      throw new IllegalStateException(
+          "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?");
+    }
 
     RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
     if (layoutManager == null) {
@@ -74,6 +74,12 @@ public abstract class CBBaseFragmentMvpRecyclerView<D, V extends CBBaseMvpView<D
     }
   }
 
+  /**
+   * Creates the {@link RecyclerView.LayoutManager}. <br>
+   * Default: {@link LinearLayoutManager}
+   *
+   * @return {@link RecyclerView.LayoutManager}
+   */
   protected RecyclerView.LayoutManager createRecyclerViewLayoutManager() {
     return new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
   }

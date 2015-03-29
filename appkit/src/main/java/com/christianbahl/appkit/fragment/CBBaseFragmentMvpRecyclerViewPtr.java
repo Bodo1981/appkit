@@ -57,7 +57,10 @@ public abstract class CBBaseFragmentMvpRecyclerViewPtr<D, V extends CBBaseMvpVie
   }
 
   /**
-   * Called from the {@link SwipeRefreshLayout.OnRefreshListener}
+   * Called from the {@link SwipeRefreshLayout.OnRefreshListener}.<br>
+   * Default: call of {@link #loadData(boolean)}
    */
-  protected abstract void onRefreshStarted();
+  protected void onRefreshStarted() {
+    loadData(true);
+  }
 }

@@ -52,12 +52,17 @@ public abstract class CBBaseFragmentMvp<CV extends View, D, V extends CBBaseMvpV
         onErrorViewClicked();
       }
     });
+
+    loadData(false);
   }
 
   /**
-   * Called if the user clicks on the error view
+   * Called if the user clicks on the error view.<br>
+   * Standard configuration is here to call {@link #loadData(boolean)}
    */
-  protected abstract void onErrorViewClicked();
+  protected void onErrorViewClicked() {
+    loadData(false);
+  }
 
   @Override public void showLoading(boolean isContentVisible) {
     animateLoadingViewIn(isContentVisible);
@@ -123,4 +128,13 @@ public abstract class CBBaseFragmentMvp<CV extends View, D, V extends CBBaseMvpV
   protected void animateErrorViewIn(String errorMsg) {
     CBFadeHelper.showError(errorMsg, loadingView, contentView, errorView);
   }
+
+  /**
+   * Here you should load the date which you would present in your fragment. <br>
+   * Called in {@link #onViewCreated(View, Bundle)} and if you don´t override it also in {@link
+   * #onErrorViewClicked()}
+   *
+   * @param isContentVisible is content visible
+   */
+  protected abstract void loadData(boolean isContentVisible);
 }
