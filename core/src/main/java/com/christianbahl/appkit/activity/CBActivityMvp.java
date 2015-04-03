@@ -149,9 +149,12 @@ public abstract class CBActivityMvp<CV extends View, D, V extends CBMvpView<D>, 
   }
 
   /**
-   * Called if the user clicks on the error view (R.id.error_view)
+   * Called if the user clicks on the error view.<br>
+   * Standard configuration is here to call {@link #loadData(boolean)}
    */
-  protected abstract void onErrorViewClicked();
+  protected void onErrorViewClicked() {
+    loadData(false);
+  }
 
   /**
    * Here you should load the date which you would present in your fragment. <br>
