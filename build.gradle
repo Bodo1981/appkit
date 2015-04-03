@@ -4,16 +4,6 @@ ext {
   targetSdk = 22
   buildToolsVersion = '22.0.1'
   compileSdkVersion = 22
-
-  // Libraries
-  appcompat7Version = '22.+'
-  recyclerviewVersion ='22.+'
-  fragmentargsVersion ='2.0.1'
-  butterknifeVersion = '6.1.0'
-  icepickVersion = '3.0.2'
-  materialtabstripVersion = '1.0.9'
-  smoothprogressbarVersion = '1.1.0'
-  materialdesigncolorVersion = '2.0.0'
 }
 
 buildscript {
@@ -42,52 +32,5 @@ allprojects {
     maven {
       url "https://clojars.org/repo/"
     }
-  }
-}
-
-subprojects {
-  apply plugin: 'com.android.library'
-  apply plugin: 'android-maven'
-
-  dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-  }
-
-  android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
-
-    defaultConfig {
-      minSdkVersion rootProject.ext.minSdk
-      targetSdkVersion rootProject.ext.targetSdk
-      versionCode 1
-      versionName "1.0"
-    }
-    buildTypes {
-      release {
-        minifyEnabled false
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-      }
-    }
-  }
-
-  task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-  }
-
-  task javadoc(type: Javadoc) {
-    failOnError false
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-  }
-
-  task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-  }
-  artifacts {
-    archives javadocJar
-    archives sourcesJar
   }
 }

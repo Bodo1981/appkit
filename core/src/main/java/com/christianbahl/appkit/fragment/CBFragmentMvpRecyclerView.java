@@ -49,13 +49,22 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P
     return R.layout.cb_fragment_recycler_view;
   }
 
-  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-
+  @Override protected void onMvpViewsCreated(View view, Bundle savedInstanceState) {
     emptyView = view.findViewById(R.id.empty_view);
     if (emptyView == null) {
       throw new IllegalStateException(
           "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?");
+    }
+
+    contentView.setAdapter(adapter);
+
+    RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
+    if (layoutManager == null) {
+      throw new IllegalStateException(
+          "The RecyclerView.LayoutManager is not specified. You have to provide a "
+              + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
+    } else {
+      contentView.setLayoutManager(layoutManager);
     }
   }
 
@@ -64,16 +73,6 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P
     if (adapter == null) {
       throw new IllegalStateException(
           "Adapter is null. Did you forget to return an adapter in #createAdapter()?");
-    }
-
-    contentView.setAdapter(adapter);
-
-    RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
-    if (layoutManager == null) {
-      throw new IllegalStateException(
-          "The RecyclerView.LayoutManager is not specified. You have to provide a RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
-    } else {
-      contentView.setLayoutManager(layoutManager);
     }
   }
 

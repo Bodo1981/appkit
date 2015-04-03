@@ -45,8 +45,8 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends CBMvpView<D>
     return R.layout.cb_fragment_recycler_view_ptr;
   }
 
-  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
+  @Override protected void onMvpViewsCreated(View view, Bundle savedInstanceState) {
+    super.onMvpViewsCreated(view, savedInstanceState);
 
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
     if (swipeRefreshLayout == null) {

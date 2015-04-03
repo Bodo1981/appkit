@@ -86,6 +86,8 @@ public abstract class CBFragmentMvp<CV extends View, D, V extends CBMvpView<D>, 
       }
     });
 
+    onMvpViewsCreated(view, savedInstanceState);
+
     loadData(false);
   }
 
@@ -170,4 +172,6 @@ public abstract class CBFragmentMvp<CV extends View, D, V extends CBMvpView<D>, 
    * @param isContentVisible is content visible
    */
   protected abstract void loadData(boolean isContentVisible);
+
+  protected abstract void onMvpViewsCreated(View view, Bundle savedInstanceState);
 }

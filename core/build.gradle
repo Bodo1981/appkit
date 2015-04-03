@@ -1,22 +1,66 @@
+apply plugin: 'com.android.library'
+apply plugin: 'android-maven'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
+  defaultConfig {
+    minSdkVersion rootProject.ext.minSdk
+    targetSdkVersion rootProject.ext.targetSdk
+    versionCode 1
+    versionName "1.0"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
 dependencies {
-  compile 'com.android.support:appcompat-v7:' + rootProject.ext.appcompat7Version
-  compile 'com.android.support:recyclerview-v7:' + rootProject.ext.recyclerviewVersion
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+
+  // Support
+  compile 'com.android.support:appcompat-v7:22.0.0'
+  compile 'com.android.support:recyclerview-v7:22.0.0'
 
   // Icepick
-  compile 'frankiesardo:icepick:' + rootProject.ext.icepickVersion
+  compile 'frankiesardo:icepick:3.0.2'
 
   // Butterknife
-  compile 'com.jakewharton:butterknife:' + rootProject.ext.butterknifeVersion
+  compile 'com.jakewharton:butterknife:6.1.0'
 
   // PagerSlidingTabStrip
-  compile 'com.jpardogo.materialtabstrip:library:' + rootProject.ext.materialtabstripVersion
+  compile 'com.jpardogo.materialtabstrip:library:1.0.9'
 
   // SmoothProgressBar
-  compile 'com.github.castorflex.smoothprogressbar:library-circular:' + rootProject.ext.smoothprogressbarVersion
+  compile 'com.github.castorflex.smoothprogressbar:library-circular:1.1.0'
 
   // FragmentArgs
-  compile 'com.hannesdorfmann.fragmentargs:annotation:' + rootProject.ext.fragmentargsVersion
+  compile 'com.hannesdorfmann.fragmentargs:annotation:2.0.1'
 
   // Material Design Colors
-  compile 'com.wada811:android-material-design-colors:' + rootProject.ext.materialdesigncolorVersion
+  compile 'com.wada811:android-material-design-colors:2.0.0'
+}
+
+task sourcesJar(type: Jar) {
+  from android.sourceSets.main.java.srcDirs
+  classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+  failOnError false
+  source = android.sourceSets.main.java.srcDirs
+  classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+artifacts {
+  archives javadocJar
+  archives sourcesJar
 }

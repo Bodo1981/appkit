@@ -16,7 +16,6 @@
 package com.christianbahl.appkit.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,8 +53,8 @@ public abstract class CBActivityMvp<CV extends View, D, V extends CBMvpView<D>, 
   protected TextView errorView;
   protected View loadingView;
 
-  @Override public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-    super.onCreate(savedInstanceState, persistentState);
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
     loadData(false);
   }
