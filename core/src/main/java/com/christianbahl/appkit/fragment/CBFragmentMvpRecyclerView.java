@@ -20,7 +20,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.christianbahl.appkit.R;
-import com.christianbahl.appkit.adapter.CBBaseAdapterRecyclerView;
+import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
 import com.christianbahl.appkit.presenter.CBPresenter;
 import com.christianbahl.appkit.view.CBMvpView;
 
@@ -38,7 +38,7 @@ import com.christianbahl.appkit.view.CBMvpView;
  * @author Christian Bahl
  * @see CBFragmentMvp
  */
-public abstract class CBFragmentMvpRecyclerView<D, V extends CBMvpView<D>, P extends CBPresenter<V>, A extends CBBaseAdapterRecyclerView<D>>
+public abstract class CBFragmentMvpRecyclerView<D, V extends CBMvpView<D>, P extends CBPresenter<V>, A extends CBAdapterRecyclerView<D>>
     extends CBFragmentMvp<RecyclerView, D, V, P> {
 
   protected A adapter;

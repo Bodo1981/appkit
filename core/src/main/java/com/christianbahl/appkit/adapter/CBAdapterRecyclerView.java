@@ -33,13 +33,13 @@ import java.util.List;
  * @author Christian Bahl
  * @see RecyclerView.Adapter
  */
-public abstract class CBBaseAdapterRecyclerView<D> extends RecyclerView.Adapter {
+public abstract class CBAdapterRecyclerView<D> extends RecyclerView.Adapter {
 
   protected LayoutInflater inflater;
   protected Context context;
   protected List<D> items;
 
-  public CBBaseAdapterRecyclerView(Context context) {
+  public CBAdapterRecyclerView(Context context) {
     this.context = context;
     this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
