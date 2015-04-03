@@ -33,11 +33,11 @@ import java.util.List;
  * @author Christian Bahl
  * @see RecyclerView.Adapter
  */
-public abstract class CBAdapterRecyclerView<D> extends RecyclerView.Adapter {
+public abstract class CBAdapterRecyclerView<D, L extends List<D>> extends RecyclerView.Adapter {
 
   protected LayoutInflater inflater;
   protected Context context;
-  protected List<D> items;
+  protected L items;
 
   public CBAdapterRecyclerView(Context context) {
     this.context = context;
@@ -47,18 +47,18 @@ public abstract class CBAdapterRecyclerView<D> extends RecyclerView.Adapter {
   /**
    * Set the items
    *
-   * @param items {@link List}
+   * @param items {@link L}
    */
-  public void setItems(List<D> items) {
+  public void setItems(L items) {
     this.items = items;
   }
 
   /**
    * Get the items
    *
-   * @return items {@link List}
+   * @return items {@link L}
    */
-  public List<D> getItems() {
+  public L getItems() {
     return items;
   }
 
@@ -76,12 +76,12 @@ public abstract class CBAdapterRecyclerView<D> extends RecyclerView.Adapter {
    * Add items
    *
    * <p>
-   * If {@link #items} is null an empty {@link List} will be created first.
+   * If {@link #items} is null an empty {@link L} will be created first.
    * </p>
    *
-   * @param items {@link List}
+   * @param items {@link L}
    */
-  public void addNewItems(List<D> items) {
+  public void addNewItems(L items) {
     if (this.items == null) {
       this.items = createEmptyList();
     }
@@ -107,12 +107,12 @@ public abstract class CBAdapterRecyclerView<D> extends RecyclerView.Adapter {
   }
 
   /**
-   * Creates an empty {@link List}
+   * Creates an empty {@link L}
    *
-   * @return empty {@link List}
+   * @return empty {@link L}
    */
-  private List<D> createEmptyList() {
-    return new ArrayList<>();
+  @SuppressWarnings("unchecked") private L createEmptyList() {
+    return (L) new ArrayList<>();
   }
 
   @Override public int getItemCount() {

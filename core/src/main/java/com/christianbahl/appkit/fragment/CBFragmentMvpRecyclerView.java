@@ -23,6 +23,7 @@ import com.christianbahl.appkit.R;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
 import com.christianbahl.appkit.presenter.CBPresenter;
 import com.christianbahl.appkit.view.CBMvpView;
+import java.util.List;
 
 /**
  * A fragment which uses the Model-View-Presenter architecture.
@@ -38,7 +39,7 @@ import com.christianbahl.appkit.view.CBMvpView;
  * @author Christian Bahl
  * @see CBFragmentMvp
  */
-public abstract class CBFragmentMvpRecyclerView<D, V extends CBMvpView<D>, P extends CBPresenter<V>, A extends CBAdapterRecyclerView<D>>
+public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P extends CBPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
     extends CBFragmentMvp<RecyclerView, D, V, P> {
 
   protected A adapter;
