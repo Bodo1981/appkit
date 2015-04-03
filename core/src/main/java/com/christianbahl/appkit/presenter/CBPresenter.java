@@ -29,10 +29,6 @@ public class CBPresenter<V extends CBView> implements CBPresenterInterface<V> {
 
   protected WeakReference<V> viewReference;
 
-  public CBPresenter() {
-
-  }
-
   /**
    * Get the attached view if it is correctly attached.
    *

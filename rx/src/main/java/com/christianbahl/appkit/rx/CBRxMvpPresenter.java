@@ -20,7 +20,7 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * A base presenter wich uses the Model-View-Presenter architecture in connection with rxjava.
+ * A base presenter which uses the Model-View-Presenter architecture in connection with rxjava.
  *
  * <p>
  * It implements the {@link Subscriber} functions:
