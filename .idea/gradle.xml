@@ -9,7 +9,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/appkit" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/rx" />
           </set>
         </option>
       </GradleProjectSettings>

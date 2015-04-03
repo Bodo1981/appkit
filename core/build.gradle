@@ -1,0 +1,22 @@
+dependencies {
+  compile 'com.android.support:appcompat-v7:' + rootProject.ext.appcompat7Version
+  compile 'com.android.support:recyclerview-v7:' + rootProject.ext.recyclerviewVersion
+
+  // Icepick
+  compile 'frankiesardo:icepick:' + rootProject.ext.icepickVersion
+
+  // Butterknife
+  compile 'com.jakewharton:butterknife:' + rootProject.ext.butterknifeVersion
+
+  // PagerSlidingTabStrip
+  compile 'com.jpardogo.materialtabstrip:library:' + rootProject.ext.materialtabstripVersion
+
+  // SmoothProgressBar
+  compile 'com.github.castorflex.smoothprogressbar:library-circular:' + rootProject.ext.smoothprogressbarVersion
+
+  // FragmentArgs
+  compile 'com.hannesdorfmann.fragmentargs:annotation:' + rootProject.ext.fragmentargsVersion
+
+  // Material Design Colors
+  compile 'com.wada811:android-material-design-colors:' + rootProject.ext.materialdesigncolorVersion
+}

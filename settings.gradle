@@ -1,1 +1,1 @@
-include ':appkit'
+include ':core', ':rx'

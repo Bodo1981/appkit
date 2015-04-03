@@ -1,32 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:1.1.3'
-    classpath 'com.github.dcendents:android-maven-plugin:1.2'
-    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-    // NOTE: Do not place your application dependencies here; they belong
-    // in the individual module build.gradle files
-  }
-}
-
-allprojects {
-  repositories {
-    jcenter()
-
-    maven {
-      url 'http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/'
-    }
-
-    maven {
-      url "https://clojars.org/repo/"
-    }
-  }
-}
-
 ext {
   minSdk = 15
   targetSdk = 22
@@ -42,4 +14,80 @@ ext {
   materialtabstripVersion = '1.0.9'
   smoothprogressbarVersion = '1.1.0'
   materialdesigncolorVersion = '2.0.0'
+}
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:1.1.3'
+    classpath 'com.github.dcendents:android-maven-plugin:1.2'
+    // NOTE: Do not place your application dependencies here; they belong
+    // in the individual module build.gradle files
+  }
+}
+
+allprojects {
+  version = '1.0.0'
+  group = 'com.christianbahl'
+
+  repositories {
+    jcenter()
+
+    maven {
+      url 'http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/'
+    }
+
+    maven {
+      url "https://clojars.org/repo/"
+    }
+  }
+}
+
+subprojects {
+  apply plugin: 'com.android.library'
+  apply plugin: 'android-maven'
+
+  dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+  }
+
+  android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+      minSdkVersion rootProject.ext.minSdk
+      targetSdkVersion rootProject.ext.targetSdk
+      versionCode 1
+      versionName "1.0"
+    }
+    buildTypes {
+      release {
+        minifyEnabled false
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      }
+    }
+  }
+
+  task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+  }
+
+  task javadoc(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+  }
+
+  task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+  }
+  artifacts {
+    archives javadocJar
+    archives sourcesJar
+  }
 }
