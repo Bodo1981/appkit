@@ -20,7 +20,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import com.christianbahl.appkit.R;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.presenter.CBPresenter;
+import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBMvpView;
 import java.util.List;
 
@@ -36,7 +36,7 @@ import java.util.List;
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends CBMvpView<D>, P extends CBPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
+public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
     extends CBFragmentMvpRecyclerView<AD, D, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;
@@ -65,6 +65,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends CBMvpView<D>
     super.showContent();
 
     swipeRefreshLayout.setVisibility(View.VISIBLE);
+    swipeRefreshLayout.setRefreshing(false);
   }
 
   @Override public void showLoading(boolean isContentVisible) {
@@ -79,6 +80,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends CBMvpView<D>
     super.showError(e, isContentVisible);
 
     swipeRefreshLayout.setVisibility(View.GONE);
+    swipeRefreshLayout.setRefreshing(false);
   }
 
   /**

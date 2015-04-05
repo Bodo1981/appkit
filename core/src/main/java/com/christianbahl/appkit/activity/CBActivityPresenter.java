@@ -16,7 +16,7 @@
 package com.christianbahl.appkit.activity;
 
 import android.os.Bundle;
-import com.christianbahl.appkit.presenter.CBPresenter;
+import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBView;
 
 /**
@@ -30,7 +30,7 @@ import com.christianbahl.appkit.view.CBView;
  * @author Christian Bahl
  * @see CBActivity
  */
-public abstract class CBActivityPresenter<P extends CBPresenter> extends CBActivity
+public abstract class CBActivityPresenter<P extends CBPresenterInterface> extends CBActivity
     implements CBView {
 
   protected P presenter;

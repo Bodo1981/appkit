@@ -21,7 +21,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import com.astuetz.PagerSlidingTabStrip;
 import com.christianbahl.appkit.R;
-import com.christianbahl.appkit.presenter.CBPresenter;
+import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBMvpView;
 
 /**
@@ -49,7 +49,7 @@ import com.christianbahl.appkit.view.CBMvpView;
  *
  * @author Christian Bahl
  */
-public abstract class CBActivityMvpToolbarTabs<A extends PagerAdapter, D, V extends CBMvpView<D>, P extends CBPresenter<V>>
+public abstract class CBActivityMvpToolbarTabs<A extends PagerAdapter, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
     extends CBActivityMvpToolbar<ViewPager, D, V, P> {
 
   protected PagerSlidingTabStrip tabs;

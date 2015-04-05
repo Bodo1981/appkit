@@ -33,7 +33,8 @@ import java.util.List;
  * @author Christian Bahl
  * @see RecyclerView.Adapter
  */
-public abstract class CBAdapterRecyclerView<D, L extends List<D>> extends RecyclerView.Adapter {
+public abstract class CBAdapterRecyclerView<D, L extends List<D>>
+    extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   protected LayoutInflater inflater;
   protected Context context;

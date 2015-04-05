@@ -17,7 +17,7 @@ package com.christianbahl.appkit.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import com.christianbahl.appkit.presenter.CBPresenter;
+import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBView;
 
 /**
@@ -32,7 +32,7 @@ import com.christianbahl.appkit.view.CBView;
  * @author Christian Bahl
  * @see CBFragment
  */
-public abstract class CBFragmentPresenter<P extends CBPresenter> extends CBFragment
+public abstract class CBFragmentPresenter<P extends CBPresenterInterface> extends CBFragment
     implements CBView {
 
   protected P presenter;

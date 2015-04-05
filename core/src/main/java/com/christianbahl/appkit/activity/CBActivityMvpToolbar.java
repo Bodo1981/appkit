@@ -19,7 +19,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.christianbahl.appkit.R;
-import com.christianbahl.appkit.presenter.CBPresenter;
+import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBMvpView;
 
 /**
@@ -38,7 +38,7 @@ import com.christianbahl.appkit.view.CBMvpView;
  * @author Christian Bahl
  * @see CBActivityMvp
  */
-public abstract class CBActivityMvpToolbar<CV extends View, D, V extends CBMvpView<D>, P extends CBPresenter<V>>
+public abstract class CBActivityMvpToolbar<CV extends View, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
     extends CBActivityMvp<CV, D, V, P> {
 
   protected Toolbar toolbar;

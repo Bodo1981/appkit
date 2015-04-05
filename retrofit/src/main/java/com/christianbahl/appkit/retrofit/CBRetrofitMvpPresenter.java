@@ -33,7 +33,7 @@ import retrofit.client.Response;
  * @author Christian Bahl
  * @see CBPresenter
  */
-public class CBRetrofitMvpPresenter<V extends CBMvpView<D>, D> extends CBPresenter<V> {
+public class CBRetrofitMvpPresenter<D, V extends CBMvpView<D>> extends CBPresenter<V> {
 
   protected class CBRetrofitMvpCallback implements Callback<D> {
 

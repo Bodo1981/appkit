@@ -39,7 +39,7 @@ import rx.Subscriber;
  * @author Christian Bahl
  * @see CBRxPresenter
  */
-public class CBRxMvpPresenter<V extends CBMvpView<D>, D> extends CBRxPresenter<V, D> {
+public class CBRxMvpPresenter<D, V extends CBMvpView<D>> extends CBRxPresenter<D, V> {
 
   protected boolean isContentVisible;
 

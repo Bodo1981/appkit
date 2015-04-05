@@ -40,7 +40,7 @@ import rx.Subscriber;
  * @author Christian Bahl
  * @see CBPresenter
  */
-public abstract class CBRxPresenter<V extends CBView, D> extends Subscriber<D>
+public abstract class CBRxPresenter<D, V extends CBView> extends Subscriber<D>
     implements CBPresenterInterface<V> {
 
   protected WeakReference<V> viewReference;

@@ -21,7 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.christianbahl.appkit.R;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.presenter.CBPresenter;
+import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBMvpView;
 import java.util.List;
 
@@ -39,7 +39,7 @@ import java.util.List;
  * @author Christian Bahl
  * @see CBFragmentMvp
  */
-public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P extends CBPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
+public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
     extends CBFragmentMvp<RecyclerView, D, V, P> {
 
   protected A adapter;

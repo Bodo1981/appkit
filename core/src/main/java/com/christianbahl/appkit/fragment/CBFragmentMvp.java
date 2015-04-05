@@ -20,7 +20,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.christianbahl.appkit.R;
-import com.christianbahl.appkit.presenter.CBPresenter;
+import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.util.CBFadeHelper;
 import com.christianbahl.appkit.view.CBMvpView;
 
@@ -46,7 +46,7 @@ import com.christianbahl.appkit.view.CBMvpView;
  * @author Christian Bahl
  * @see CBFragmentPresenter
  */
-public abstract class CBFragmentMvp<CV extends View, D, V extends CBMvpView<D>, P extends CBPresenter<V>>
+public abstract class CBFragmentMvp<CV extends View, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
     extends CBFragmentPresenter<P> implements CBMvpView<D> {
 
   protected CV contentView;
