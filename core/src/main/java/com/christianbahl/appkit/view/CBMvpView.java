@@ -53,4 +53,11 @@ public interface CBMvpView<D> extends CBView {
    * @param data {@link D}
    */
   void setData(D data);
+
+  /**
+   * Must be called to load the date
+   *
+   * @param isContentVisible is content visible
+   */
+  void loadData(boolean isContentVisible);
 }

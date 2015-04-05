@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/retrofit" />
             <option value="$PROJECT_DIR$/rx" />
+            <option value="$PROJECT_DIR$/viewstate" />
           </set>
         </option>
       </GradleProjectSettings>

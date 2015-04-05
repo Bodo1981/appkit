@@ -160,13 +160,4 @@ public abstract class CBActivityMvp<CV extends View, D, V extends CBMvpView<D>, 
   protected void onErrorViewClicked() {
     loadData(false);
   }
-
-  /**
-   * Here you should load the date which you would present in your fragment. <br>
-   * Called in {@link #onSupportContentChanged()} and if you don´t override it also in
-   * {@link #onErrorViewClicked()}
-   *
-   * @param isContentVisible is content visible
-   */
-  protected abstract void loadData(boolean isContentVisible);
 }

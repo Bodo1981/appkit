@@ -164,14 +164,5 @@ public abstract class CBFragmentMvp<CV extends View, D, V extends CBMvpView<D>, 
     CBFadeHelper.showError(errorMsg, loadingView, contentView, errorView);
   }
 
-  /**
-   * Here you should load the date which you would present in your fragment. <br>
-   * Called in {@link #onViewCreated(View, Bundle)} and if you don´t override it also in {@link
-   * #onErrorViewClicked()}
-   *
-   * @param isContentVisible is content visible
-   */
-  protected abstract void loadData(boolean isContentVisible);
-
   protected abstract void onMvpViewsCreated(View view, Bundle savedInstanceState);
 }
