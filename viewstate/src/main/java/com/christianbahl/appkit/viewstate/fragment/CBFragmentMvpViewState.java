@@ -20,9 +20,9 @@ import android.view.View;
 import com.christianbahl.appkit.fragment.CBFragmentMvp;
 import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.CBViewStateInterface;
-import com.christianbahl.appkit.viewstate.CBViewStateRestoreable;
-import com.christianbahl.appkit.viewstate.data.CBViewStateMvpInterface;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpInterface;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateRestoreableInterface;
 import com.christianbahl.appkit.viewstate.utils.CBViewStateHelper;
 import com.christianbahl.appkit.viewstate.utils.CBViewStateSupport;
 
@@ -51,7 +51,8 @@ public abstract class CBFragmentMvpViewState<CV extends View, D, V extends CBMvp
    * Creates or restores the {@link CBViewStateInterface}
    *
    * @param savedInstanceState saved instance state
-   * @return <code>true</code> if {@link CBViewStateRestoreable} is restored successfully otherwise
+   * @return <code>true</code> if {@link CBViewStateRestoreableInterface} is restored successfully
+   * otherwise
    * <code>false</code>
    */
   @SuppressWarnings("unchecked") protected boolean createOrRestoreViewState(
@@ -60,7 +61,7 @@ public abstract class CBFragmentMvpViewState<CV extends View, D, V extends CBMvp
   }
 
   /**
-   * Saves the {@link CBViewStateRestoreable}. <br />
+   * Saves the {@link CBViewStateRestoreableInterface}. <br />
    * Called in {@link #onSaveInstanceState(Bundle)}
    *
    * @param outState The bundle to store
@@ -92,4 +93,44 @@ public abstract class CBFragmentMvpViewState<CV extends View, D, V extends CBMvp
   @Override public void onViewStateNew() {
     // not needed here. can be overriden in subclasses
   }
+
+  @Override public void showLoading(boolean isContentVisible) {
+    super.showLoading(isContentVisible);
+
+    viewState.setViewStateShowLoading(isContentVisible);
+  }
+
+  @Override public void showContent() {
+    super.showContent();
+
+    viewState.setViewStateShowContent(getData());
+  }
+
+  @Override public void showError(Exception e, boolean isContentVisible) {
+    super.showError(e, isContentVisible);
+
+    viewState.setViewStateShowError(e, isContentVisible);
+  }
+
+  @Override protected void showLightError(String errorMsg) {
+    if (isViewStateRestoring()) {
+      return;
+    }
+
+    super.showLightError(errorMsg);
+  }
+
+  /**
+   * Creates the view state
+   *
+   * @return {@link CBViewStateMvpInterface}
+   */
+  @Override public abstract CBViewStateMvpInterface<D, V> createViewState();
+
+  /**
+   * Get the loaded data
+   *
+   * @return {@link D}
+   */
+  public abstract D getData();
 }

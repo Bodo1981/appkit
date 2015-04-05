@@ -17,9 +17,9 @@ package com.christianbahl.appkit.viewstate.utils;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.CBViewStateInterface;
-import com.christianbahl.appkit.viewstate.CBViewStateRestoreable;
+import com.christianbahl.appkit.view.CBView;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateRestoreableInterface;
 
 /**
  * @author Christian Bahl
@@ -35,7 +35,7 @@ public class CBViewStateHelper {
    * @return <code>true</code> if the view state is restored successfully otherwise
    * <code>false</code> if a new view state has been created
    */
-  public static <D, V extends CBMvpView<D>> boolean createOrRestoreViewState(
+  public static <V extends CBView> boolean createOrRestoreViewState(
       @NonNull CBViewStateSupport<V> viewStateSupport, @NonNull V view, Bundle savedInstanceState) {
     if (viewStateSupport == null) {
       throw new NullPointerException("CBViewStateSupport can not be null");
@@ -62,9 +62,9 @@ public class CBViewStateHelper {
     }
 
     if (savedInstanceState != null
-        && viewStateSupport.getViewState() instanceof CBViewStateRestoreable) {
+        && viewStateSupport.getViewState() instanceof CBViewStateRestoreableInterface) {
       boolean restoredFromBundle =
-          ((CBViewStateRestoreable) viewStateSupport.getViewState()).restoreInstanceState(
+          ((CBViewStateRestoreableInterface) viewStateSupport.getViewState()).restoreInstanceState(
               savedInstanceState);
 
       if (restoredFromBundle) {
@@ -91,8 +91,8 @@ public class CBViewStateHelper {
       throw new NullPointerException("CBViewState can not be null");
     }
 
-    if (viewState instanceof CBViewStateRestoreable) {
-      ((CBViewStateRestoreable) viewState).saveInstanceState(outState);
+    if (viewState instanceof CBViewStateRestoreableInterface) {
+      ((CBViewStateRestoreableInterface) viewState).saveInstanceState(outState);
     }
   }
 }

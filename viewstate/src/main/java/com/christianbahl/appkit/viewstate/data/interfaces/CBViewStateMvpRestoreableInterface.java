@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate;
+package com.christianbahl.appkit.viewstate.data.interfaces;
 
-import android.os.Bundle;
 import com.christianbahl.appkit.view.CBMvpView;
 
 /**
  * @author Christian Bahl
  */
-public interface CBViewStateRestoreable<V extends CBMvpView> extends CBViewStateInterface<V> {
-
-  void saveInstanceState(Bundle outState);
-
-  boolean restoreInstanceState(Bundle savedInstanceState);
+public interface CBViewStateMvpRestoreableInterface<D, V extends CBMvpView<D>>
+    extends CBViewStateRestoreableInterface<V>, CBViewStateMvpInterface<D, V> {
 }

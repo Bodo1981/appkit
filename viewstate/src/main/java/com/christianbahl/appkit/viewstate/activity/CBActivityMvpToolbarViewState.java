@@ -13,43 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate.fragment;
+package com.christianbahl.appkit.viewstate.activity;
 
 import android.os.Bundle;
-import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.fragment.CBFragmentMvpRecyclerViewPtr;
+import android.view.View;
+import com.christianbahl.appkit.activity.CBActivityMvpToolbar;
 import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBMvpView;
 import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpInterface;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpRestoreableParcelableInterface;
 import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateRestoreableInterface;
 import com.christianbahl.appkit.viewstate.utils.CBViewStateHelper;
 import com.christianbahl.appkit.viewstate.utils.CBViewStateSupport;
-import java.util.List;
 
 /**
  * @author Christian Bahl
  */
-public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
-    extends CBFragmentMvpRecyclerViewPtr<AD, D, V, P, A> implements CBViewStateSupport<V> {
+public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
+    extends CBActivityMvpToolbar<CV, D, V, P> implements CBViewStateSupport<V> {
 
-  private CBViewStateMvpInterface<D, V> viewState;
-  private boolean viewStateRestoring = false;
+  protected CBViewStateMvpRestoreableParcelableInterface<D, V> viewState;
+  protected boolean viewStateRestoring = false;
 
-  @Override public void onActivityCreated(Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
+  @Override protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
 
     createOrRestoreViewState(savedInstanceState);
   }
 
-  @Override public void onSaveInstanceState(Bundle out) {
-    super.onSaveInstanceState(out);
+  @Override public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
 
-    saveViewState(out);
+    saveViewState(outState);
   }
 
   /**
-   * Creates or restores the {@link CBViewStateInterface}
+   * Creates or restores the {@link CBViewStateRestoreableInterface}
    *
    * @param savedInstanceState saved instance state
    * @return <code>true</code> if {@link CBViewStateRestoreableInterface} is restored successfully
@@ -71,12 +70,18 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V extends CBM
     CBViewStateHelper.saveViewState(this, outState);
   }
 
-  @Override public CBViewStateInterface<V> getViewState() {
+  @Override public CBViewStateMvpRestoreableParcelableInterface<D, V> getViewState() {
     return viewState;
   }
 
-  @Override public void setViewState(CBViewStateInterface<V> viewState) {
-    this.viewState = (CBViewStateMvpInterface<D, V>) viewState;
+  @SuppressWarnings("unchecked") @Override
+  public void setViewState(CBViewStateInterface<V> viewState) {
+    if (!(viewState instanceof CBViewStateMvpRestoreableParcelableInterface)) {
+      throw new IllegalArgumentException("View state must be of subclass "
+          + CBViewStateMvpRestoreableParcelableInterface.class.getCanonicalName());
+    }
+
+    this.viewState = (CBViewStateMvpRestoreableParcelableInterface) viewState;
   }
 
   @Override public void setViewStateRestoring(boolean viewStateRestoring) {
@@ -87,11 +92,11 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V extends CBM
     return viewStateRestoring;
   }
 
-  @Override public void onViewStateRestored(boolean instanceStateRetained) {
-    // not needed here. can be overriden in subclasses
+  @Override public void onViewStateNew() {
+    loadData(false);
   }
 
-  @Override public void onViewStateNew() {
+  @Override public void onViewStateRestored(boolean instanceStateRetained) {
     // not needed here. can be overriden in subclasses
   }
 
@@ -124,9 +129,9 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V extends CBM
   /**
    * Creates the view state
    *
-   * @return {@link CBViewStateMvpInterface}
+   * @return {@link CBViewStateMvpRestoreableParcelableInterface}
    */
-  @Override public abstract CBViewStateMvpInterface<D, V> createViewState();
+  @Override public abstract CBViewStateMvpRestoreableParcelableInterface<D, V> createViewState();
 
   /**
    * Get the loaded data

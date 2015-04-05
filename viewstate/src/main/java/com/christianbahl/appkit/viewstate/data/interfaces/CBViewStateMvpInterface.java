@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate.data;
+package com.christianbahl.appkit.viewstate.data.interfaces;
 
 import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.CBViewStateInterface;
 
 /**
  * @author Christian Bahl
@@ -45,8 +44,8 @@ public interface CBViewStateMvpInterface<D, V extends CBMvpView<D>>
   /**
    * Sets the state to "show error"
    *
-   * @param e {@link Throwable}
+   * @param exception {@link Throwable}
    * @param isContentVisible is content visible
    */
-  void setViewStateShowError(Throwable e, boolean isContentVisible);
+  void setViewStateShowError(Exception exception, boolean isContentVisible);
 }

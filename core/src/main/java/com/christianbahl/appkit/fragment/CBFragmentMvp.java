@@ -87,8 +87,6 @@ public abstract class CBFragmentMvp<CV extends View, D, V extends CBMvpView<D>, 
     });
 
     onMvpViewsCreated(view, savedInstanceState);
-
-    loadData(false);
   }
 
   /**

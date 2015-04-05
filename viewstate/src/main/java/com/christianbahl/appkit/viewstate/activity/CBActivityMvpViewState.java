@@ -20,8 +20,9 @@ import android.view.View;
 import com.christianbahl.appkit.activity.CBActivityMvp;
 import com.christianbahl.appkit.presenter.CBPresenterInterface;
 import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.CBViewStateInterface;
-import com.christianbahl.appkit.viewstate.CBViewStateRestoreable;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpRestoreableParcelableInterface;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateRestoreableInterface;
 import com.christianbahl.appkit.viewstate.utils.CBViewStateHelper;
 import com.christianbahl.appkit.viewstate.utils.CBViewStateSupport;
 
@@ -31,8 +32,8 @@ import com.christianbahl.appkit.viewstate.utils.CBViewStateSupport;
 public abstract class CBActivityMvpViewState<CV extends View, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
     extends CBActivityMvp<CV, D, V, P> implements CBViewStateSupport<V> {
 
-  private CBViewStateRestoreable<V> viewState;
-  private boolean viewStateRestoring = false;
+  protected CBViewStateMvpRestoreableParcelableInterface<D, V> viewState;
+  protected boolean viewStateRestoring = false;
 
   @Override protected void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
@@ -47,10 +48,11 @@ public abstract class CBActivityMvpViewState<CV extends View, D, V extends CBMvp
   }
 
   /**
-   * Creates or restores the {@link CBViewStateRestoreable}
+   * Creates or restores the {@link CBViewStateRestoreableInterface}
    *
    * @param savedInstanceState saved instance state
-   * @return <code>true</code> if {@link CBViewStateRestoreable} is restored successfully otherwise
+   * @return <code>true</code> if {@link CBViewStateRestoreableInterface} is restored successfully
+   * otherwise
    * <code>false</code>
    */
   @SuppressWarnings("unchecked") protected boolean createOrRestoreViewState(
@@ -59,7 +61,7 @@ public abstract class CBActivityMvpViewState<CV extends View, D, V extends CBMvp
   }
 
   /**
-   * Saves the {@link CBViewStateRestoreable}. <br />
+   * Saves the {@link CBViewStateRestoreableInterface}. <br />
    * Called in {@link #onSaveInstanceState(Bundle)}
    *
    * @param outState The bundle to store
@@ -68,17 +70,18 @@ public abstract class CBActivityMvpViewState<CV extends View, D, V extends CBMvp
     CBViewStateHelper.saveViewState(this, outState);
   }
 
-  @Override public CBViewStateRestoreable<V> getViewState() {
+  @Override public CBViewStateMvpRestoreableParcelableInterface<D, V> getViewState() {
     return viewState;
   }
 
-  @SuppressWarnings("unchecked") @Override public void setViewState(CBViewStateInterface<V> viewState) {
-    if (!(viewState instanceof CBViewStateRestoreable)) {
-      throw new IllegalArgumentException(
-          "View state must be of subclass " + CBViewStateRestoreable.class.getCanonicalName());
+  @SuppressWarnings("unchecked") @Override
+  public void setViewState(CBViewStateInterface<V> viewState) {
+    if (!(viewState instanceof CBViewStateMvpRestoreableParcelableInterface)) {
+      throw new IllegalArgumentException("View state must be of subclass "
+          + CBViewStateMvpRestoreableParcelableInterface.class.getCanonicalName());
     }
 
-    this.viewState = (CBViewStateRestoreable) viewState;
+    this.viewState = (CBViewStateMvpRestoreableParcelableInterface) viewState;
   }
 
   @Override public void setViewStateRestoring(boolean viewStateRestoring) {
@@ -89,13 +92,51 @@ public abstract class CBActivityMvpViewState<CV extends View, D, V extends CBMvp
     return viewStateRestoring;
   }
 
+  @Override public void onViewStateNew() {
+    loadData(false);
+  }
+
   @Override public void onViewStateRestored(boolean instanceStateRetained) {
     // not needed here. can be overriden in subclasses
   }
 
-  @Override public void onViewStateNew() {
-    // not needed here. can be overriden in subclasses
+  @Override public void showLoading(boolean isContentVisible) {
+    super.showLoading(isContentVisible);
+
+    viewState.setViewStateShowLoading(isContentVisible);
   }
 
-  @SuppressWarnings("unchecked") @Override public abstract CBViewStateRestoreable createViewState();
+  @Override public void showContent() {
+    super.showContent();
+
+    viewState.setViewStateShowContent(getData());
+  }
+
+  @Override public void showError(Exception e, boolean isContentVisible) {
+    super.showError(e, isContentVisible);
+
+    viewState.setViewStateShowError(e, isContentVisible);
+  }
+
+  @Override protected void showLightError(String errorMsg) {
+    if (isViewStateRestoring()) {
+      return;
+    }
+
+    super.showLightError(errorMsg);
+  }
+
+  /**
+   * Creates the view state
+   *
+   * @return {@link CBViewStateMvpRestoreableParcelableInterface}
+   */
+  @Override public abstract CBViewStateMvpRestoreableParcelableInterface<D, V> createViewState();
+
+  /**
+   * Get the loaded data
+   *
+   * @return {@link D}
+   */
+  public abstract D getData();
 }

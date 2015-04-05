@@ -17,13 +17,13 @@ package com.christianbahl.appkit.viewstate.utils;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
-import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.CBViewStateInterface;
+import com.christianbahl.appkit.view.CBView;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
 
 /**
  * @author Christian Bahl
  */
-public interface CBViewStateSupport<V extends CBMvpView> {
+public interface CBViewStateSupport<V extends CBView> {
 
   /**
    * Returns the view state

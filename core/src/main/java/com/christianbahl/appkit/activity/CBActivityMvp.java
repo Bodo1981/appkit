@@ -15,7 +15,6 @@
  */
 package com.christianbahl.appkit.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,12 +51,6 @@ public abstract class CBActivityMvp<CV extends View, D, V extends CBMvpView<D>, 
   protected CV contentView;
   protected TextView errorView;
   protected View loadingView;
-
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
-    loadData(false);
-  }
 
   @SuppressWarnings("unchecked") @Override public void onSupportContentChanged() {
     super.onSupportContentChanged();

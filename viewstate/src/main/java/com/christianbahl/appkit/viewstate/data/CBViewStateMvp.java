@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.viewstate.data;
 
 import com.christianbahl.appkit.view.CBMvpView;
+import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpInterface;
 
 /**
  * @author Christian Bahl
@@ -45,10 +46,10 @@ public class CBViewStateMvp<D, V extends CBMvpView<D>> implements CBViewStateMvp
     this.exception = null;
   }
 
-  @Override public void setViewStateShowError(Throwable e, boolean isContentVisible) {
+  @Override public void setViewStateShowError(Exception exception, boolean isContentVisible) {
     this.currentViewState = VIEW_STATE_SHOW_ERROR;
     this.contentVisible = isContentVisible;
-    this.exception = null;
+    this.exception = exception;
 
     // clear loaded data if content was not visible (e.g. first start)
     if (!isContentVisible) {

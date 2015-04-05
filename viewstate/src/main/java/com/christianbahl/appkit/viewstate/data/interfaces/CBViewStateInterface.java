@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate;
+package com.christianbahl.appkit.viewstate.data.interfaces;
 
-import com.christianbahl.appkit.view.CBMvpView;
+import com.christianbahl.appkit.view.CBView;
 
 /**
  * @author Christian Bahl
  */
-public interface CBViewStateInterface<V extends CBMvpView> {
+public interface CBViewStateInterface<V extends CBView> {
 
   void restore(V view, boolean retained);
 }

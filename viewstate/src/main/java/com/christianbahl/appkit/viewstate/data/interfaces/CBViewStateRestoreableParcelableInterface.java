@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate;
+package com.christianbahl.appkit.viewstate.data.interfaces;
 
 import android.os.Parcelable;
-import com.christianbahl.appkit.view.CBMvpView;
+import com.christianbahl.appkit.view.CBView;
 
 /**
  * @author Christian Bahl
  */
-public interface CBViewStateRestoreableParcelable<V extends CBMvpView>
-    extends CBViewStateRestoreable<V>, Parcelable {
+public interface CBViewStateRestoreableParcelableInterface<V extends CBView>
+    extends CBViewStateRestoreableInterface<V>, Parcelable {
 }
