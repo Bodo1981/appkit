@@ -56,6 +56,10 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
     getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
   }
 
+  @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
+    return throwable.getLocalizedMessage();
+  }
+
   /**
    * Should the title be displayed in the toolbar.
    *

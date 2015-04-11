@@ -107,6 +107,10 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends MvpLceView<D>, 
     return R.layout.cb_fragment_recycler_view;
   }
 
+  @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
+    return throwable.getLocalizedMessage();
+  }
+
   /**
    * Creates the {@link RecyclerView.LayoutManager}. <br />
    * Default: {@link LinearLayoutManager}

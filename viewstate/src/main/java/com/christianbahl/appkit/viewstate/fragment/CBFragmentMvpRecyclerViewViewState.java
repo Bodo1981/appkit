@@ -62,6 +62,10 @@ public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V extends MvpLce
     }
   }
 
+  @Override protected int getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view;
+  }
+
   @Override public void showContent() {
     super.showContent();
 
@@ -88,8 +92,8 @@ public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V extends MvpLce
     }
   }
 
-  @Override protected int getLayoutRes() {
-    return R.layout.cb_fragment_recycler_view;
+  @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
+    return throwable.getLocalizedMessage();
   }
 
   /**

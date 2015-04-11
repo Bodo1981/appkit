@@ -74,6 +74,10 @@ public abstract class CBActivityMvpToolbar<CV extends View, D, V extends MvpLceV
     loadData(false);
   }
 
+  @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
+    return throwable.getLocalizedMessage();
+  }
+
   /**
    * Should the title be displayed in the toolbar.
    *
