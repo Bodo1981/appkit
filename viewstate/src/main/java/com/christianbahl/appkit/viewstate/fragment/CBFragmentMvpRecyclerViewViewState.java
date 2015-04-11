@@ -16,122 +16,97 @@
 package com.christianbahl.appkit.viewstate.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.fragment.CBFragmentMvpRecyclerView;
-import com.christianbahl.appkit.presenter.CBPresenterInterface;
-import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateRestoreableInterface;
-import com.christianbahl.appkit.viewstate.utils.CBViewStateHelper;
-import com.christianbahl.appkit.viewstate.utils.CBViewStateSupport;
+import com.christianbahl.appkit.viewstate.R;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment;
 import java.util.List;
 
 /**
  * @author Christian Bahl
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
-    extends CBFragmentMvpRecyclerView<AD, D, V, P, A> implements CBViewStateSupport<V> {
+public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
+    extends MvpLceViewStateFragment<RecyclerView, D, V, P> {
 
-  private CBViewStateMvpInterface<D, V> viewState;
-  private boolean viewStateRestoring = false;
+  protected A adapter;
+  protected View emptyView;
 
-  @Override public void onActivityCreated(Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
-    createOrRestoreViewState(savedInstanceState);
-  }
+    adapter = createAdapter();
+    if (adapter == null) {
+      throw new IllegalStateException(
+          "Adapter is null. Did you forget to return an adapter in #createAdapter()?");
+    }
 
-  @Override public void onSaveInstanceState(Bundle out) {
-    super.onSaveInstanceState(out);
+    contentView.setAdapter(adapter);
 
-    saveViewState(out);
-  }
+    emptyView = view.findViewById(R.id.empty_view);
+    if (emptyView == null) {
+      throw new IllegalStateException(
+          "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?");
+    }
 
-  /**
-   * Creates or restores the {@link CBViewStateInterface}
-   *
-   * @param savedInstanceState saved instance state
-   * @return <code>true</code> if {@link CBViewStateRestoreableInterface} is restored successfully
-   * otherwise
-   * <code>false</code>
-   */
-  @SuppressWarnings("unchecked") protected boolean createOrRestoreViewState(
-      Bundle savedInstanceState) {
-    return CBViewStateHelper.createOrRestoreViewState(this, (V) this, savedInstanceState);
-  }
-
-  /**
-   * Saves the {@link CBViewStateRestoreableInterface}. <br />
-   * Called in {@link #onSaveInstanceState(Bundle)}
-   *
-   * @param outState The bundle to store
-   */
-  protected void saveViewState(Bundle outState) {
-    CBViewStateHelper.saveViewState(this, outState);
-  }
-
-  @Override public CBViewStateInterface<V> getViewState() {
-    return viewState;
-  }
-
-  @Override public void setViewState(CBViewStateInterface<V> viewState) {
-    this.viewState = (CBViewStateMvpInterface<D, V>) viewState;
-  }
-
-  @Override public void setViewStateRestoring(boolean viewStateRestoring) {
-    this.viewStateRestoring = viewStateRestoring;
-  }
-
-  @Override public boolean isViewStateRestoring() {
-    return viewStateRestoring;
-  }
-
-  @Override public void onViewStateRestored(boolean instanceStateRetained) {
-    // not needed here. can be overriden in subclasses
-  }
-
-  @Override public void onViewStateNew() {
-    // not needed here. can be overriden in subclasses
-  }
-
-  @Override public void showLoading(boolean isContentVisible) {
-    super.showLoading(isContentVisible);
-
-    viewState.setViewStateShowLoading(isContentVisible);
+    RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
+    if (layoutManager == null) {
+      throw new IllegalStateException(
+          "The RecyclerView.LayoutManager is not specified. You have to provide a "
+              + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
+    } else {
+      contentView.setLayoutManager(layoutManager);
+    }
   }
 
   @Override public void showContent() {
     super.showContent();
 
-    viewState.setViewStateShowContent(getData());
+    if (adapter.getItemCount() == 0) {
+      emptyView.setVisibility(View.VISIBLE);
+    } else {
+      emptyView.setVisibility(View.GONE);
+    }
   }
 
-  @Override public void showError(Exception e, boolean isContentVisible) {
+  @Override public void showLoading(boolean isContentVisible) {
+    super.showLoading(isContentVisible);
+
+    if (isContentVisible && emptyView.getVisibility() == View.VISIBLE) {
+      emptyView.setVisibility(View.GONE);
+    }
+  }
+
+  @Override public void showError(Throwable e, boolean isContentVisible) {
     super.showError(e, isContentVisible);
 
-    viewState.setViewStateShowError(e, isContentVisible);
-  }
-
-  @Override protected void showLightError(String errorMsg) {
-    if (isViewStateRestoring()) {
-      return;
+    if (isContentVisible && emptyView.getVisibility() == View.VISIBLE) {
+      emptyView.setVisibility(View.GONE);
     }
+  }
 
-    super.showLightError(errorMsg);
+  @Override protected int getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view;
   }
 
   /**
-   * Creates the view state
+   * Creates the {@link RecyclerView.LayoutManager}. <br />
+   * Default: {@link LinearLayoutManager}
    *
-   * @return {@link CBViewStateMvpInterface}
+   * @return {@link RecyclerView.LayoutManager}
    */
-  @Override public abstract CBViewStateMvpInterface<D, V> createViewState();
+  protected RecyclerView.LayoutManager createRecyclerViewLayoutManager() {
+    return new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+  }
 
   /**
-   * Get the loaded data
+   * Creates the {@link A}. <br />
+   * Called in {@link #onViewCreated(View, Bundle)}
    *
-   * @return {@link D}
+   * @return {@link A}
    */
-  public abstract D getData();
+  protected abstract A createAdapter();
 }

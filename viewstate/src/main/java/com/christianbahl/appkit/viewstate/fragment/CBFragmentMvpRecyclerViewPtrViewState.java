@@ -16,122 +16,69 @@
 package com.christianbahl.appkit.viewstate.fragment;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.fragment.CBFragmentMvpRecyclerViewPtr;
-import com.christianbahl.appkit.presenter.CBPresenterInterface;
-import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateRestoreableInterface;
-import com.christianbahl.appkit.viewstate.utils.CBViewStateHelper;
-import com.christianbahl.appkit.viewstate.utils.CBViewStateSupport;
+import com.christianbahl.appkit.viewstate.R;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**
  * @author Christian Bahl
  */
-public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
-    extends CBFragmentMvpRecyclerViewPtr<AD, D, V, P, A> implements CBViewStateSupport<V> {
+public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
+    extends CBFragmentMvpRecyclerViewViewState<AD, D, V, P, A> {
 
-  private CBViewStateMvpInterface<D, V> viewState;
-  private boolean viewStateRestoring = false;
+  protected SwipeRefreshLayout swipeRefreshLayout;
 
-  @Override public void onActivityCreated(Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
-
-    createOrRestoreViewState(savedInstanceState);
+  @Override protected int getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view_ptr;
   }
 
-  @Override public void onSaveInstanceState(Bundle out) {
-    super.onSaveInstanceState(out);
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
-    saveViewState(out);
-  }
+    swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
+    if (swipeRefreshLayout == null) {
+      throw new IllegalStateException("The swipe refresh layout is not specified. "
+          + "You have to provide a View with R.id.pull_to_refresh in your inflated xml layout");
+    }
 
-  /**
-   * Creates or restores the {@link CBViewStateInterface}
-   *
-   * @param savedInstanceState saved instance state
-   * @return <code>true</code> if {@link CBViewStateRestoreableInterface} is restored successfully
-   * otherwise
-   * <code>false</code>
-   */
-  @SuppressWarnings("unchecked") protected boolean createOrRestoreViewState(
-      Bundle savedInstanceState) {
-    return CBViewStateHelper.createOrRestoreViewState(this, (V) this, savedInstanceState);
-  }
-
-  /**
-   * Saves the {@link CBViewStateRestoreableInterface}. <br />
-   * Called in {@link #onSaveInstanceState(Bundle)}
-   *
-   * @param outState The bundle to store
-   */
-  protected void saveViewState(Bundle outState) {
-    CBViewStateHelper.saveViewState(this, outState);
-  }
-
-  @Override public CBViewStateInterface<V> getViewState() {
-    return viewState;
-  }
-
-  @Override public void setViewState(CBViewStateInterface<V> viewState) {
-    this.viewState = (CBViewStateMvpInterface<D, V>) viewState;
-  }
-
-  @Override public void setViewStateRestoring(boolean viewStateRestoring) {
-    this.viewStateRestoring = viewStateRestoring;
-  }
-
-  @Override public boolean isViewStateRestoring() {
-    return viewStateRestoring;
-  }
-
-  @Override public void onViewStateRestored(boolean instanceStateRetained) {
-    // not needed here. can be overriden in subclasses
-  }
-
-  @Override public void onViewStateNew() {
-    // not needed here. can be overriden in subclasses
-  }
-
-  @Override public void showLoading(boolean isContentVisible) {
-    super.showLoading(isContentVisible);
-
-    viewState.setViewStateShowLoading(isContentVisible);
+    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override public void onRefresh() {
+        onRefreshStarted();
+      }
+    });
   }
 
   @Override public void showContent() {
     super.showContent();
 
-    viewState.setViewStateShowContent(getData());
+    swipeRefreshLayout.setVisibility(View.VISIBLE);
+    swipeRefreshLayout.setRefreshing(false);
   }
 
-  @Override public void showError(Exception e, boolean isContentVisible) {
+  @Override public void showLoading(boolean isContentVisible) {
+    super.showLoading(isContentVisible);
+
+    if (!isContentVisible) {
+      swipeRefreshLayout.setVisibility(View.GONE);
+    }
+  }
+
+  @Override public void showError(Throwable e, boolean isContentVisible) {
     super.showError(e, isContentVisible);
 
-    viewState.setViewStateShowError(e, isContentVisible);
-  }
-
-  @Override protected void showLightError(String errorMsg) {
-    if (isViewStateRestoring()) {
-      return;
-    }
-
-    super.showLightError(errorMsg);
+    swipeRefreshLayout.setVisibility(View.GONE);
+    swipeRefreshLayout.setRefreshing(false);
   }
 
   /**
-   * Creates the view state
-   *
-   * @return {@link CBViewStateMvpInterface}
+   * Called from the {@link SwipeRefreshLayout.OnRefreshListener}.<br>
+   * Default: call of {@link #loadData(boolean)}
    */
-  @Override public abstract CBViewStateMvpInterface<D, V> createViewState();
-
-  /**
-   * Get the loaded data
-   *
-   * @return {@link D}
-   */
-  public abstract D getData();
+  protected void onRefreshStarted() {
+    loadData(true);
+  }
 }

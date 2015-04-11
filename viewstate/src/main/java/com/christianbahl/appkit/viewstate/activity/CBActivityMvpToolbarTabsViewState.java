@@ -15,128 +15,84 @@
  */
 package com.christianbahl.appkit.viewstate.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
-import com.christianbahl.appkit.activity.CBActivityMvpToolbarTabs;
-import com.christianbahl.appkit.presenter.CBPresenterInterface;
-import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpRestoreableParcelableInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateRestoreableInterface;
-import com.christianbahl.appkit.viewstate.utils.CBViewStateHelper;
-import com.christianbahl.appkit.viewstate.utils.CBViewStateSupport;
+import android.support.v4.view.ViewPager;
+import com.astuetz.PagerSlidingTabStrip;
+import com.christianbahl.appkit.viewstate.R;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
  * @author Christian Bahl
  */
-public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
-    extends CBActivityMvpToolbarTabs<A, D, V, P> implements CBViewStateSupport<V> {
+public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
+    extends CBActivityMvpToolbarViewState<ViewPager, D, V, P> {
 
-  protected CBViewStateMvpRestoreableParcelableInterface<D, V> viewState;
-  protected boolean viewStateRestoring = false;
+  protected PagerSlidingTabStrip tabs;
+  protected A adapter;
 
-  @Override protected void onPostCreate(Bundle savedInstanceState) {
-    super.onPostCreate(savedInstanceState);
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-    createOrRestoreViewState(savedInstanceState);
+    adapter = createAdapter();
+
+    if (adapter == null) {
+      throw new IllegalArgumentException(
+          "Adapter is null. Did you forget to create the adapter in createAdapter()?");
+    }
   }
 
-  @Override public void onSaveInstanceState(Bundle outState) {
-    super.onSaveInstanceState(outState);
+  @Override public void onSupportContentChanged() {
+    super.onSupportContentChanged();
 
-    saveViewState(outState);
-  }
+    tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
 
-  /**
-   * Creates or restores the {@link CBViewStateRestoreableInterface}
-   *
-   * @param savedInstanceState saved instance state
-   * @return <code>true</code> if {@link CBViewStateRestoreableInterface} is restored successfully
-   * otherwise
-   * <code>false</code>
-   */
-  @SuppressWarnings("unchecked") protected boolean createOrRestoreViewState(
-      Bundle savedInstanceState) {
-    return CBViewStateHelper.createOrRestoreViewState(this, (V) this, savedInstanceState);
-  }
-
-  /**
-   * Saves the {@link CBViewStateRestoreableInterface}. <br />
-   * Called in {@link #onSaveInstanceState(Bundle)}
-   *
-   * @param outState The bundle to store
-   */
-  protected void saveViewState(Bundle outState) {
-    CBViewStateHelper.saveViewState(this, outState);
-  }
-
-  @Override public CBViewStateMvpRestoreableParcelableInterface<D, V> getViewState() {
-    return viewState;
-  }
-
-  @SuppressWarnings("unchecked") @Override
-  public void setViewState(CBViewStateInterface<V> viewState) {
-    if (!(viewState instanceof CBViewStateMvpRestoreableParcelableInterface)) {
-      throw new IllegalArgumentException("View state must be of subclass "
-          + CBViewStateMvpRestoreableParcelableInterface.class.getCanonicalName());
+    if (tabs == null) {
+      throw new IllegalStateException("The tabs is not specified. "
+          + "You have to provide a View with R.id.tabs in your inflated xml layout");
     }
 
-    this.viewState = (CBViewStateMvpRestoreableParcelableInterface) viewState;
-  }
+    tabs.setViewPager(contentView);
 
-  @Override public void setViewStateRestoring(boolean viewStateRestoring) {
-    this.viewStateRestoring = viewStateRestoring;
-  }
+    contentView.setAdapter(adapter);
+    contentView.setPageMargin(getPageMargin());
 
-  @Override public boolean isViewStateRestoring() {
-    return viewStateRestoring;
-  }
-
-  @Override public void onViewStateNew() {
-    loadData(false);
-  }
-
-  @Override public void onViewStateRestored(boolean instanceStateRetained) {
-    // not needed here. can be overriden in subclasses
-  }
-
-  @Override public void showLoading(boolean isContentVisible) {
-    super.showLoading(isContentVisible);
-
-    viewState.setViewStateShowLoading(isContentVisible);
-  }
-
-  @Override public void showContent() {
-    super.showContent();
-
-    viewState.setViewStateShowContent(getData());
-  }
-
-  @Override public void showError(Exception e, boolean isContentVisible) {
-    super.showError(e, isContentVisible);
-
-    viewState.setViewStateShowError(e, isContentVisible);
-  }
-
-  @Override protected void showLightError(String errorMsg) {
-    if (isViewStateRestoring()) {
-      return;
+    Integer pageMarginDrawable = getViewPagerDividerDrawable();
+    if (pageMarginDrawable != null) {
+      contentView.setPageMarginDrawable(pageMarginDrawable);
     }
+  }
 
-    super.showLightError(errorMsg);
+  @Override protected Integer getLayoutRes() {
+    return R.layout.cb_activity_toolbar_tabs;
   }
 
   /**
-   * Creates the view state
+   * The margin between the pages in the {@link ViewPager}
    *
-   * @return {@link CBViewStateMvpRestoreableParcelableInterface}
+   * @return margin between pages in {@link ViewPager}
    */
-  @Override public abstract CBViewStateMvpRestoreableParcelableInterface<D, V> createViewState();
+  protected int getPageMargin() {
+    return 20;
+  }
 
   /**
-   * Get the loaded data
+   * The {@link Drawable} which will be displayed between the pages in the {@link ViewPager}
+   * if <code>{@link #getPageMargin()} > 0</code>
    *
-   * @return {@link D}
+   * @return divider {@link Drawable} for the {@link ViewPager}
    */
-  public abstract D getData();
+  protected Integer getViewPagerDividerDrawable() {
+    return R.drawable.cb_viewpager_divider;
+  }
+
+  /**
+   * Creates the {@link A} for the {@link ViewPager}. <br>
+   * Called in {@link #onCreate(Bundle)}
+   *
+   * @return {@link A}
+   */
+  protected abstract A createAdapter();
 }

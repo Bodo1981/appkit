@@ -16,13 +16,14 @@
 package com.christianbahl.appkit.activity;
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import com.astuetz.PagerSlidingTabStrip;
 import com.christianbahl.appkit.R;
-import com.christianbahl.appkit.presenter.CBPresenterInterface;
-import com.christianbahl.appkit.view.CBMvpView;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
  * An activity which uses the Model-View-Presenter architecture. It also adds a {@link Toolbar} on
@@ -36,7 +37,7 @@ import com.christianbahl.appkit.view.CBMvpView;
  *
  * <p>
  * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutResId()}. But be careful, you have to provide the necessary views!
+ * {@link #getLayoutRes()}. But be careful, you have to provide the necessary views!
  * </p>
  *
  * <p>
@@ -49,22 +50,21 @@ import com.christianbahl.appkit.view.CBMvpView;
  *
  * @author Christian Bahl
  */
-public abstract class CBActivityMvpToolbarTabs<A extends PagerAdapter, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
+public abstract class CBActivityMvpToolbarTabs<A extends PagerAdapter, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
     extends CBActivityMvpToolbar<ViewPager, D, V, P> {
 
   protected PagerSlidingTabStrip tabs;
   protected A adapter;
 
-  @Override protected void onPresenterCreated() {
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
     adapter = createAdapter();
 
     if (adapter == null) {
       throw new IllegalArgumentException(
           "Adapter is null. Did you forget to create the adapter in createAdapter()?");
     }
-
-    contentView.setAdapter(adapter);
-    tabs.setViewPager(contentView);
   }
 
   @Override public void onSupportContentChanged() {
@@ -77,6 +77,9 @@ public abstract class CBActivityMvpToolbarTabs<A extends PagerAdapter, D, V exte
           + "You have to provide a View with R.id.tabs in your inflated xml layout");
     }
 
+    tabs.setViewPager(contentView);
+
+    contentView.setAdapter(adapter);
     contentView.setPageMargin(getPageMargin());
 
     Integer pageMarginDrawable = getViewPagerDividerDrawable();
@@ -85,7 +88,7 @@ public abstract class CBActivityMvpToolbarTabs<A extends PagerAdapter, D, V exte
     }
   }
 
-  @Override protected Integer getLayoutResId() {
+  @Override protected Integer getLayoutRes() {
     return R.layout.cb_activity_toolbar_tabs;
   }
 
@@ -110,7 +113,7 @@ public abstract class CBActivityMvpToolbarTabs<A extends PagerAdapter, D, V exte
 
   /**
    * Creates the {@link A} for the {@link ViewPager}. <br>
-   * Called in {@link #onPresenterCreated()}
+   * Called in {@link #onCreate(Bundle)}
    *
    * @return {@link A}
    */

@@ -15,12 +15,14 @@
  */
 package com.christianbahl.appkit.activity;
 
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.christianbahl.appkit.R;
-import com.christianbahl.appkit.presenter.CBPresenterInterface;
-import com.christianbahl.appkit.view.CBMvpView;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
  * An activity which uses the Model-View-Presenter architecture and adds a {@link Toolbar} on top.
@@ -32,16 +34,27 @@ import com.christianbahl.appkit.view.CBMvpView;
  *
  * <p>
  * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutResId()}. But be careful, you have to provide the necessary views!
+ * {@link #getLayoutRes()} ()}. But be careful, you have to provide the necessary views!
  * </p>
  *
  * @author Christian Bahl
- * @see CBActivityMvp
+ * @see MvpLceActivity
  */
-public abstract class CBActivityMvpToolbar<CV extends View, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
-    extends CBActivityMvp<CV, D, V, P> {
+public abstract class CBActivityMvpToolbar<CV extends View, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
+    extends MvpLceActivity<CV, D, V, P> {
 
   protected Toolbar toolbar;
+
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    Integer layoutResId = getLayoutRes();
+    if (layoutResId == null) {
+      throw new NullPointerException("LayoutResId is null. Do you return NULL in getLayoutRes?");
+    }
+
+    setContentView(layoutResId);
+  }
 
   @Override public void onSupportContentChanged() {
     super.onSupportContentChanged();
@@ -64,5 +77,14 @@ public abstract class CBActivityMvpToolbar<CV extends View, D, V extends CBMvpVi
    */
   protected boolean isDisplayShowTitleEnabled() {
     return true;
+  }
+
+  /**
+   * Provide the layout res id for the activity.
+   *
+   * @return layout res id
+   */
+  protected Integer getLayoutRes() {
+    return R.layout.cb_activity_toolbar_fragment;
   }
 }

@@ -16,127 +16,61 @@
 package com.christianbahl.appkit.viewstate.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import com.christianbahl.appkit.activity.CBActivityMvpToolbar;
-import com.christianbahl.appkit.presenter.CBPresenterInterface;
-import com.christianbahl.appkit.view.CBMvpView;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateMvpRestoreableParcelableInterface;
-import com.christianbahl.appkit.viewstate.data.interfaces.CBViewStateRestoreableInterface;
-import com.christianbahl.appkit.viewstate.utils.CBViewStateHelper;
-import com.christianbahl.appkit.viewstate.utils.CBViewStateSupport;
+import com.christianbahl.appkit.viewstate.R;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateActivity;
 
 /**
  * @author Christian Bahl
  */
-public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>>
-    extends CBActivityMvpToolbar<CV, D, V, P> implements CBViewStateSupport<V> {
+public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
+    extends MvpLceViewStateActivity<CV, D, V, P> {
 
-  protected CBViewStateMvpRestoreableParcelableInterface<D, V> viewState;
-  protected boolean viewStateRestoring = false;
+  protected Toolbar toolbar;
 
-  @Override protected void onPostCreate(Bundle savedInstanceState) {
-    super.onPostCreate(savedInstanceState);
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-    createOrRestoreViewState(savedInstanceState);
-  }
-
-  @Override public void onSaveInstanceState(Bundle outState) {
-    super.onSaveInstanceState(outState);
-
-    saveViewState(outState);
-  }
-
-  /**
-   * Creates or restores the {@link CBViewStateRestoreableInterface}
-   *
-   * @param savedInstanceState saved instance state
-   * @return <code>true</code> if {@link CBViewStateRestoreableInterface} is restored successfully
-   * otherwise
-   * <code>false</code>
-   */
-  @SuppressWarnings("unchecked") protected boolean createOrRestoreViewState(
-      Bundle savedInstanceState) {
-    return CBViewStateHelper.createOrRestoreViewState(this, (V) this, savedInstanceState);
-  }
-
-  /**
-   * Saves the {@link CBViewStateRestoreableInterface}. <br />
-   * Called in {@link #onSaveInstanceState(Bundle)}
-   *
-   * @param outState The bundle to store
-   */
-  protected void saveViewState(Bundle outState) {
-    CBViewStateHelper.saveViewState(this, outState);
-  }
-
-  @Override public CBViewStateMvpRestoreableParcelableInterface<D, V> getViewState() {
-    return viewState;
-  }
-
-  @SuppressWarnings("unchecked") @Override
-  public void setViewState(CBViewStateInterface<V> viewState) {
-    if (!(viewState instanceof CBViewStateMvpRestoreableParcelableInterface)) {
-      throw new IllegalArgumentException("View state must be of subclass "
-          + CBViewStateMvpRestoreableParcelableInterface.class.getCanonicalName());
+    Integer layoutResId = getLayoutRes();
+    if (layoutResId == null) {
+      throw new NullPointerException("LayoutResId is null. Do you return NULL in getLayoutRes?");
     }
 
-    this.viewState = (CBViewStateMvpRestoreableParcelableInterface) viewState;
+    setContentView(layoutResId);
   }
 
-  @Override public void setViewStateRestoring(boolean viewStateRestoring) {
-    this.viewStateRestoring = viewStateRestoring;
-  }
+  @Override public void onSupportContentChanged() {
+    super.onSupportContentChanged();
 
-  @Override public boolean isViewStateRestoring() {
-    return viewStateRestoring;
-  }
+    toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-  @Override public void onViewStateNew() {
-    loadData(false);
-  }
-
-  @Override public void onViewStateRestored(boolean instanceStateRetained) {
-    // not needed here. can be overriden in subclasses
-  }
-
-  @Override public void showLoading(boolean isContentVisible) {
-    super.showLoading(isContentVisible);
-
-    viewState.setViewStateShowLoading(isContentVisible);
-  }
-
-  @Override public void showContent() {
-    super.showContent();
-
-    viewState.setViewStateShowContent(getData());
-  }
-
-  @Override public void showError(Exception e, boolean isContentVisible) {
-    super.showError(e, isContentVisible);
-
-    viewState.setViewStateShowError(e, isContentVisible);
-  }
-
-  @Override protected void showLightError(String errorMsg) {
-    if (isViewStateRestoring()) {
-      return;
+    if (toolbar == null) {
+      throw new IllegalStateException("The toolbar is null. "
+          + "You have to provide a View with R.id.toolbar in your inflated xml layout");
     }
 
-    super.showLightError(errorMsg);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
   }
 
   /**
-   * Creates the view state
+   * Should the title be displayed in the toolbar.
    *
-   * @return {@link CBViewStateMvpRestoreableParcelableInterface}
+   * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
    */
-  @Override public abstract CBViewStateMvpRestoreableParcelableInterface<D, V> createViewState();
+  protected boolean isDisplayShowTitleEnabled() {
+    return true;
+  }
 
   /**
-   * Get the loaded data
+   * Provide the layout res id for the activity.
    *
-   * @return {@link D}
+   * @return layout res id
    */
-  public abstract D getData();
+  protected Integer getLayoutRes() {
+    return R.layout.cb_activity_toolbar_fragment;
+  }
 }

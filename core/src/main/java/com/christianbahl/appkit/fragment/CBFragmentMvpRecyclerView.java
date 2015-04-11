@@ -21,8 +21,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.christianbahl.appkit.R;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.presenter.CBPresenterInterface;
-import com.christianbahl.appkit.view.CBMvpView;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**
@@ -37,26 +38,30 @@ import java.util.List;
  * </p>
  *
  * @author Christian Bahl
- * @see CBFragmentMvp
+ * @see MvpLceFragment
  */
-public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
-    extends CBFragmentMvp<RecyclerView, D, V, P> {
+public abstract class CBFragmentMvpRecyclerView<AD, D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
+    extends MvpLceFragment<RecyclerView, D, V, P> {
 
   protected A adapter;
   protected View emptyView;
 
-  @Override protected Integer getLayoutResId() {
-    return R.layout.cb_fragment_recycler_view;
-  }
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
-  @Override protected void onMvpViewsCreated(View view, Bundle savedInstanceState) {
+    adapter = createAdapter();
+    if (adapter == null) {
+      throw new IllegalStateException(
+          "Adapter is null. Did you forget to return an adapter in #createAdapter()?");
+    }
+
+    contentView.setAdapter(adapter);
+
     emptyView = view.findViewById(R.id.empty_view);
     if (emptyView == null) {
       throw new IllegalStateException(
           "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?");
     }
-
-    contentView.setAdapter(adapter);
 
     RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
     if (layoutManager == null) {
@@ -65,14 +70,6 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P
               + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
     } else {
       contentView.setLayoutManager(layoutManager);
-    }
-  }
-
-  @Override protected void onPresenterCreated() {
-    adapter = createAdapter();
-    if (adapter == null) {
-      throw new IllegalStateException(
-          "Adapter is null. Did you forget to return an adapter in #createAdapter()?");
     }
   }
 
@@ -94,12 +91,16 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P
     }
   }
 
-  @Override public void showError(Exception e, boolean isContentVisible) {
+  @Override public void showError(Throwable e, boolean isContentVisible) {
     super.showError(e, isContentVisible);
 
     if (isContentVisible && emptyView.getVisibility() == View.VISIBLE) {
       emptyView.setVisibility(View.GONE);
     }
+  }
+
+  @Override protected int getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view;
   }
 
   /**
@@ -114,7 +115,7 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends CBMvpView<D>, P
 
   /**
    * Creates the {@link A}. <br />
-   * Called in {@link #onPresenterCreated()}
+   * Called in {@link #onViewCreated(View, Bundle)}
    *
    * @return {@link A}
    */

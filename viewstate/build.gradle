@@ -22,7 +22,11 @@ android {
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
 
+  // Core
   compile project(':core')
+
+  // Mosby
+  compile 'com.hannesdorfmann.mosby:viewstate:1.0.0'
 }
 
 task sourcesJar(type: Jar) {

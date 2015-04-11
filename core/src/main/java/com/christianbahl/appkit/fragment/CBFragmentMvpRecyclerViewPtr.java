@@ -20,8 +20,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import com.christianbahl.appkit.R;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.presenter.CBPresenterInterface;
-import com.christianbahl.appkit.view.CBMvpView;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**
@@ -36,17 +36,17 @@ import java.util.List;
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends CBMvpView<D>, P extends CBPresenterInterface<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
+public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
     extends CBFragmentMvpRecyclerView<AD, D, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;
 
-  @Override protected Integer getLayoutResId() {
+  @Override protected int getLayoutRes() {
     return R.layout.cb_fragment_recycler_view_ptr;
   }
 
-  @Override protected void onMvpViewsCreated(View view, Bundle savedInstanceState) {
-    super.onMvpViewsCreated(view, savedInstanceState);
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
     if (swipeRefreshLayout == null) {
@@ -76,7 +76,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends CBMvpView<D>
     }
   }
 
-  @Override public void showError(Exception e, boolean isContentVisible) {
+  @Override public void showError(Throwable e, boolean isContentVisible) {
     super.showError(e, isContentVisible);
 
     swipeRefreshLayout.setVisibility(View.GONE);
