@@ -57,7 +57,7 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends MvpLceView<D>, 
 
     contentView.setAdapter(adapter);
 
-    emptyView = view.findViewById(R.id.empty_view);
+    emptyView = view.findViewById(R.id.emptyView);
     if (emptyView == null) {
       throw new IllegalStateException(
           "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?");

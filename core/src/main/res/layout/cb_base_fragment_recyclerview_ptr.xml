@@ -12,12 +12,12 @@
       layout="@layout/cb_base_empty_view"/>
 
   <android.support.v4.widget.SwipeRefreshLayout
-      android:id="@+id/pull_to_refresh"
+      android:id="@+id/pullToRefresh"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/content_view"
+        android:id="@+id/contentView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"

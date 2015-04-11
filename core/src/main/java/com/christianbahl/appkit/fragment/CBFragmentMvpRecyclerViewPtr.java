@@ -46,7 +46,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V extends MvpLceView<D
   }
 
   @Override protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
-    swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
+    swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pullToRefresh);
     if (swipeRefreshLayout == null) {
       throw new IllegalStateException("The swipe refresh layout is not specified. "
           + "You have to provide a View with R.id.pull_to_refresh in your inflated xml layout");
