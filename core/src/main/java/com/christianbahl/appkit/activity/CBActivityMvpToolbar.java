@@ -68,6 +68,10 @@ public abstract class CBActivityMvpToolbar<CV extends View, D, V extends MvpLceV
 
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
+
+    onMvpViewCreated();
+
+    loadData(false);
   }
 
   /**
@@ -87,4 +91,9 @@ public abstract class CBActivityMvpToolbar<CV extends View, D, V extends MvpLceV
   protected Integer getLayoutRes() {
     return R.layout.cb_activity_toolbar_fragment;
   }
+
+  /**
+   * Called after mvp views and toolbar are created
+   */
+  protected abstract void onMvpViewCreated();
 }

@@ -68,6 +68,10 @@ public abstract class CBActivityMvpToolbarFragment<CV extends View, D, V extends
     return R.layout.cb_activity_toolbar_fragment;
   }
 
+  @Override protected void onMvpViewCreated() {
+    // nothing to do here
+  }
+
   /**
    * Returns the {@link Fragment} which should be displayed by this activity.
    *

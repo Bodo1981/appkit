@@ -71,6 +71,10 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends MvpLceView<D>, 
     } else {
       contentView.setLayoutManager(layoutManager);
     }
+
+    onMvpViewCreated(view, savedInstanceState);
+
+    loadData(false);
   }
 
   @Override public void showContent() {
@@ -120,4 +124,11 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V extends MvpLceView<D>, 
    * @return {@link A}
    */
   protected abstract A createAdapter();
+
+  /**
+   * Called after the mvp views and the recycler view are created
+   * @param view {@link View}
+   * @param savedInstanceState {@link Bundle}
+   */
+  protected abstract void onMvpViewCreated(View view, Bundle savedInstanceState);
 }
