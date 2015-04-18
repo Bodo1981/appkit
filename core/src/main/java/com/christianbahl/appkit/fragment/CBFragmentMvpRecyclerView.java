@@ -30,7 +30,7 @@ import java.util.List;
  * A fragment which uses the Model-View-Presenter architecture.
  *
  * <p>
- * The content view is a {@link RecyclerView} with the id <code>R.layout.content_view</code>
+ * The content view is a {@link RecyclerView} with the id <code>R.layout.contentView</code>
  * </p>
  *
  * <p>

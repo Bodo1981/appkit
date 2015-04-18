@@ -39,7 +39,7 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, 
             "Fragment is null. Did you forget to create the Fragment in the createFragmentToDisplay()");
       }
 
-      getSupportFragmentManager().beginTransaction().replace(R.id.content_view, fragment).commit();
+      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
     }
   }
 

@@ -30,7 +30,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  *
  * <p>
  * The layout must have a {@link ViewGroup} for the {@link Fragment} with the id
- * <code>R.layout.content_view</code>
+ * <code>R.layout.contentView</code>
  * </p>
  *
  * <p>
@@ -60,7 +60,7 @@ public abstract class CBActivityMvpToolbarFragment<CV extends View, D, V extends
             "Fragment is null. Did you forget to create the Fragment in the createFragmentToDisplay()");
       }
 
-      getSupportFragmentManager().beginTransaction().replace(R.id.content_view, fragment).commit();
+      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
     }
   }
 

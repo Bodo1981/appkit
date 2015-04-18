@@ -56,29 +56,23 @@ public abstract class CBActivityMvpToolbarTabs<A extends PagerAdapter, D, V exte
   protected PagerSlidingTabStrip tabs;
   protected A adapter;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
-    adapter = createAdapter();
-
-    if (adapter == null) {
-      throw new IllegalArgumentException(
-          "Adapter is null. Did you forget to create the adapter in createAdapter()?");
-    }
-  }
-
   @Override protected void onMvpViewCreated() {
     tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-
     if (tabs == null) {
       throw new IllegalStateException("The tabs is not specified. "
           + "You have to provide a View with R.id.tabs in your inflated xml layout");
     }
 
-    tabs.setViewPager(contentView);
+    adapter = createAdapter();
+    if (adapter == null) {
+      throw new IllegalArgumentException(
+          "Adapter is null. Did you forget to create the adapter in createAdapter()?");
+    }
 
     contentView.setAdapter(adapter);
     contentView.setPageMargin(getPageMargin());
+
+    tabs.setViewPager(contentView);
 
     Integer pageMarginDrawable = getViewPagerDividerDrawable();
     if (pageMarginDrawable != null) {
