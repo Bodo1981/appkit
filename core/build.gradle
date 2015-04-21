@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'android-maven'
 apply plugin: 'kotlin-android'
 
 android {
@@ -9,8 +8,8 @@ android {
   defaultConfig {
     minSdkVersion rootProject.ext.minSdk
     targetSdkVersion rootProject.ext.targetSdk
-    versionCode 1
-    versionName "1.0"
+    versionCode 2
+    versionName "1.0.1"
   }
 
   buildTypes {
@@ -46,25 +45,4 @@ dependencies {
 
   // Kotlin
   compile 'org.jetbrains.kotlin:kotlin-stdlib:' + rootProject.ext.kotlinVersion
-}
-
-task sourcesJar(type: Jar) {
-  from android.sourceSets.main.java.srcDirs
-  classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-  failOnError false
-  source = android.sourceSets.main.java.srcDirs
-  classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
-  from javadoc.destinationDir
-}
-
-artifacts {
-  archives javadocJar
-  archives sourcesJar
 }
