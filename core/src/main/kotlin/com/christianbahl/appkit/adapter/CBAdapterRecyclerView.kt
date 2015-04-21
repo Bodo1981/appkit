@@ -45,7 +45,7 @@ public abstract class CBAdapterRecyclerView<D, L : MutableList<D>>(
     public fun addNewItems(items: L) {
         this.items = this.items ?: createEmptyList()
 
-        this.items!!.addAll(items)
+        this.items?.addAll(items)
     }
 
     /**
@@ -58,14 +58,14 @@ public abstract class CBAdapterRecyclerView<D, L : MutableList<D>>(
     public fun addNewItem(item: D) {
         this.items = this.items ?: createEmptyList()
 
-        this.items!!.add(item)
+        this.items?.add(item)
     }
 
     /**
      * Creates an empty [L]
      * @return empty [L]
      */
-    private fun createEmptyList(): L {
+    [suppress("UNCHECKED_CAST")] private fun createEmptyList(): L {
         return ArrayList<D>() as L
     }
 

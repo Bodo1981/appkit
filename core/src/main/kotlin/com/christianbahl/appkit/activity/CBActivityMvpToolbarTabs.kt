@@ -8,8 +8,8 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 
 /**
- * An activity which uses the Model-View-Presenter architecture. It also adds a [Toolbar] on
- * top and has a [ViewPager] with [PagerSlidingTabStrip].
+ * An activity which uses the Model-View-Presenter architecture. It also adds a
+ * [android.support.v7.widget.Toolbar] on top and has a [ViewPager] with [PagerSlidingTabStrip].
  *
  * The layout has to contain a view with id `R.layout.conten_view` which must be of
  * type [ViewPager]. You also have to provide a view with id `R.layout.tabs` of
@@ -21,7 +21,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  * There a two functions to customize the [ViewPager]
  *
  *  * getPageMargin(): sets the margin between the pages
- *  * getViewPagerDividerDrawable(): sets divider [Drawable] between the pages
+ *  * getViewPagerDividerDrawable(): sets divider [android.graphics.drawable.Drawable] between the pages
  *
  * @author Christian Bahl
  */
@@ -31,30 +31,21 @@ public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceVi
     protected var adapter: A? = null
 
     override fun onMvpViewCreated() {
-        tabs = findViewById(R.id.tabs) as PagerSlidingTabStrip
-        if (tabs == null) {
-            throw IllegalStateException(
-                    "The tabs is not specified. " + "You have to provide a View with R.id.tabs in your inflated xml layout")
-        }
-
+        tabs = findViewById(R.id.tabs)!! as PagerSlidingTabStrip
         adapter = createAdapter()
-        if (adapter == null) {
-            throw IllegalArgumentException(
-                    "Adapter is null. Did you forget to create the adapter in createAdapter()?")
-        }
 
         contentView.setAdapter(adapter)
-        contentView.setPageMargin(getPageMargin())
-
         tabs!!.setViewPager(contentView)
 
-        val pageMarginDrawable = getViewPagerDividerDrawable()
-        if (pageMarginDrawable != null) {
-            contentView.setPageMarginDrawable(pageMarginDrawable)
+        val margin: Int = Math.max(getPageMargin(), 0)
+        contentView.setPageMargin(margin)
+
+        if (margin > 0) {
+            contentView.setPageMarginDrawable(getViewPagerDividerDrawable() ?: 0)
         }
     }
 
-    override fun getLayoutRes(): Int? {
+    override fun getLayoutRes(): Int {
         return R.layout.cb_activity_toolbar_tabs
     }
 
@@ -68,10 +59,10 @@ public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceVi
     }
 
     /**
-     * The [Drawable] which will be displayed between the pages in the [ViewPager]
-     * if `[.getPageMargin] > 0`
+     * The [android.graphics.drawable.Drawable] which will be displayed between the pages in
+     * the [ViewPager] if `[.getPageMargin] > 0`
      *
-     * @return divider [Drawable] for the [ViewPager]
+     * @return divider [android.graphics.drawable.Drawable] for the [ViewPager]
      */
     protected fun getViewPagerDividerDrawable(): Int? {
         return R.drawable.cb_viewpager_divider

@@ -8,10 +8,10 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 
 /**
- * An activity which uses the Model-View-Presenter architecture. It also adds a [Toolbar] on
- * top and has a container for the [Fragment].
+ * An activity which uses the Model-View-Presenter architecture. It also adds a
+ * [android.support.v7.widget.Toolbar] on top and has a container for the [Fragment].
  *
- * The layout must have a [ViewGroup] for the [Fragment] with the id
+ * The layout must have a [android.view.ViewGroup] for the [Fragment] with the id
  * `R.layout.contentView`
  *
  * The standard layout implements all necessary views. You can override the default layout in
@@ -29,19 +29,12 @@ public abstract class CBActivityMvpToolbarFragment<CV : View, D, V : MvpLceView<
         super.onCreate(savedInstanceState)
 
         if (savedInstanceState == null) {
-            val fragment = createFragmentToDisplay()
-
-            if (fragment == null) {
-                throw IllegalArgumentException(
-                        "Fragment is null. Did you forget to create the Fragment in the createFragmentToDisplay()")
-            }
-
             getSupportFragmentManager().beginTransaction().replace(R.id.contentView,
-                    fragment).commit()
+                                                                   createFragmentToDisplay()).commit()
         }
     }
 
-    override fun getLayoutRes(): Int? {
+    override protected fun getLayoutRes(): Int {
         return R.layout.cb_activity_toolbar_fragment
     }
 
@@ -51,7 +44,8 @@ public abstract class CBActivityMvpToolbarFragment<CV : View, D, V : MvpLceView<
 
     /**
      * Returns the [Fragment] which should be displayed by this activity.
+     *
      * @return [Fragment]
      */
-    protected abstract fun createFragmentToDisplay(): Fragment?
+    protected abstract fun createFragmentToDisplay(): Fragment
 }

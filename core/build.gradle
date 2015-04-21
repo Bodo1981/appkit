@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'android-maven'
+apply plugin: 'kotlin-android'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -11,11 +12,16 @@ android {
     versionCode 1
     versionName "1.0"
   }
+
   buildTypes {
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
   }
 }
 
@@ -37,6 +43,9 @@ dependencies {
 
   // Material Design Colors
   compile 'com.wada811:android-material-design-colors:2.0.0'
+
+  // Kotlin
+  compile 'org.jetbrains.kotlin:kotlin-stdlib:' + rootProject.ext.kotlinVersion
 }
 
 task sourcesJar(type: Jar) {
@@ -54,6 +63,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
   classifier = 'javadoc'
   from javadoc.destinationDir
 }
+
 artifacts {
   archives javadocJar
   archives sourcesJar

@@ -11,15 +11,14 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 /**
  * An activity which uses the Model-View-Presenter architecture and adds a [Toolbar] on top.
  *
- * This activity also enables [ActionBarActivity.setDisplayHomeAsUpEnabled] so the toolbar
- * will show the title. If you don´t want this in your activity you can override this
+ * This activity also enables [android.support.v7.app.ActionBar.setDisplayShowTitleEnabled] so the
+ * toolbar will show the title. If you don´t want this in your activity you can override this
  * in [.isDisplayShowTitleEnabled].
  *
  * The standard layout implements all necessary views. You can override the default layout in
- * [.getLayoutRes] ()}. But be careful, you have to provide the necessary views!
+ * [.getLayoutRes]. But be careful, you have to provide the necessary views!
  *
  * @author Christian Bahl
- *
  * @see MvpLceActivity
  */
 public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : MvpLceActivity<CV, D, V, P>() {
@@ -29,12 +28,7 @@ public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val layoutResId = getLayoutRes()
-        if (layoutResId == null) {
-            throw NullPointerException("LayoutResId is null. Do you return NULL in getLayoutRes?")
-        }
-
-        setContentView(layoutResId)
+        setContentView(getLayoutRes())
     }
 
     override fun onSupportContentChanged() {
@@ -61,7 +55,7 @@ public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : 
      *
      * @return `true` if title should be displayed in toolbar otherwise `false`
      */
-    protected fun isDisplayShowTitleEnabled(): Boolean {
+    protected open fun isDisplayShowTitleEnabled(): Boolean {
         return true
     }
 
@@ -70,7 +64,7 @@ public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : 
      *
      * @return layout res id
      */
-    protected open fun getLayoutRes(): Int? {
+    protected open fun getLayoutRes(): Int {
         return R.layout.cb_activity_toolbar_fragment
     }
 

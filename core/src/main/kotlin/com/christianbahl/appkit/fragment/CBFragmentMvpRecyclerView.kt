@@ -29,26 +29,10 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V : MvpLceView<D>, P : Mv
         super.onViewCreated(view, savedInstanceState)
 
         adapter = createAdapter()
-        if (adapter == null) {
-            throw IllegalStateException(
-                    "Adapter is null. Did you forget to return an adapter in #createAdapter()?")
-        }
-
         contentView.setAdapter(adapter)
 
-        emptyView = view.findViewById(R.id.emptyView)
-        if (emptyView == null) {
-            throw IllegalStateException(
-                    "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?")
-        }
-
-        val layoutManager = createRecyclerViewLayoutManager()
-        if (layoutManager == null) {
-            throw IllegalStateException(
-                    "The RecyclerView.LayoutManager is not specified. You have to provide a " + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()")
-        } else {
-            contentView.setLayoutManager(layoutManager)
-        }
+        emptyView = view.findViewById(R.id.emptyView)!!
+        contentView.setLayoutManager(createRecyclerViewLayoutManager()!!)
 
         onMvpViewCreated(view, savedInstanceState)
 
@@ -58,7 +42,7 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V : MvpLceView<D>, P : Mv
     override fun showContent() {
         super.showContent()
 
-        if (adapter!!.getItemCount() == 0) {
+        if (adapter?.getItemCount() ?: 0 == 0) {
             emptyView!!.setVisibility(View.VISIBLE)
         } else {
             emptyView!!.setVisibility(View.GONE)
@@ -68,16 +52,16 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V : MvpLceView<D>, P : Mv
     override fun showLoading(isContentVisible: Boolean) {
         super.showLoading(isContentVisible)
 
-        if (isContentVisible && emptyView!!.getVisibility() == View.VISIBLE) {
-            emptyView!!.setVisibility(View.GONE)
+        if (isContentVisible && emptyView?.getVisibility() ?: View.GONE == View.VISIBLE) {
+            emptyView?.setVisibility(View.GONE)
         }
     }
 
     override fun showError(e: Throwable, isContentVisible: Boolean) {
         super.showError(e, isContentVisible)
 
-        if (isContentVisible && emptyView!!.getVisibility() == View.VISIBLE) {
-            emptyView!!.setVisibility(View.GONE)
+        if (isContentVisible && emptyView?.getVisibility() ?: View.GONE == View.VISIBLE) {
+            emptyView?.setVisibility(View.GONE)
         }
     }
 
@@ -97,7 +81,7 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V : MvpLceView<D>, P : Mv
      */
     protected fun createRecyclerViewLayoutManager(): RecyclerView.LayoutManager? {
         return LinearLayoutManager(getActivity(),
-                LinearLayoutManager.VERTICAL, false)
+                                   LinearLayoutManager.VERTICAL, false)
     }
 
     /**
