@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/appkit.iml" filepath="$PROJECT_DIR$/appkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-kotlin/core-kotlin.iml" filepath="$PROJECT_DIR$/core-kotlin/core-kotlin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/viewstate-kotlin/viewstate-kotlin.iml" filepath="$PROJECT_DIR$/viewstate-kotlin/viewstate-kotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewstate/viewstate.iml" filepath="$PROJECT_DIR$/viewstate/viewstate.iml" />
     </modules>
   </component>
 </project>

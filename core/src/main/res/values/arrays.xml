@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!-- SwipeRefreshLayout -->
+  <integer-array name="cb_swiperefresh_loading_colors">
+    <item>@color/cb_swiperefresh_loading_color_1</item>
+    <item>@color/cb_swiperefresh_loading_color_2</item>
+  </integer-array>
+
+</resources>

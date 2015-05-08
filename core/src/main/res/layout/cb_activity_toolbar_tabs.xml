@@ -1,0 +1,43 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?android:attr/actionBarSize"
+      android:background="?attr/colorPrimary"
+      android:elevation="@dimen/cb_elevation_depth"/>
+
+  <com.astuetz.PagerSlidingTabStrip
+      android:id="@+id/tabs"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/cb_pagerslidingtabstrip_height"
+      android:layout_below="@+id/toolbar"
+      android:background="?attr/colorPrimary"
+      android:elevation="@dimen/cb_elevation_depth"
+      android:textColor="?android:attr/textColorPrimary"
+      app:pstsShouldExpand="false"
+      app:pstsIndicatorHeight="@dimen/cb_pagerslidingtabstrip_indicator_height"/>
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@+id/tabs">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <include
+        layout="@layout/cb_base_loading_view"/>
+
+    <include
+        layout="@layout/cb_base_error_view"/>
+
+  </FrameLayout>
+</RelativeLayout>

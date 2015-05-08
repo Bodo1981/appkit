@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <fr.castorflex.android.circularprogressbar.CircularProgressBar
+      android:id="@+id/loadingView"
+      android:layout_width="@dimen/cb_swiperefresh_layout_width"
+      android:layout_height="@dimen/cb_swiperefresh_layout_height"
+      android:indeterminate="true"
+      android:layout_gravity="center"
+      android:layout_centerInParent="true"
+      app:cpb_colors="@array/cb_swiperefresh_loading_colors"/>
+
+</merge>
