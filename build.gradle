@@ -2,36 +2,38 @@
 ext {
   minSdk = 15
   targetSdk = 22
-  buildToolsVersion = '22.0.1'
+  buildToolsVersion = "22.0.1"
   compileSdkVersion = 22
-
-  kotlinVersion = '0.11.91.2'
 }
 
 buildscript {
+  ext.kotlinVersion = "0.11.91.4"
+  ext.mosbyVersion = "1.0.0"
+
   repositories {
     jcenter()
   }
+
   dependencies {
-    classpath 'com.android.tools.build:gradle:1.1.3'
+    classpath "com.android.tools.build:gradle:1.2.3"
 
     // Kotlin
-    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.11.91.2'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
     // Jitpack
-    classpath 'com.github.dcendents:android-maven-plugin:1.2'
+    classpath "com.github.dcendents:android-maven-plugin:1.2"
   }
 }
 
 allprojects {
-  version = '1.0.1'
-  group = 'com.christianbahl'
+  version = "1.0.1"
+  group = "com.christianbahl"
 
   repositories {
     jcenter()
 
     maven {
-      url 'http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/'
+      url "http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/"
     }
 
     maven {
