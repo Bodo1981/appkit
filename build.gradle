@@ -24,14 +24,11 @@ buildscript {
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
     // Jitpack
-    classpath "com.github.dcendents:android-maven-plugin:1.2"
+    classpath "com.github.dcendents:android-maven-gradle-plugin:1.3"
   }
 }
 
 allprojects {
-  version = "1.0.1"
-  group = "com.christianbahl"
-
   repositories {
     jcenter()
 
@@ -44,3 +41,6 @@ allprojects {
     }
   }
 }
+
+version = "1.0.3"
+group = "com.christianbahl"

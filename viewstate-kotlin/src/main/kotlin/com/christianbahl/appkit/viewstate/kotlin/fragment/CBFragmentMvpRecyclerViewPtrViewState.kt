@@ -69,7 +69,7 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V : MvpLceVie
 
   /**
    * Called from the [SwipeRefreshLayout.OnRefreshListener].
-   * 
+   *
    * Default: call of [.loadData]
    */
   protected fun onRefreshStarted() {
