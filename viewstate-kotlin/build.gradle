@@ -1,6 +1,5 @@
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
-apply plugin: "com.github.dcendents.android-maven"
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -39,3 +38,5 @@ dependencies {
   // Mosby
   compile "com.hannesdorfmann.mosby:viewstate:$mosbyVersion"
 }
+
+apply from: "../maven-push.gradle"

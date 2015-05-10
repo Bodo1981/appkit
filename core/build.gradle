@@ -1,5 +1,4 @@
 apply plugin: "com.android.library"
-apply plugin: "com.github.dcendents.android-maven"
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -24,8 +23,8 @@ dependencies {
   compile fileTree(dir: "libs", include: ["*.jar"])
 
   // Support
-  compile "com.android.support:appcompat-v7:22.1.1"
-  compile "com.android.support:recyclerview-v7:22.1.1"
+  compile "com.android.support:appcompat-v7:$supportVersion"
+  compile "com.android.support:recyclerview-v7:$supportVersion"
 
   // Mosby
   compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
@@ -39,3 +38,5 @@ dependencies {
   // Material Design Colors
   compile "com.wada811:android-material-design-colors:2.0.0"
 }
+
+apply from: "../maven-push.gradle"

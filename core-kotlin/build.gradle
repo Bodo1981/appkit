@@ -1,6 +1,5 @@
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
-apply plugin: "com.github.dcendents.android-maven"
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -52,3 +51,5 @@ dependencies {
   // Kotlin
   compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 }
+
+apply from: "../maven-push.gradle"

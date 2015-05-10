@@ -5,7 +5,7 @@ project.ext {
   minSdkVersion = 16
   targetSdkVersion = 22
   versionCode = 2
-  versionName = "1.0.1"
+  versionName = "1.0.4"
 }
 
 buildscript {
@@ -29,6 +29,9 @@ buildscript {
 }
 
 allprojects {
+  version = "1.0.4"
+  group = "com.christianbahl"
+
   repositories {
     jcenter()
 
@@ -41,6 +44,3 @@ allprojects {
     }
   }
 }
-
-version = "1.0.3"
-group = "com.christianbahl"
