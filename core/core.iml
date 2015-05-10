@@ -74,8 +74,8 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.1.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library-circular/1.1.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.hannesdorfmann.mosby/core/1.0.0/jars" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.hannesdorfmann.mosby/mvp/1.0.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.hannesdorfmann.mosby/core/1.1.0/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.hannesdorfmann.mosby/mvp/1.1.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.jpardogo.materialtabstrip/library/1.0.9/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.wada811/android-material-design-colors/2.0.0/jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
@@ -95,17 +95,18 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="appcompat-v7-22.1.1" level="project" />
-    <orderEntry type="library" exported="" name="icepick-3.0.2" level="project" />
-    <orderEntry type="library" exported="" name="library-circular-1.1.0" level="project" />
-    <orderEntry type="library" exported="" name="core-1.0.0" level="project" />
-    <orderEntry type="library" exported="" name="mvp-1.0.0" level="project" />
+    <orderEntry type="library" exported="" name="mvp-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="library-1.0.9" level="project" />
-    <orderEntry type="library" exported="" name="android-material-design-colors-2.0.0" level="project" />
-    <orderEntry type="library" exported="" name="recyclerview-v7-22.1.1" level="project" />
-    <orderEntry type="library" exported="" name="annotation-2.0.1" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-22.1.1" level="project" />
+    <orderEntry type="library" exported="" name="mvp-common-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.1.1" level="project" />
     <orderEntry type="library" exported="" name="butterknife-6.1.0" level="project" />
+    <orderEntry type="library" exported="" name="core-1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="annotation-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="icepick-3.0.2" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-22.1.1" level="project" />
+    <orderEntry type="library" exported="" name="library-circular-1.1.0" level="project" />
+    <orderEntry type="library" exported="" name="android-material-design-colors-2.0.0" level="project" />
+    <orderEntry type="library" exported="" name="recyclerview-v7-22.1.1" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-22.1.1" level="project" />
   </component>
 </module>

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/core-kotlin/core-kotlin.iml" filepath="$PROJECT_DIR$/core-kotlin/core-kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/viewstate/viewstate.iml" filepath="$PROJECT_DIR$/viewstate/viewstate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewstate-kotlin/viewstate-kotlin.iml" filepath="$PROJECT_DIR$/viewstate-kotlin/viewstate-kotlin.iml" />
     </modules>
   </component>
 </project>

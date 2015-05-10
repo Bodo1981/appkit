@@ -1,1 +1,1 @@
-include ':core', ':core-kotlin', ':viewstate'
+include ':core', ':core-kotlin', ':viewstate', ':viewstate-kotlin'

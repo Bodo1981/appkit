@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
 apply plugin: "android-maven"
 
 android {
@@ -6,26 +6,26 @@ android {
   buildToolsVersion rootProject.ext.buildToolsVersion
 
   defaultConfig {
-    minSdkVersion rootProject.ext.minSdk
-    targetSdkVersion rootProject.ext.targetSdk
-    versionCode 2
-    versionName "1.0.1"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode rootProject.ext.versionCode
+    versionName rootProject.ext.versionName
   }
 
   buildTypes {
     release {
       minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
     }
   }
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
+  compile fileTree(dir: "libs", include: ["*.jar"])
 
   // Support
-  compile "com.android.support:appcompat-v7:22.1.+"
-  compile "com.android.support:recyclerview-v7:22.1.+"
+  compile "com.android.support:appcompat-v7:22.1.1"
+  compile "com.android.support:recyclerview-v7:22.1.1"
 
   // Mosby
   compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
