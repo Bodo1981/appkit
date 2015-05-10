@@ -44,8 +44,8 @@ public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, 
     }
   }
 
-  @Override public void onSupportContentChanged() {
-    super.onSupportContentChanged();
+  @Override public void onContentChanged() {
+    super.onContentChanged();
 
     tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
 

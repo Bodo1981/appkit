@@ -13,7 +13,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  * An activity which uses the Model-View-Presenter architecture and adds a [Toolbar] on top.
  *
  * This activity also enables {@link ActionBar#setDisplayShowHomeEnabled(boolean)} so the
- * toolbar will show the title. If you don´t want this in your activity you can override this
+ * toolbar will show the title. If you do not want this in your activity you can override this
  * in {@link #isDisplayShowTitleEnabled()}.
  *
  * The standard layout implements all necessary views. You can override the default layout in
@@ -33,8 +33,8 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
     setContentView(getLayoutRes());
   }
 
-  @Override public void onSupportContentChanged() {
-    super.onSupportContentChanged();
+  @Override public void onContentChanged() {
+    super.onContentChanged();
 
     // throws an exception if toolbar is not a toolbar
     toolbar = (Toolbar) findViewById(R.id.toolbar);

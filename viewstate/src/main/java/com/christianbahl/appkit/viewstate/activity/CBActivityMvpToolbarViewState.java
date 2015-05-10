@@ -42,8 +42,8 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
     setContentView(layoutResId);
   }
 
-  @Override public void onSupportContentChanged() {
-    super.onSupportContentChanged();
+  @Override public void onContentChanged() {
+    super.onContentChanged();
 
     toolbar = (Toolbar) findViewById(R.id.toolbar);
 
