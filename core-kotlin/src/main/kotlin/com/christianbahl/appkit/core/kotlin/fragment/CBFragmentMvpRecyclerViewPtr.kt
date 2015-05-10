@@ -20,54 +20,49 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  */
 public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V : MvpLceView<D>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<AD, MutableList<AD>>> : CBFragmentMvpRecyclerView<AD, D, V, P, A>() {
 
-    protected var swipeRefreshLayout: SwipeRefreshLayout? = null
+  protected var swipeRefreshLayout: SwipeRefreshLayout? = null
 
-    override fun getLayoutRes(): Int {
-        return R.layout.cb_fragment_recycler_view_ptr
+  override fun getLayoutRes(): Int {
+    return R.layout.cb_fragment_recycler_view_ptr
+  }
+
+  override fun onMvpViewCreated(view: View, savedInstanceState: Bundle?) {
+    swipeRefreshLayout = view.findViewById(R.id.pullToRefresh) as SwipeRefreshLayout
+
+    swipeRefreshLayout!!.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
+      override fun onRefresh() {
+        onRefreshStarted()
+      }
+    })
+  }
+
+  override fun showContent() {
+    super.showContent()
+
+    swipeRefreshLayout!!.setVisibility(View.VISIBLE)
+    swipeRefreshLayout!!.setRefreshing(false)
+  }
+
+  override fun showLoading(isContentVisible: Boolean) {
+    super.showLoading(isContentVisible)
+
+    if (!isContentVisible) {
+      swipeRefreshLayout!!.setVisibility(View.GONE)
     }
+  }
 
-    override fun onMvpViewCreated(view: View, savedInstanceState: Bundle?) {
-        swipeRefreshLayout = view.findViewById(
-                R.id.pullToRefresh) as SwipeRefreshLayout
-        if (swipeRefreshLayout == null) {
-            throw IllegalStateException(
-                    "The swipe refresh layout is not specified. You have to provide a View with R.id.pull_to_refresh in your inflated xml layout")
-        }
+  override fun showError(e: Throwable, isContentVisible: Boolean) {
+    super.showError(e, isContentVisible)
 
-        swipeRefreshLayout!!.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
-            override fun onRefresh() {
-                onRefreshStarted()
-            }
-        })
-    }
+    swipeRefreshLayout!!.setVisibility(View.GONE)
+    swipeRefreshLayout!!.setRefreshing(false)
+  }
 
-    override fun showContent() {
-        super.showContent()
-
-        swipeRefreshLayout!!.setVisibility(View.VISIBLE)
-        swipeRefreshLayout!!.setRefreshing(false)
-    }
-
-    override fun showLoading(isContentVisible: Boolean) {
-        super.showLoading(isContentVisible)
-
-        if (!isContentVisible) {
-            swipeRefreshLayout!!.setVisibility(View.GONE)
-        }
-    }
-
-    override fun showError(e: Throwable, isContentVisible: Boolean) {
-        super.showError(e, isContentVisible)
-
-        swipeRefreshLayout!!.setVisibility(View.GONE)
-        swipeRefreshLayout!!.setRefreshing(false)
-    }
-
-    /**
-     * Called from the [SwipeRefreshLayout.OnRefreshListener].
-     * Default: call of [.loadData]
-     */
-    protected fun onRefreshStarted() {
-        loadData(true)
-    }
+  /**
+   * Called from the [SwipeRefreshLayout.OnRefreshListener].
+   * Default: call of [.loadData]
+   */
+  protected fun onRefreshStarted() {
+    loadData(true)
+  }
 }

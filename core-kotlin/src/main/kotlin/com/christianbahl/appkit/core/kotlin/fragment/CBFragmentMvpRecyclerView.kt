@@ -22,81 +22,81 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  */
 public abstract class CBFragmentMvpRecyclerView<AD, D, V : MvpLceView<D>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<AD, MutableList<AD>>> : MvpLceFragment<RecyclerView, D, V, P>() {
 
-    protected var adapter: A? = null
-    protected var emptyView: View? = null
+  protected var adapter: A? = null
+  protected var emptyView: View? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
-        adapter = createAdapter()
-        contentView.setAdapter(adapter)
+    adapter = createAdapter()
+    contentView.setAdapter(adapter)
 
-        emptyView = view.findViewById(R.id.emptyView)!!
-        contentView.setLayoutManager(createRecyclerViewLayoutManager()!!)
+    emptyView = view.findViewById(R.id.emptyView)!!
+    contentView.setLayoutManager(createRecyclerViewLayoutManager()!!)
 
-        onMvpViewCreated(view, savedInstanceState)
+    onMvpViewCreated(view, savedInstanceState)
 
-        loadData(false)
+    loadData(false)
+  }
+
+  override fun showContent() {
+    super.showContent()
+
+    if (adapter?.getItemCount() ?: 0 == 0) {
+      emptyView!!.setVisibility(View.VISIBLE)
+    } else {
+      emptyView!!.setVisibility(View.GONE)
     }
+  }
 
-    override fun showContent() {
-        super.showContent()
+  override fun showLoading(isContentVisible: Boolean) {
+    super.showLoading(isContentVisible)
 
-        if (adapter?.getItemCount() ?: 0 == 0) {
-            emptyView!!.setVisibility(View.VISIBLE)
-        } else {
-            emptyView!!.setVisibility(View.GONE)
-        }
+    if (isContentVisible && emptyView?.getVisibility() ?: View.GONE == View.VISIBLE) {
+      emptyView?.setVisibility(View.GONE)
     }
+  }
 
-    override fun showLoading(isContentVisible: Boolean) {
-        super.showLoading(isContentVisible)
+  override fun showError(e: Throwable, isContentVisible: Boolean) {
+    super.showError(e, isContentVisible)
 
-        if (isContentVisible && emptyView?.getVisibility() ?: View.GONE == View.VISIBLE) {
-            emptyView?.setVisibility(View.GONE)
-        }
+    if (isContentVisible && emptyView?.getVisibility() ?: View.GONE == View.VISIBLE) {
+      emptyView?.setVisibility(View.GONE)
     }
+  }
 
-    override fun showError(e: Throwable, isContentVisible: Boolean) {
-        super.showError(e, isContentVisible)
+  override fun getLayoutRes(): Int {
+    return R.layout.cb_fragment_recycler_view
+  }
 
-        if (isContentVisible && emptyView?.getVisibility() ?: View.GONE == View.VISIBLE) {
-            emptyView?.setVisibility(View.GONE)
-        }
-    }
+  override fun getErrorMessage(throwable: Throwable, isContentVisible: Boolean): String? {
+    return throwable.getMessage()
+  }
 
-    override fun getLayoutRes(): Int {
-        return R.layout.cb_fragment_recycler_view
-    }
+  /**
+   * Creates the [RecyclerView.LayoutManager].
+   * Default: [LinearLayoutManager]
+   *
+   * @return [RecyclerView.LayoutManager]
+   */
+  protected fun createRecyclerViewLayoutManager(): RecyclerView.LayoutManager? {
+    return LinearLayoutManager(getActivity(),
+                               LinearLayoutManager.VERTICAL, false)
+  }
 
-    override fun getErrorMessage(throwable: Throwable, isContentVisible: Boolean): String? {
-        return throwable.getMessage()
-    }
+  /**
+   * Creates the [A].
+   * Called in [.onViewCreated]
+   *
+   * @return [A]
+   */
+  protected abstract fun createAdapter(): A
 
-    /**
-     * Creates the [RecyclerView.LayoutManager].
-     * Default: [LinearLayoutManager]
-     *
-     * @return [RecyclerView.LayoutManager]
-     */
-    protected fun createRecyclerViewLayoutManager(): RecyclerView.LayoutManager? {
-        return LinearLayoutManager(getActivity(),
-                LinearLayoutManager.VERTICAL, false)
-    }
-
-    /**
-     * Creates the [A].
-     * Called in [.onViewCreated]
-     *
-     * @return [A]
-     */
-    protected abstract fun createAdapter(): A
-
-    /**
-     * Called after the mvp views and the recycler view are created
-     *
-     * @param view [View]
-     * @param savedInstanceState [Bundle]
-     */
-    protected abstract fun onMvpViewCreated(view: View, savedInstanceState: Bundle?)
+  /**
+   * Called after the mvp views and the recycler view are created
+   *
+   * @param view [View]
+   * @param savedInstanceState [Bundle]
+   */
+  protected abstract fun onMvpViewCreated(view: View, savedInstanceState: Bundle?)
 }

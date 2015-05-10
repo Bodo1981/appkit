@@ -27,52 +27,52 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  */
 public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbar<ViewPager, D, V, P>() {
 
-    protected var tabs: PagerSlidingTabStrip? = null
-    protected var adapter: A? = null
+  protected var tabs: PagerSlidingTabStrip? = null
+  protected var adapter: A? = null
 
-    override fun onMvpViewCreated() {
-        tabs = findViewById(R.id.tabs)!! as PagerSlidingTabStrip
-        adapter = createAdapter()
+  override fun onMvpViewCreated() {
+    tabs = findViewById(R.id.tabs)!! as PagerSlidingTabStrip
+    adapter = createAdapter()
 
-        contentView.setAdapter(adapter)
-        tabs!!.setViewPager(contentView)
+    contentView.setAdapter(adapter)
+    tabs!!.setViewPager(contentView)
 
-        val margin: Int = Math.max(getPageMargin(), 0)
-        contentView.setPageMargin(margin)
+    val margin: Int = Math.max(getPageMargin(), 0)
+    contentView.setPageMargin(margin)
 
-        if (margin > 0) {
-            contentView.setPageMarginDrawable(getViewPagerDividerDrawable() ?: 0)
-        }
+    if (margin > 0) {
+      contentView.setPageMarginDrawable(getViewPagerDividerDrawable() ?: 0)
     }
+  }
 
-    override fun getLayoutRes(): Int {
-        return R.layout.cb_activity_toolbar_tabs
-    }
+  override fun getLayoutRes(): Int {
+    return R.layout.cb_activity_toolbar_tabs
+  }
 
-    /**
-     * The margin between the pages in the [ViewPager]
-     *
-     * @return margin between pages in [ViewPager]
-     */
-    protected fun getPageMargin(): Int {
-        return 20
-    }
+  /**
+   * The margin between the pages in the [ViewPager]
+   *
+   * @return margin between pages in [ViewPager]
+   */
+  protected fun getPageMargin(): Int {
+    return 20
+  }
 
-    /**
-     * The [android.graphics.drawable.Drawable] which will be displayed between the pages in
-     * the [ViewPager] if `[.getPageMargin] > 0`
-     *
-     * @return divider [android.graphics.drawable.Drawable] for the [ViewPager]
-     */
-    protected fun getViewPagerDividerDrawable(): Int? {
-        return R.drawable.cb_viewpager_divider
-    }
+  /**
+   * The [android.graphics.drawable.Drawable] which will be displayed between the pages in
+   * the [ViewPager] if `[.getPageMargin] > 0`
+   *
+   * @return divider [android.graphics.drawable.Drawable] for the [ViewPager]
+   */
+  protected fun getViewPagerDividerDrawable(): Int? {
+    return R.drawable.cb_viewpager_divider
+  }
 
-    /**
-     * Creates the [A] for the [ViewPager].
-     * Called in [.onCreate]
-     *
-     * @return [A]
-     */
-    protected abstract fun createAdapter(): A
+  /**
+   * Creates the [A] for the [ViewPager].
+   * Called in [.onCreate]
+   *
+   * @return [A]
+   */
+  protected abstract fun createAdapter(): A
 }

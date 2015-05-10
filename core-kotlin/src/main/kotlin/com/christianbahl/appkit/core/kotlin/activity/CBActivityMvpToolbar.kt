@@ -23,53 +23,52 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  */
 public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : MvpLceActivity<CV, D, V, P>() {
 
-    protected var toolbar: Toolbar? = null
+  protected var toolbar: Toolbar? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        setContentView(getLayoutRes())
-    }
+    setContentView(getLayoutRes())
+  }
 
-    override fun onSupportContentChanged() {
-        super.onSupportContentChanged()
+  override fun onContentChanged() {
+    super.onContentChanged()
 
-        // throws an exception if toolbar is not a toolbar
-        toolbar = findViewById(
-                R.id.toolbar) as Toolbar
+    // throws an exception if toolbar is not a toolbar
+    toolbar = findViewById(R.id.toolbar) as Toolbar
 
-        setSupportActionBar(toolbar)
-        getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled())
+    setSupportActionBar(toolbar)
+    getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled())
 
-        onMvpViewCreated()
+    onMvpViewCreated()
 
-        loadData(false)
-    }
+    loadData(false)
+  }
 
-    override fun getErrorMessage(throwable: Throwable, isContentVisible: Boolean): String? {
-        return throwable.getMessage()
-    }
+  override fun getErrorMessage(throwable: Throwable, isContentVisible: Boolean): String? {
+    return throwable.getMessage()
+  }
 
-    /**
-     * Should the title be displayed in the toolbar.
-     *
-     * @return `true` if title should be displayed in toolbar otherwise `false`
-     */
-    protected open fun isDisplayShowTitleEnabled(): Boolean {
-        return true
-    }
+  /**
+   * Should the title be displayed in the toolbar.
+   *
+   * @return `true` if title should be displayed in toolbar otherwise `false`
+   */
+  protected open fun isDisplayShowTitleEnabled(): Boolean {
+    return true
+  }
 
-    /**
-     * Provide the layout res id for the activity.
-     *
-     * @return layout res id
-     */
-    protected open fun getLayoutRes(): Int {
-        return R.layout.cb_activity_toolbar_fragment
-    }
+  /**
+   * Provide the layout res id for the activity.
+   *
+   * @return layout res id
+   */
+  protected open fun getLayoutRes(): Int {
+    return R.layout.cb_activity_toolbar_fragment
+  }
 
-    /**
-     * Called after mvp views and toolbar are created
-     */
-    protected abstract fun onMvpViewCreated()
+  /**
+   * Called after mvp views and toolbar are created
+   */
+  protected abstract fun onMvpViewCreated()
 }

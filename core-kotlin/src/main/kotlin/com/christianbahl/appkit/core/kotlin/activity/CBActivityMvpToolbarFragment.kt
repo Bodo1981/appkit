@@ -25,27 +25,23 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  */
 public abstract class CBActivityMvpToolbarFragment<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbar<CV, D, V, P>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.contentView,
-                    createFragmentToDisplay()).commit()
-        }
+    if (savedInstanceState == null) {
+      getSupportFragmentManager().beginTransaction().replace(R.id.contentView,
+                                                             createFragmentToDisplay()).commit()
     }
+  }
 
-    override protected fun getLayoutRes(): Int {
-        return R.layout.cb_activity_toolbar_fragment
-    }
+  override protected fun getLayoutRes(): Int {
+    return R.layout.cb_activity_toolbar_fragment
+  }
 
-    override fun onMvpViewCreated() {
-        // nothing to do here
-    }
-
-    /**
-     * Returns the [Fragment] which should be displayed by this activity.
-     *
-     * @return [Fragment]
-     */
-    protected abstract fun createFragmentToDisplay(): Fragment
+  /**
+   * Returns the [Fragment] which should be displayed by this activity.
+   *
+   * @return [Fragment]
+   */
+  protected abstract fun createFragmentToDisplay(): Fragment
 }
