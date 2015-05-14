@@ -32,17 +32,19 @@ public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceVi
   protected var adapter: A by Delegates.notNull()
 
   override fun onMvpViewCreated() {
-    tabs = findViewById(R.id.tabs)!! as PagerSlidingTabStrip
+    super.onMvpViewCreated()
+
     adapter = createAdapter()
 
-    contentView.setAdapter(adapter)
+    tabs = findViewById(R.id.tabs) as PagerSlidingTabStrip
     tabs.setViewPager(contentView)
 
-    val margin: Int = Math.max(getPageMargin(), 0)
-    contentView.setPageMargin(margin)
+    contentView.setAdapter(adapter)
+    contentView.setPageMargin(getPageMargin())
 
-    if (margin > 0) {
-      contentView.setPageMarginDrawable(getViewPagerDividerDrawable() ?: 0)
+    val pageMarginDrawable = getViewPagerDividerDrawable()
+    if (pageMarginDrawable != null) {
+      contentView.setPageMarginDrawable(pageMarginDrawable)
     }
   }
 

@@ -44,6 +44,10 @@ public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView
 
     setSupportActionBar(toolbar)
     getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled())
+
+    onMvpViewCreated()
+
+    loadData(false)
   }
 
   override fun getErrorMessage(throwable: Throwable, isContentVisible: Boolean): String? {
@@ -66,5 +70,12 @@ public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView
    */
   protected open fun getLayoutRes(): Int {
     return R.layout.cb_activity_toolbar_fragment
+  }
+
+  /**
+   * Called after mvp views and toolbar are created
+   */
+  protected open fun onMvpViewCreated() {
+
   }
 }

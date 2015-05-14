@@ -85,6 +85,16 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V : MvpLceView<D>, P : Mv
   }
 
   /**
+   * Called after the mvp views and the recycler view are created
+   *
+   * @param view [View]
+   * @param savedInstanceState [Bundle]
+   */
+  protected open fun onMvpViewCreated(view: View, savedInstanceState: Bundle?) {
+
+  }
+
+  /**
    * Creates the [A].
    * Called in [.onViewCreated]
    *
@@ -92,11 +102,4 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V : MvpLceView<D>, P : Mv
    */
   protected abstract fun createAdapter(): A
 
-  /**
-   * Called after the mvp views and the recycler view are created
-   *
-   * @param view [View]
-   * @param savedInstanceState [Bundle]
-   */
-  protected abstract fun onMvpViewCreated(view: View, savedInstanceState: Bundle?)
 }

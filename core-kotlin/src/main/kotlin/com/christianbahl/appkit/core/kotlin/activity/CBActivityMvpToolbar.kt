@@ -71,5 +71,7 @@ public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : 
   /**
    * Called after mvp views and toolbar are created
    */
-  protected abstract fun onMvpViewCreated()
+  protected open fun onMvpViewCreated() {
+
+  }
 }

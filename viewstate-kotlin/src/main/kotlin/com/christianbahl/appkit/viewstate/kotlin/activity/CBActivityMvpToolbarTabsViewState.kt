@@ -32,14 +32,10 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
   protected var tabs: PagerSlidingTabStrip by Delegates.notNull()
   protected var adapter: A by Delegates.notNull()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+  override fun onMvpViewCreated() {
+    super.onMvpViewCreated()
 
     adapter = createAdapter()
-  }
-
-  override fun onContentChanged() {
-    super.onContentChanged()
 
     tabs = findViewById(R.id.tabs) as PagerSlidingTabStrip
     tabs.setViewPager(contentView)

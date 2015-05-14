@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.viewstate.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.christianbahl.appkit.viewstate.R;
@@ -53,7 +54,15 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
     }
 
     setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
+
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
+    }
+
+    onMvpViewCreated();
+
+    loadData(false);
   }
 
   @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
@@ -76,5 +85,12 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
    */
   protected Integer getLayoutRes() {
     return R.layout.cb_activity_toolbar_fragment;
+  }
+
+  /**
+   * Called after mvp views and toolbar are created
+   */
+  protected void onMvpViewCreated() {
+
   }
 }

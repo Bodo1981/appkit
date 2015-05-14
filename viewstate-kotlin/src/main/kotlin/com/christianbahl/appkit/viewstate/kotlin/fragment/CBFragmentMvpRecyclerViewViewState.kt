@@ -43,6 +43,10 @@ public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V : MvpLceView<D
     emptyView = view.findViewById(R.id.emptyView)!!
 
     contentView.setLayoutManager(createRecyclerViewLayoutManager())
+
+    onMvpViewCreated(view, savedInstanceState)
+
+    loadData(false)
   }
 
   override fun getLayoutRes(): Int {
@@ -88,6 +92,16 @@ public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V : MvpLceView<D
    */
   protected fun createRecyclerViewLayoutManager(): RecyclerView.LayoutManager {
     return LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false)
+  }
+
+  /**
+   * Called after the mvp views and the recycler view are created
+   *
+   * @param view [View]
+   * @param savedInstanceState [Bundle]
+   */
+  protected open fun onMvpViewCreated(view: View, savedInstanceState: Bundle?) {
+
   }
 
   /**

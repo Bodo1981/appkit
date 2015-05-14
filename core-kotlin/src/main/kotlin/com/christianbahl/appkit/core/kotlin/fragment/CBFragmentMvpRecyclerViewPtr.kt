@@ -28,6 +28,8 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V : MvpLceView<D>, P :
   }
 
   override fun onMvpViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onMvpViewCreated(view, savedInstanceState)
+
     swipeRefreshLayout = view.findViewById(R.id.pullToRefresh) as SwipeRefreshLayout
 
     swipeRefreshLayout.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {

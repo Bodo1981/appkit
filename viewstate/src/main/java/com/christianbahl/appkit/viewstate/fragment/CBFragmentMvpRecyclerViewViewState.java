@@ -60,6 +60,10 @@ public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V extends MvpLce
     } else {
       contentView.setLayoutManager(layoutManager);
     }
+
+    onMvpViewCreated(view, savedInstanceState);
+
+    loadData(false);
   }
 
   @Override protected int getLayoutRes() {
@@ -104,6 +108,16 @@ public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V extends MvpLce
    */
   protected RecyclerView.LayoutManager createRecyclerViewLayoutManager() {
     return new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+  }
+
+  /**
+   * Called after the mvp views and the recycler view are created
+   *
+   * @param view {@link View}
+   * @param savedInstanceState {@link Bundle}
+   */
+  protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
+
   }
 
   /**
