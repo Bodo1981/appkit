@@ -7,6 +7,7 @@ import com.christianbahl.appkit.core.kotlin.R
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
+import kotlin.properties.Delegates
 
 /**
  * An activity which uses the Model-View-Presenter architecture and adds a [Toolbar] on top.
@@ -23,7 +24,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  */
 public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : MvpLceActivity<CV, D, V, P>() {
 
-  protected var toolbar: Toolbar? = null
+  protected var toolbar: Toolbar by Delegates.notNull()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

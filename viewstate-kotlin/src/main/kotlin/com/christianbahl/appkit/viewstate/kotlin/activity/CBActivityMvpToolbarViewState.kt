@@ -22,19 +22,19 @@ import com.christianbahl.appkit.viewstate.kotlin.R
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateActivity
+import kotlin.properties.Delegates
 
 /**
  * @author Christian Bahl
  */
 public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : MvpLceViewStateActivity<CV, D, V, P>() {
 
-  protected var toolbar: Toolbar? = null
+  protected var toolbar: Toolbar by Delegates.notNull()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val layoutResId = getLayoutRes()!!
-    setContentView(layoutResId)
+    setContentView(getLayoutRes())
   }
 
   override fun onContentChanged() {
@@ -43,7 +43,7 @@ public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView
     toolbar = findViewById(R.id.toolbar) as Toolbar
 
     setSupportActionBar(toolbar)
-    getSupportActionBar()!!.setDisplayShowTitleEnabled(isDisplayShowTitleEnabled())
+    getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled())
   }
 
   override fun getErrorMessage(throwable: Throwable, isContentVisible: Boolean): String? {
@@ -64,7 +64,7 @@ public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView
    *
    * @return layout res id
    */
-  protected open fun getLayoutRes(): Int? {
+  protected open fun getLayoutRes(): Int {
     return R.layout.cb_activity_toolbar_fragment
   }
 }

@@ -31,13 +31,12 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV : View, D, V : Mv
     super.onCreate(savedInstanceState)
 
     if (savedInstanceState == null) {
-      val fragment = createFragmentToDisplay()!!
-
-      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit()
+      getSupportFragmentManager().beginTransaction().replace(R.id.contentView,
+                                                             createFragmentToDisplay()).commit()
     }
   }
 
-  override fun getLayoutRes(): Int? {
+  override fun getLayoutRes(): Int {
     return R.layout.cb_activity_toolbar_fragment
   }
 
@@ -46,5 +45,5 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV : View, D, V : Mv
    *
    * @return [Fragment]
    */
-  protected abstract fun createFragmentToDisplay(): Fragment?
+  protected abstract fun createFragmentToDisplay(): Fragment
 }

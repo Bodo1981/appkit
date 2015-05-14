@@ -7,6 +7,7 @@ import com.christianbahl.appkit.core.kotlin.R
 import com.christianbahl.appkit.core.kotlin.adapter.CBAdapterRecyclerView
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
+import kotlin.properties.Delegates
 
 /**
  * A fragment which uses the Model-View-Presenter architecture.
@@ -20,7 +21,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  */
 public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V : MvpLceView<D>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<AD, MutableList<AD>>> : CBFragmentMvpRecyclerView<AD, D, V, P, A>() {
 
-  protected var swipeRefreshLayout: SwipeRefreshLayout? = null
+  protected var swipeRefreshLayout: SwipeRefreshLayout by Delegates.notNull()
 
   override fun getLayoutRes(): Int {
     return R.layout.cb_fragment_recycler_view_ptr
@@ -29,7 +30,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V : MvpLceView<D>, P :
   override fun onMvpViewCreated(view: View, savedInstanceState: Bundle?) {
     swipeRefreshLayout = view.findViewById(R.id.pullToRefresh) as SwipeRefreshLayout
 
-    swipeRefreshLayout!!.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
+    swipeRefreshLayout.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
       override fun onRefresh() {
         onRefreshStarted()
       }
@@ -39,23 +40,23 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V : MvpLceView<D>, P :
   override fun showContent() {
     super.showContent()
 
-    swipeRefreshLayout!!.setVisibility(View.VISIBLE)
-    swipeRefreshLayout!!.setRefreshing(false)
+    swipeRefreshLayout.setVisibility(View.VISIBLE)
+    swipeRefreshLayout.setRefreshing(false)
   }
 
   override fun showLoading(isContentVisible: Boolean) {
     super.showLoading(isContentVisible)
 
     if (!isContentVisible) {
-      swipeRefreshLayout!!.setVisibility(View.GONE)
+      swipeRefreshLayout.setVisibility(View.GONE)
     }
   }
 
   override fun showError(e: Throwable, isContentVisible: Boolean) {
     super.showError(e, isContentVisible)
 
-    swipeRefreshLayout!!.setVisibility(View.GONE)
-    swipeRefreshLayout!!.setRefreshing(false)
+    swipeRefreshLayout.setVisibility(View.GONE)
+    swipeRefreshLayout.setRefreshing(false)
   }
 
   /**

@@ -22,13 +22,14 @@ import com.christianbahl.appkit.core.kotlin.adapter.CBAdapterRecyclerView
 import com.christianbahl.appkit.viewstate.kotlin.R
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
+import kotlin.properties.Delegates
 
 /**
  * @author Christian Bahl
  */
 public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V : MvpLceView<D>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<AD, MutableList<AD>>> : CBFragmentMvpRecyclerViewViewState<AD, D, V, P, A>() {
 
-  protected var swipeRefreshLayout: SwipeRefreshLayout? = null
+  protected var swipeRefreshLayout: SwipeRefreshLayout by Delegates.notNull()
 
   override fun getLayoutRes(): Int {
     return R.layout.cb_fragment_recycler_view_ptr
@@ -38,7 +39,7 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V : MvpLceVie
     super.onViewCreated(view, savedInstanceState)
 
     swipeRefreshLayout = view.findViewById(R.id.pullToRefresh) as SwipeRefreshLayout
-    swipeRefreshLayout!!.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
+    swipeRefreshLayout.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
       override fun onRefresh() {
         onRefreshStarted()
       }
@@ -48,23 +49,23 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V : MvpLceVie
   override fun showContent() {
     super.showContent()
 
-    swipeRefreshLayout!!.setVisibility(View.VISIBLE)
-    swipeRefreshLayout!!.setRefreshing(false)
+    swipeRefreshLayout.setVisibility(View.VISIBLE)
+    swipeRefreshLayout.setRefreshing(false)
   }
 
   override fun showLoading(isContentVisible: Boolean) {
     super.showLoading(isContentVisible)
 
     if (!isContentVisible) {
-      swipeRefreshLayout!!.setVisibility(View.GONE)
+      swipeRefreshLayout.setVisibility(View.GONE)
     }
   }
 
   override fun showError(e: Throwable, isContentVisible: Boolean) {
     super.showError(e, isContentVisible)
 
-    swipeRefreshLayout!!.setVisibility(View.GONE)
-    swipeRefreshLayout!!.setRefreshing(false)
+    swipeRefreshLayout.setVisibility(View.GONE)
+    swipeRefreshLayout.setRefreshing(false)
   }
 
   /**

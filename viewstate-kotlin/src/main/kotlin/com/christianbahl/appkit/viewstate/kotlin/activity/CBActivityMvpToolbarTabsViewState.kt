@@ -15,7 +15,6 @@
  */
 package com.christianbahl.appkit.viewstate.kotlin.activity
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
@@ -23,26 +22,27 @@ import com.astuetz.PagerSlidingTabStrip
 import com.christianbahl.appkit.viewstate.kotlin.R
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
+import kotlin.properties.Delegates
 
 /**
  * @author Christian Bahl
  */
 public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbarViewState<ViewPager, D, V, P>() {
 
-  protected var tabs: PagerSlidingTabStrip? = null
-  protected var adapter: A? = null
+  protected var tabs: PagerSlidingTabStrip by Delegates.notNull()
+  protected var adapter: A by Delegates.notNull()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    adapter = createAdapter()!!
+    adapter = createAdapter()
   }
 
   override fun onContentChanged() {
     super.onContentChanged()
 
     tabs = findViewById(R.id.tabs) as PagerSlidingTabStrip
-    tabs!!.setViewPager(contentView)
+    tabs.setViewPager(contentView)
 
     contentView.setAdapter(adapter)
     contentView.setPageMargin(getPageMargin())
@@ -53,7 +53,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
     }
   }
 
-  override fun getLayoutRes(): Int? {
+  override fun getLayoutRes(): Int {
     return R.layout.cb_activity_toolbar_tabs
   }
 
@@ -67,9 +67,10 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
   }
 
   /**
-   * The [Drawable] which will be displayed between the pages in the [ViewPager] if `[.getPageMargin] > 0`
+   * The [android.graphics.drawable.Drawable] which will be displayed between the pages in the
+   * [ViewPager] if `[.getPageMargin] > 0`
    *
-   * @return divider [Drawable] for the [ViewPager]
+   * @return divider [android.graphics.drawable.Drawable] for the [ViewPager]
    */
   protected fun getViewPagerDividerDrawable(): Int? {
     return R.drawable.cb_viewpager_divider
@@ -80,7 +81,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
    *
    * Called in [.onCreate]
    *
-   * @return [A]?
+   * @return [A]
    */
-  protected abstract fun createAdapter(): A?
+  protected abstract fun createAdapter(): A
 }

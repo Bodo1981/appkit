@@ -6,6 +6,7 @@ import com.astuetz.PagerSlidingTabStrip
 import com.christianbahl.appkit.core.kotlin.R
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
+import kotlin.properties.Delegates
 
 /**
  * An activity which uses the Model-View-Presenter architecture. It also adds a
@@ -27,15 +28,15 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  */
 public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbar<ViewPager, D, V, P>() {
 
-  protected var tabs: PagerSlidingTabStrip? = null
-  protected var adapter: A? = null
+  protected var tabs: PagerSlidingTabStrip by Delegates.notNull()
+  protected var adapter: A by Delegates.notNull()
 
   override fun onMvpViewCreated() {
     tabs = findViewById(R.id.tabs)!! as PagerSlidingTabStrip
     adapter = createAdapter()
 
     contentView.setAdapter(adapter)
-    tabs!!.setViewPager(contentView)
+    tabs.setViewPager(contentView)
 
     val margin: Int = Math.max(getPageMargin(), 0)
     contentView.setPageMargin(margin)
