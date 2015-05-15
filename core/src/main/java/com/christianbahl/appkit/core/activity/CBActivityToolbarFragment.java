@@ -18,18 +18,14 @@ package com.christianbahl.appkit.core.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.ViewGroup;
 import com.christianbahl.appkit.core.R;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
- * An activity which uses the Model-View-Presenter architecture. It also adds a
- * {@link Toolbar} on top and has a container for the [Fragment].
+ * An activity which adds a {@link Toolbar} on top and has a container for the [Fragment].
  *
  * The layout must have a {@link ViewGroup} for the {@link Fragment} with the id
- * `R.layout.contentView`
+ * <code>R.layout.contentView</code>.
  *
  * The standard layout implements all necessary views. You can override the default layout in
  * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
@@ -38,10 +34,9 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  * should be displayed.
  *
  * @author Christian Bahl
- * @see CBActivityMvpToolbar
+ * @see CBActivityToolbar
  */
-public abstract class CBActivityMvpToolbarFragment<CV extends View, M, V extends MvpLceView<M>, P extends MvpPresenter<V>>
-    extends CBActivityMvpToolbar<CV, M, V, P> {
+public abstract class CBActivityToolbarFragment extends CBActivityToolbar {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -54,7 +49,7 @@ public abstract class CBActivityMvpToolbarFragment<CV extends View, M, V extends
   }
 
   protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar_fragment;
+    return R.layout.cb_activity_toolbar_fragment;
   }
 
   /**
@@ -63,4 +58,5 @@ public abstract class CBActivityMvpToolbarFragment<CV extends View, M, V extends
    * @return {@link Fragment}
    */
   protected abstract Fragment createFragmentToDisplay();
+
 }

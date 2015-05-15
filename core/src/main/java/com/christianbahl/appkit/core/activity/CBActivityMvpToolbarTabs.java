@@ -42,6 +42,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  * * getViewPagerDividerDrawable(): sets divider {@link Drawable} between the pages
  *
  * @author Christian Bahl
+ * @see CBActivityMvpToolbar
  */
 public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends PagerAdapter>
     extends CBActivityMvpToolbar<ViewPager, M, V, P> {
@@ -75,7 +76,7 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
   }
 
   @Override protected Integer getLayoutRes() {
-    return R.layout.cb_activity_toolbar_tabs;
+    return R.layout.cb_activity_mvp_toolbar_tabs;
   }
 
   /**

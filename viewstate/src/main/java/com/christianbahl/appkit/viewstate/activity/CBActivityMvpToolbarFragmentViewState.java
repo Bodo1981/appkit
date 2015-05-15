@@ -44,7 +44,7 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, 
   }
 
   @Override protected Integer getLayoutRes() {
-    return R.layout.cb_activity_toolbar_fragment;
+    return R.layout.cb_activity_mvp_toolbar_fragment;
   }
 
   /**

@@ -13,44 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate.activity;
+package com.christianbahl.appkit.core.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import com.christianbahl.appkit.viewstate.R;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateActivity;
+import com.christianbahl.appkit.core.R;
+import com.hannesdorfmann.mosby.MosbyActivity;
 
 /**
+ * An activity which adds a {@link Toolbar} on top.
+ *
+ * This activity also enables {@link ActionBar#setDisplayShowHomeEnabled(boolean)} so the
+ * toolbar will show the title. If you do not want this in your activity you can override this
+ * in {@link #isDisplayShowTitleEnabled()}.
+ *
+ * The standard layout implements all necessary views. You can override the default layout in
+ * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ *
  * @author Christian Bahl
+ * @see MosbyActivity
  */
-public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
-    extends MvpLceViewStateActivity<CV, D, V, P> {
+public abstract class CBActivityToolbar extends MosbyActivity {
 
   protected Toolbar toolbar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    Integer layoutResId = getLayoutRes();
-    if (layoutResId == null) {
-      throw new NullPointerException("LayoutResId is null. Do you return NULL in getLayoutRes?");
-    }
-
-    setContentView(layoutResId);
+    setContentView(getLayoutRes());
   }
 
   @Override public void onContentChanged() {
     super.onContentChanged();
 
+    // throws an exception if toolbar is not a toolbar
     toolbar = (Toolbar) findViewById(R.id.toolbar);
-
     if (toolbar == null) {
-      throw new IllegalStateException("The toolbar is null. "
-          + "You have to provide a View with R.id.toolbar in your inflated xml layout");
+      throw new NullPointerException(
+          "No Toolbar found. Did you forget to add it to your layout file with the id R.id.toolbar?");
     }
 
     setSupportActionBar(toolbar);
@@ -59,20 +60,12 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
     if (actionBar != null) {
       actionBar.setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
     }
-
-    onMvpViewCreated();
-
-    loadData(false);
-  }
-
-  @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
-    return throwable.getLocalizedMessage();
   }
 
   /**
    * Should the title be displayed in the toolbar.
    *
-   * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
+   * @return `true` if title should be displayed in toolbar otherwise `false`
    */
   protected boolean isDisplayShowTitleEnabled() {
     return true;
@@ -84,13 +77,6 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
    * @return layout res id
    */
   protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar_fragment;
-  }
-
-  /**
-   * Called after mvp views and toolbar are created
-   */
-  protected void onMvpViewCreated() {
-
+    return R.layout.cb_activity_toolbar;
   }
 }

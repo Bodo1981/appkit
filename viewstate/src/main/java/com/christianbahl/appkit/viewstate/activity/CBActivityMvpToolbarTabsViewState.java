@@ -66,7 +66,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, 
   }
 
   @Override protected Integer getLayoutRes() {
-    return R.layout.cb_activity_toolbar_tabs;
+    return R.layout.cb_activity_mvp_toolbar_tabs;
   }
 
   /**

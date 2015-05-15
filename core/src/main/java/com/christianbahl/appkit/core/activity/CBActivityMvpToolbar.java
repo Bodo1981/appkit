@@ -25,7 +25,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
- * An activity which uses the Model-View-Presenter architecture and adds a [Toolbar] on top.
+ * An activity which uses the Model-View-Presenter architecture and adds a {@link Toolbar} on top.
  *
  * This activity also enables {@link ActionBar#setDisplayShowHomeEnabled(boolean)} so the
  * toolbar will show the title. If you do not want this in your activity you can override this
@@ -89,7 +89,7 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
    * @return layout res id
    */
   protected Integer getLayoutRes() {
-    return R.layout.cb_activity_toolbar_fragment;
+    return R.layout.cb_activity_mvp_toolbar;
   }
 
   /**
