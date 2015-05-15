@@ -6,6 +6,6 @@
     android:layout_height="match_parent">
 
   <include
-      layout="@layout/cb_base_fragment"/>
+      layout="@layout/cb_base_mvp_fragment"/>
 
 </FrameLayout>
