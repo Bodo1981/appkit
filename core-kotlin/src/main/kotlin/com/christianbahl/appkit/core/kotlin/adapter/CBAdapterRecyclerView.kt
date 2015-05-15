@@ -24,7 +24,7 @@ import java.util.ArrayList
  * A base [RecyclerView.Adapter] with a [Context], [LayoutInflater] and
  * a [List] of [D] which you would like to display.
  *
- * This activity has an additional implementation of [.onBindViewHolder] which has the view type as parameter.
+ * This activity has an additional implementation of [onBindViewHolder] which has the view type as parameter.
  *
  * @author Christian Bahl
  * @see RecyclerView.Adapter
@@ -52,7 +52,7 @@ public abstract class CBAdapterRecyclerView<D : Any, L : MutableList<D>>(
   /**
    * Add items
    *
-   * If [.items] is null an empty [L] will be created first.
+   * If [items] is null an empty [L] will be created first.
    *
    * @param items [L]
    */
@@ -65,7 +65,7 @@ public abstract class CBAdapterRecyclerView<D : Any, L : MutableList<D>>(
   /**
    * Add a single item.
    *
-   * If [.items] is null an empty [List] will be created first.
+   * If [items] is null an empty [List] will be created first.
    *
    * @param item [D]
    */
@@ -99,5 +99,5 @@ public abstract class CBAdapterRecyclerView<D : Any, L : MutableList<D>>(
    * @param viewType view type
    */
   public abstract fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int,
-                                       viewType: Int)
+      viewType: Int)
 }

@@ -26,49 +26,49 @@ import kotlin.properties.Delegates
  *
  * This activity also enables [android.support.v7.app.ActionBar.setDisplayShowTitleEnabled] so the
  * toolbar will show the title. If you don´t want this in your activity you can override this
- * in [.isDisplayShowTitleEnabled].
+ * in [isDisplayShowTitleEnabled].
  *
  * The standard layout implements all necessary views. You can override the default layout in
- * [.getLayoutRes]. But be careful, you have to provide the necessary views!
+ * [getLayoutRes]. But be careful, you have to provide the necessary views!
  *
  * @author Christian Bahl
  * @see MosbyActivity
  */
 public abstract class CBActivityToolbar : MosbyActivity() {
 
-    protected var toolbar: Toolbar by Delegates.notNull()
+  protected var toolbar: Toolbar by Delegates.notNull()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        setContentView(getLayoutRes())
-    }
+    setContentView(getLayoutRes())
+  }
 
-    override fun onContentChanged() {
-        super.onContentChanged()
+  override fun onContentChanged() {
+    super.onContentChanged()
 
-        // throws an exception if toolbar is not a toolbar
-        toolbar = findViewById(R.id.toolbar) as Toolbar
+    // throws an exception if toolbar is not a toolbar
+    toolbar = findViewById(R.id.toolbar) as Toolbar
 
-        setSupportActionBar(toolbar)
-        getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled())
-    }
+    setSupportActionBar(toolbar)
+    getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled())
+  }
 
-    /**
-     * Should the title be displayed in the toolbar.
-     *
-     * @return `true` if title should be displayed in toolbar otherwise `false`
-     */
-    protected open fun isDisplayShowTitleEnabled(): Boolean {
-        return true
-    }
+  /**
+   * Should the title be displayed in the toolbar.
+   *
+   * @return `true` if title should be displayed in toolbar otherwise `false`
+   */
+  protected open fun isDisplayShowTitleEnabled(): Boolean {
+    return true
+  }
 
-    /**
-     * Provide the layout res id for the activity.
-     *
-     * @return layout res id
-     */
-    protected open fun getLayoutRes(): Int {
-        return R.layout.cb_activity_toolbar_fragment
-    }
+  /**
+   * Provide the layout res id for the activity.
+   *
+   * @return layout res id
+   */
+  protected open fun getLayoutRes(): Int {
+    return R.layout.cb_activity_toolbar_fragment
+  }
 }

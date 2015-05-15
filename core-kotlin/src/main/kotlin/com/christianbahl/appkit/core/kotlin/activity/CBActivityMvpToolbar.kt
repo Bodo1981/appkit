@@ -29,10 +29,10 @@ import kotlin.properties.Delegates
  *
  * This activity also enables [android.support.v7.app.ActionBar.setDisplayShowTitleEnabled] so the
  * toolbar will show the title. If you don´t want this in your activity you can override this
- * in [.isDisplayShowTitleEnabled].
+ * in [isDisplayShowTitleEnabled].
  *
  * The standard layout implements all necessary views. You can override the default layout in
- * [.getLayoutRes]. But be careful, you have to provide the necessary views!
+ * [getLayoutRes]. But be careful, you have to provide the necessary views!
  *
  * @author Christian Bahl
  * @see MvpLceActivity

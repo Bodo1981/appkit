@@ -25,7 +25,17 @@ import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateActivity
 import kotlin.properties.Delegates
 
 /**
+ * An activity which uses the Model-View-Presenter architecture with [ViewState] support and a [Toolbar] on top.
+ *
+ * This activity also enables [android.support.v7.app.ActionBar.setDisplayShowTitleEnabled] so the
+ * toolbar will show the title. If you don´t want this in your activity you can override this
+ * in [isDisplayShowTitleEnabled].
+ *
+ * The standard layout implements all necessary views. You can override the default layout in
+ * [getLayoutRes]. But be careful, you have to provide the necessary views!
+ *
  * @author Christian Bahl
+ * @see MvpLceViewStateActivity
  */
 public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : MvpLceViewStateActivity<CV, D, V, P>() {
 
@@ -69,7 +79,7 @@ public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView
    * @return layout res id
    */
   protected open fun getLayoutRes(): Int {
-    return R.layout.cb_activity_toolbar_fragment
+    return R.layout.cb_activity_mvp_toolbar
   }
 
   /**

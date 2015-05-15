@@ -23,7 +23,20 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 
 /**
+ * An activity which uses the Model-View-Presenter architecture with [ViewState] support. It also adds a
+ * [android.support.v7.widget.Toolbar] on top and has a container for the [Fragment].
+ *
+ * The layout must have a [android.view.ViewGroup] for the [Fragment] with the id
+ * `R.layout.contentView`
+ *
+ * The standard layout implements all necessary views. You can override the default layout in
+ * [getLayoutRes]. But be careful, you have to provide the necessary views!
+ *
+ * You have to override the [createFragmentToDisplay] to create the [Fragment] which
+ * should be displayed.
+ *
  * @author Christian Bahl
+ * @see CBActivityMvpToolbarViewState
  */
 public abstract class CBActivityMvpToolbarFragmentViewState<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbarViewState<CV, D, V, P>() {
 
@@ -32,12 +45,12 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV : View, D, V : Mv
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction().replace(R.id.contentView,
-                                                             createFragmentToDisplay()).commit()
+          createFragmentToDisplay()).commit()
     }
   }
 
   override fun getLayoutRes(): Int {
-    return R.layout.cb_activity_toolbar_fragment
+    return R.layout.cb_activity_mvp_toolbar_fragment
   }
 
   /**

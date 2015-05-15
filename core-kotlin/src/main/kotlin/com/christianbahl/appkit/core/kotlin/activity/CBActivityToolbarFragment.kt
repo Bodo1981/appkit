@@ -27,9 +27,9 @@ import com.christianbahl.appkit.core.kotlin.R
  * `R.layout.contentView`
  *
  * The standard layout implements all necessary views. You can override the default layout in
- * [.getLayoutRes]. But be careful, you have to provide the necessary views!
+ * [getLayoutRes]. But be careful, you have to provide the necessary views!
  *
- * You have to override the [.createFragmentToDisplay] to create the [Fragment] which
+ * You have to override the [createFragmentToDisplay] to create the [Fragment] which
  * should be displayed.
  *
  * @author Christian Bahl
@@ -37,23 +37,23 @@ import com.christianbahl.appkit.core.kotlin.R
  */
 public abstract class CBActivityToolbarFragment : CBActivityToolbar() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.contentView,
-                    createFragmentToDisplay()).commit()
-        }
+    if (savedInstanceState == null) {
+      getSupportFragmentManager().beginTransaction().replace(R.id.contentView,
+          createFragmentToDisplay()).commit()
     }
+  }
 
-    override protected fun getLayoutRes(): Int {
-        return R.layout.cb_activity_toolbar_fragment
-    }
+  override protected fun getLayoutRes(): Int {
+    return R.layout.cb_activity_toolbar_fragment
+  }
 
-    /**
-     * Returns the [Fragment] which should be displayed by this activity.
-     *
-     * @return [Fragment]
-     */
-    protected abstract fun createFragmentToDisplay(): Fragment
+  /**
+   * Returns the [Fragment] which should be displayed by this activity.
+   *
+   * @return [Fragment]
+   */
+  protected abstract fun createFragmentToDisplay(): Fragment
 }

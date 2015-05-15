@@ -31,7 +31,7 @@ import kotlin.properties.Delegates
  *
  * The content view is a [RecyclerView] with the id `R.layout.contentView`
  *
- * You have to implement the [A] for the [RecyclerView] in [.createAdapter].
+ * You have to implement the [A] for the [RecyclerView] in [createAdapter].
  *
  * @author Christian Bahl
  * @see MvpLceFragment
@@ -111,7 +111,7 @@ public abstract class CBFragmentMvpRecyclerView<AD, D, V : MvpLceView<D>, P : Mv
 
   /**
    * Creates the [A].
-   * Called in [.onViewCreated]
+   * Called in [onViewCreated]
    *
    * @return [A]
    */

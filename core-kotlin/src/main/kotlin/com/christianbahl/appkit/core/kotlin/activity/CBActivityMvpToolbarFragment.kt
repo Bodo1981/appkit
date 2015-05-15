@@ -30,9 +30,9 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  * `R.layout.contentView`
  *
  * The standard layout implements all necessary views. You can override the default layout in
- * [.getLayoutRes]. But be careful, you have to provide the necessary views!
+ * [getLayoutRes]. But be careful, you have to provide the necessary views!
  *
- * You have to override the [.createFragmentToDisplay] to create the [Fragment] which
+ * You have to override the [createFragmentToDisplay] to create the [Fragment] which
  * should be displayed.
  *
  * @author Christian Bahl
@@ -45,7 +45,7 @@ public abstract class CBActivityMvpToolbarFragment<CV : View, D, V : MvpLceView<
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction().replace(R.id.contentView,
-                                                             createFragmentToDisplay()).commit()
+          createFragmentToDisplay()).commit()
     }
   }
 

@@ -28,8 +28,8 @@ import kotlin.properties.Delegates
  * A fragment which uses the Model-View-Presenter architecture.
  *
  * You have to specify a [SwipeRefreshLayout] with the id `R.layout.pull_to_refresh`.
- * After the refresh is started the function [.onRefreshStarted] is called. In the default
- * implementation [.loadData] is called but you can override this if you need to.
+ * After the refresh is started the function [onRefreshStarted] is called. In the default
+ * implementation [loadData] is called but you can override this if you need to.
  *
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
@@ -78,7 +78,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V : MvpLceView<D>, P :
 
   /**
    * Called from the [SwipeRefreshLayout.OnRefreshListener].
-   * Default: call of [.loadData]
+   * Default: call of [loadData]
    */
   protected fun onRefreshStarted() {
     loadData(true)
