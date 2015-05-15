@@ -108,7 +108,7 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
   }
 
   /**
-   * Creates the {@link A} for the {@link ViewPager}.
+   * Creates the {@link A} for the {@link ViewPager}.<br/>
    * Called in {@link #onCreate(Bundle)}
    *
    * @return {@link A}

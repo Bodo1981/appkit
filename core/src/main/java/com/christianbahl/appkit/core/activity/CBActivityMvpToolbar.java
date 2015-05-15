@@ -83,7 +83,7 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   /**
    * Should the title be displayed in the toolbar.
    *
-   * @return `true` if title should be displayed in toolbar otherwise `false`
+   * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
    */
   protected boolean isDisplayShowTitleEnabled() {
     return true;

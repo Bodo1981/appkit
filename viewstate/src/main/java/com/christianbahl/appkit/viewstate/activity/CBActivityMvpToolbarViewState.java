@@ -22,10 +22,28 @@ import android.view.View;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateActivity;
 
 /**
+ * <p>
+ * An activity which uses the Model-View-Presenter architecture with {@link ViewState} support.
+ * It also adds a {@link Toolbar} on top.
+ * </p>
+ *
+ * <p>
+ * This activity also enables {@link ActionBar#setDisplayShowHomeEnabled(boolean)} so the
+ * toolbar will show the title. If you do not want this in your activity you can override this
+ * in {@link #isDisplayShowTitleEnabled()}.
+ * </p>
+ *
+ * <p>
+ * The standard layout implements all necessary views. You can override the default layout in
+ * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * </p>
+ *
  * @author Christian Bahl
+ * @see MvpLceViewStateActivity
  */
 public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
     extends MvpLceViewStateActivity<CV, D, V, P> {

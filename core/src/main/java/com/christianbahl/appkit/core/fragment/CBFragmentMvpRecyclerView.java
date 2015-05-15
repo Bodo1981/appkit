@@ -27,11 +27,17 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**
+ * <p>
  * A fragment which uses the Model-View-Presenter architecture.
+ * </p>
  *
- * The content view is a {@link RecyclerView} with the id `R.layout.contentView`
+ * <p>
+ * The content view is a {@link RecyclerView} with the id <code>R.layout.contentView</code>
+ * </p>
  *
+ * <p>
  * You have to implement the {@link A} for the {@link RecyclerView} in {@link #createAdapter()}.
+ * </p>
  *
  * @author Christian Bahl
  * @see MvpLceFragment
@@ -100,7 +106,7 @@ public abstract class CBFragmentMvpRecyclerView<AD, M, V extends MvpLceView<M>, 
   }
 
   /**
-   * Creates the {@link RecyclerView.LayoutManager}.
+   * Creates the {@link RecyclerView.LayoutManager}.<br/>
    * Default: {@link LinearLayoutManager}
    *
    * @return {@link RecyclerView.LayoutManager}
@@ -120,11 +126,10 @@ public abstract class CBFragmentMvpRecyclerView<AD, M, V extends MvpLceView<M>, 
   }
 
   /**
-   * Creates the {@link A}.
+   * Creates the {@link A}.<br/>
    * Called in {@link #onViewCreated}
    *
    * @return {@link A}
    */
   protected abstract A createAdapter();
-
 }

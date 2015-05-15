@@ -22,11 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A base [RecyclerView.Adapter] with a [Context], [LayoutInflater] and
- * a [List] of [D] which you would like to display.
+ * <p>
+ * A base {@link RecyclerView.Adapter}with a {@link Context}, {@link LayoutInflater} and
+ * a {@link List} of {@link M} which you would like to display.
+ * </p>
  *
- * This activity has an additional implementation of [.onBindViewHolder] which has the view type as
- * parameter.
+ * <p>
+ * This activity has an additional implementation of {@link #onBindViewHolder(RecyclerView.ViewHolder,
+ * int, int)} which has the view type as parameter.
+ * </p>
  *
  * @author Christian Bahl
  * @see RecyclerView.Adapter
@@ -40,6 +44,7 @@ public abstract class CBAdapterRecyclerView<M, L extends List<M>>
 
   public CBAdapterRecyclerView(Context context) {
     this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    this.context = context;
   }
 
   /**

@@ -19,13 +19,26 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
+import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerView;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import java.util.List;
 
 /**
+ * <p>
+ * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support.
+ * </p>
+ *
+ * <p>
+ * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pull_to_refresh</code>.
+ * After the refresh is started the function {@link #onRefreshStarted()} is called. In the default
+ * implementation {@link #loadData(boolean)} is called but you can override this if you need to.
+ * </p>
+ *
  * @author Christian Bahl
+ * @see CBFragmentMvpRecyclerView
  */
 public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
     extends CBFragmentMvpRecyclerViewViewState<AD, D, V, P, A> {
@@ -75,7 +88,7 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V extends Mvp
   }
 
   /**
-   * Called from the {@link SwipeRefreshLayout.OnRefreshListener}.<br>
+   * Called from the {@link SwipeRefreshLayout.OnRefreshListener}.<br/>
    * Default: call of {@link #loadData(boolean)}
    */
   protected void onRefreshStarted() {
