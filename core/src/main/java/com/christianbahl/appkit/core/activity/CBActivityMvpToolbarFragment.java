@@ -25,17 +25,25 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
- * An activity which uses the Model-View-Presenter architecture. It also adds a
- * {@link Toolbar} on top and has a container for the [Fragment].
+ * <p>
+ * An activity which uses the Model-View-Presenter architecture.<br/>
+ * It also adds a {@link Toolbar} on top and has a container for the {@link Fragment}.
+ * </p>
  *
+ * <p>
  * The layout must have a {@link ViewGroup} for the {@link Fragment} with the id
- * `R.layout.contentView`
+ * <code>R.layout.contentView</code>
+ * </p>
  *
+ * <p>
  * The standard layout implements all necessary views. You can override the default layout in
  * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * </p>
  *
+ * <p>
  * You have to override the {@link #createFragmentToDisplay} to create the {@link Fragment} which
  * should be displayed.
+ * </p>
  *
  * @author Christian Bahl
  * @see CBActivityMvpToolbar

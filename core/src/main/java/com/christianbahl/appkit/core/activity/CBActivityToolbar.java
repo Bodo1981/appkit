@@ -22,14 +22,20 @@ import com.christianbahl.appkit.core.R;
 import com.hannesdorfmann.mosby.MosbyActivity;
 
 /**
+ * <p>
  * An activity which adds a {@link Toolbar} on top.
+ * </p>
  *
+ * <p>
  * This activity also enables {@link ActionBar#setDisplayShowHomeEnabled(boolean)} so the
  * toolbar will show the title. If you do not want this in your activity you can override this
  * in {@link #isDisplayShowTitleEnabled()}.
+ * </p>
  *
+ * <p>
  * The standard layout implements all necessary views. You can override the default layout in
  * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * </p>
  *
  * @author Christian Bahl
  * @see MosbyActivity

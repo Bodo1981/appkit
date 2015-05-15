@@ -26,20 +26,29 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
- * An activity which uses the Model-View-Presenter architecture. It also adds a
- * {@link Toolbar} on top and has a {@link ViewPager} with {@link PagerSlidingTabStrip}.
+ * <p>
+ * An activity which uses the Model-View-Presenter architecture.<br/>
+ * It also adds a {@link Toolbar} on top and has a {@link ViewPager} with {@link
+ * PagerSlidingTabStrip}.
+ * </p>
  *
- * The layout has to contain a view with id `R.layout.content_view` which must be of
- * type {@link ViewPager}. You also have to provide a view with id `R.layout.tabs` of
+ * <p>
+ * The layout has to contain a view with id <code>R.layout.content_view</code> which must be of
+ * type {@link ViewPager}. You also have to provide a view with id <code>R.layout.tabs</code> of
  * type {@link PagerSlidingTabStrip}.
+ * </p>
  *
+ * <p>
  * The standard layout implements all necessary views. You can override the default layout in
  * {@link #getLayoutRes()}. But be careful, you have to provide the necessary views!
+ * </p>
  *
- * There a two functions to customize the {@link ViewPager}
+ * <p>
+ * There a two functions to customize the {@link ViewPager}<br/>
  *
- * * getPageMargin(): sets the margin between the pages
+ * * getPageMargin(): sets the margin between the pages<br/>
  * * getViewPagerDividerDrawable(): sets divider {@link Drawable} between the pages
+ * </p>
  *
  * @author Christian Bahl
  * @see CBActivityMvpToolbar
