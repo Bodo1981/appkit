@@ -73,7 +73,7 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V : MvpLceVie
    *
    * Default: call of [.loadData]
    */
-  protected fun onRefreshStarted() {
+  protected open fun onRefreshStarted() {
     loadData(true)
   }
 }

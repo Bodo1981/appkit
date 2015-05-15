@@ -65,7 +65,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, D, V : MvpLceView<D>, P :
    * Called from the [SwipeRefreshLayout.OnRefreshListener].
    * Default: call of [.loadData]
    */
-  protected fun onRefreshStarted() {
+  protected open fun onRefreshStarted() {
     loadData(true)
   }
 }
