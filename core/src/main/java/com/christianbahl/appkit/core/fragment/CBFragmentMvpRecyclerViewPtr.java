@@ -25,11 +25,15 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**
+ * <p>
  * A fragment which uses the Model-View-Presenter architecture.
+ * </p>
  *
- * You have to specify a {@link SwipeRefreshLayout} with the id `R.layout.pull_to_refresh`.
- * After the refresh is started the function [.onRefreshStarted] is called. In the default
+ * <p>
+ * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pull_to_refresh</code>.
+ * After the refresh is started the function {@link #onRefreshStarted()} is called. In the default
  * implementation {@link #loadData(boolean)} is called but you can override this if you need to.
+ * </p>
  *
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
@@ -45,7 +49,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, M, V extends MvpLceView<M
 
   @Override protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
     super.onMvpViewCreated(view, savedInstanceState);
-    
+
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pullToRefresh);
     if (swipeRefreshLayout == null) {
       throw new NullPointerException(
@@ -82,7 +86,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<AD, M, V extends MvpLceView<M
   }
 
   /**
-   * Called from the {@link SwipeRefreshLayout.OnRefreshListener}.
+   * Called from the {@link SwipeRefreshLayout.OnRefreshListener}.<br/>
    * Default: call of {@link #loadData(boolean)}
    */
   protected void onRefreshStarted() {

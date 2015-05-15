@@ -19,13 +19,41 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import com.astuetz.PagerSlidingTabStrip;
+import com.christianbahl.appkit.core.activity.CBActivityMvpToolbar;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 
 /**
+ * <p>
+ * An activity which uses the Model-View-Presenter architecture with {@link ViewState} support.
+ * It also adds a {@link Toolbar} on top and has a {@link ViewPager} with {@link
+ * PagerSlidingTabStrip}.
+ * </p>
+ *
+ * <p>
+ * The layout has to contain a view with id <code>R.layout.content_view</code> which must be of
+ * type {@link ViewPager}. You also have to provide a view with id <code>R.layout.tabs</code> of
+ * type {@link PagerSlidingTabStrip}.
+ * </p>
+ *
+ * <p>
+ * The standard layout implements all necessary views. You can override the default layout in
+ * {@link #getLayoutRes()}. But be careful, you have to provide the necessary views!
+ * </p>
+ *
+ * <p>
+ * There a two functions to customize the {@link ViewPager}<br/>
+ *
+ * * getPageMargin(): sets the margin between the pages<br/>
+ * * getViewPagerDividerDrawable(): sets divider {@link Drawable} between the pages
+ * </p>
+ *
  * @author Christian Bahl
+ * @see CBActivityMvpToolbar
  */
 public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
     extends CBActivityMvpToolbarViewState<ViewPager, D, V, P> {
@@ -66,7 +94,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, 
   }
 
   @Override protected Integer getLayoutRes() {
-    return R.layout.cb_activity_toolbar_tabs;
+    return R.layout.cb_activity_mvp_toolbar_tabs;
   }
 
   /**

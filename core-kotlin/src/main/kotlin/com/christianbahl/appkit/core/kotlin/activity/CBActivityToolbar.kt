@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate.kotlin.activity
+package com.christianbahl.appkit.core.kotlin.activity
 
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
-import android.view.View
-import com.christianbahl.appkit.viewstate.kotlin.R
-import com.hannesdorfmann.mosby.mvp.MvpPresenter
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateActivity
+import com.christianbahl.appkit.core.kotlin.R
+import com.hannesdorfmann.mosby.MosbyActivity
 import kotlin.properties.Delegates
 
 /**
- * An activity which uses the Model-View-Presenter architecture with [ViewState] support and a [Toolbar] on top.
+ * An activity which adds a [Toolbar] on top.
  *
  * This activity also enables [android.support.v7.app.ActionBar.setDisplayShowTitleEnabled] so the
  * toolbar will show the title. If you don´t want this in your activity you can override this
@@ -35,9 +32,9 @@ import kotlin.properties.Delegates
  * [getLayoutRes]. But be careful, you have to provide the necessary views!
  *
  * @author Christian Bahl
- * @see MvpLceViewStateActivity
+ * @see MosbyActivity
  */
-public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : MvpLceViewStateActivity<CV, D, V, P>() {
+public abstract class CBActivityToolbar : MosbyActivity() {
 
   protected var toolbar: Toolbar by Delegates.notNull()
 
@@ -50,18 +47,11 @@ public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView
   override fun onContentChanged() {
     super.onContentChanged()
 
+    // throws an exception if toolbar is not a toolbar
     toolbar = findViewById(R.id.toolbar) as Toolbar
 
     setSupportActionBar(toolbar)
     getSupportActionBar().setDisplayShowTitleEnabled(isDisplayShowTitleEnabled())
-
-    onMvpViewCreated()
-
-    loadData(false)
-  }
-
-  override fun getErrorMessage(throwable: Throwable, isContentVisible: Boolean): String? {
-    return throwable.getMessage()
   }
 
   /**
@@ -69,7 +59,7 @@ public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView
    *
    * @return `true` if title should be displayed in toolbar otherwise `false`
    */
-  protected fun isDisplayShowTitleEnabled(): Boolean {
+  protected open fun isDisplayShowTitleEnabled(): Boolean {
     return true
   }
 
@@ -79,13 +69,6 @@ public abstract class CBActivityMvpToolbarViewState<CV : View, D, V : MvpLceView
    * @return layout res id
    */
   protected open fun getLayoutRes(): Int {
-    return R.layout.cb_activity_mvp_toolbar
-  }
-
-  /**
-   * Called after mvp views and toolbar are created
-   */
-  protected open fun onMvpViewCreated() {
-
+    return R.layout.cb_activity_toolbar_fragment
   }
 }

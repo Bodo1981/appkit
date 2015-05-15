@@ -18,15 +18,12 @@ package com.christianbahl.appkit.core.activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import com.christianbahl.appkit.core.R;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby.MosbyActivity;
 
 /**
  * <p>
- * An activity which uses the Model-View-Presenter architecture and adds a {@link Toolbar} on top.
+ * An activity which adds a {@link Toolbar} on top.
  * </p>
  *
  * <p>
@@ -41,10 +38,9 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  * </p>
  *
  * @author Christian Bahl
- * @see MvpLceActivity
+ * @see MosbyActivity
  */
-public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceView<M>, P extends MvpPresenter<V>>
-    extends MvpLceActivity<CV, M, V, P> {
+public abstract class CBActivityToolbar extends MosbyActivity {
 
   protected Toolbar toolbar;
 
@@ -70,20 +66,12 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
     if (actionBar != null) {
       actionBar.setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
     }
-
-    onMvpViewCreated();
-
-    loadData(false);
-  }
-
-  @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
-    return throwable.getLocalizedMessage();
   }
 
   /**
    * Should the title be displayed in the toolbar.
    *
-   * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
+   * @return `true` if title should be displayed in toolbar otherwise `false`
    */
   protected boolean isDisplayShowTitleEnabled() {
     return true;
@@ -95,13 +83,6 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
    * @return layout res id
    */
   protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar;
-  }
-
-  /**
-   * Called after mvp views and toolbar are created
-   */
-  protected void onMvpViewCreated() {
-
+    return R.layout.cb_activity_toolbar;
   }
 }

@@ -25,7 +25,14 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 import kotlin.properties.Delegates
 
 /**
+ * A fragment which uses the Model-View-Presenter architecture with [ViewState] support.
+ *
+ * You have to specify a [SwipeRefreshLayout] with the id `R.layout.pull_to_refresh`.
+ * After the refresh is started the function [onRefreshStarted] is called. In the default
+ * implementation [loadData] is called but you can override this if you need to.
+ *
  * @author Christian Bahl
+ * @see CBFragmentMvpRecyclerView
  */
 public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V : MvpLceView<D>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<AD, MutableList<AD>>> : CBFragmentMvpRecyclerViewViewState<AD, D, V, P, A>() {
 
@@ -71,7 +78,7 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<AD, D, V : MvpLceVie
   /**
    * Called from the [SwipeRefreshLayout.OnRefreshListener].
    *
-   * Default: call of [.loadData]
+   * Default: call of [loadData]
    */
   protected open fun onRefreshStarted() {
     loadData(true)

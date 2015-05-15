@@ -1,3 +1,18 @@
+/*
+ * Copyright 2015 Christian Bahl
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.christianbahl.appkit.core.kotlin.activity
 
 import android.support.v4.view.PagerAdapter
@@ -12,12 +27,12 @@ import kotlin.properties.Delegates
  * An activity which uses the Model-View-Presenter architecture. It also adds a
  * [android.support.v7.widget.Toolbar] on top and has a [ViewPager] with [PagerSlidingTabStrip].
  *
- * The layout has to contain a view with id `R.layout.conten_view` which must be of
+ * The layout has to contain a view with id `R.layout.contentView` which must be of
  * type [ViewPager]. You also have to provide a view with id `R.layout.tabs` of
  * type [PagerSlidingTabStrip].
  *
  * The standard layout implements all necessary views. You can override the default layout in
- * [.getLayoutRes]. But be careful, you have to provide the necessary views!
+ * [getLayoutRes]. But be careful, you have to provide the necessary views!
  *
  * There a two functions to customize the [ViewPager]
  *
@@ -25,6 +40,7 @@ import kotlin.properties.Delegates
  *  * getViewPagerDividerDrawable(): sets divider [android.graphics.drawable.Drawable] between the pages
  *
  * @author Christian Bahl
+ * @see CBActivityMvpToolbar
  */
 public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbar<ViewPager, D, V, P>() {
 

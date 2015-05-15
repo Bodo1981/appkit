@@ -15,7 +15,6 @@
  */
 package com.christianbahl.appkit.viewstate.kotlin.activity
 
-import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import com.astuetz.PagerSlidingTabStrip
@@ -25,7 +24,23 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 import kotlin.properties.Delegates
 
 /**
+ * An activity which uses the Model-View-Presenter architecture with [ViewState] support. It also adds a
+ * [android.support.v7.widget.Toolbar] on top and has a [ViewPager] with [PagerSlidingTabStrip].
+ *
+ * The layout has to contain a view with id `R.layout.contentView` which must be of
+ * type [ViewPager]. You also have to provide a view with id `R.layout.tabs` of
+ * type [PagerSlidingTabStrip].
+ *
+ * The standard layout implements all necessary views. You can override the default layout in
+ * [getLayoutRes]. But be careful, you have to provide the necessary views!
+ *
+ * There a two functions to customize the [ViewPager]
+ *
+ *  * getPageMargin(): sets the margin between the pages
+ *  * getViewPagerDividerDrawable(): sets divider [android.graphics.drawable.Drawable] between the pages
+ *
  * @author Christian Bahl
+ * @see CBActivityMvpToolbarViewState
  */
 public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbarViewState<ViewPager, D, V, P>() {
 
@@ -50,7 +65,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
   }
 
   override fun getLayoutRes(): Int {
-    return R.layout.cb_activity_toolbar_tabs
+    return R.layout.cb_activity_mvp_toolbar_tabs
   }
 
   /**
@@ -64,7 +79,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
 
   /**
    * The [android.graphics.drawable.Drawable] which will be displayed between the pages in the
-   * [ViewPager] if `[.getPageMargin] > 0`
+   * [ViewPager] if `[getPageMargin] > 0`
    *
    * @return divider [android.graphics.drawable.Drawable] for the [ViewPager]
    */
@@ -75,7 +90,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
   /**
    * Creates the [A] for the [ViewPager].
    *
-   * Called in [.onCreate]
+   * Called in [onCreate]
    *
    * @return [A]
    */

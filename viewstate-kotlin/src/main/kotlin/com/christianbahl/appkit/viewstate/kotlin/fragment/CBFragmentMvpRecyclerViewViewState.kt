@@ -27,7 +27,14 @@ import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment
 import kotlin.properties.Delegates
 
 /**
+ * A fragment which uses the Model-View-Presenter architecture with [ViewState] support.
+ *
+ * The content view is a [RecyclerView] with the id `R.layout.contentView`
+ *
+ * You have to implement the [A] for the [RecyclerView] in [createAdapter].
+ *
  * @author Christian Bahl
+ * @see MvpLceViewStateFragment
  */
 public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V : MvpLceView<D>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<AD, MutableList<AD>>> : MvpLceViewStateFragment<RecyclerView, D, V, P>() {
 

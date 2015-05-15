@@ -13,18 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate.kotlin.activity
+package com.christianbahl.appkit.core.kotlin.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.View
-import com.christianbahl.appkit.viewstate.kotlin.R
-import com.hannesdorfmann.mosby.mvp.MvpPresenter
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
+import com.christianbahl.appkit.core.kotlin.R
 
 /**
- * An activity which uses the Model-View-Presenter architecture with [ViewState] support. It also adds a
- * [android.support.v7.widget.Toolbar] on top and has a container for the [Fragment].
+ * An activity which adds a [android.support.v7.widget.Toolbar] on top and has a container
+ * for the [Fragment].
  *
  * The layout must have a [android.view.ViewGroup] for the [Fragment] with the id
  * `R.layout.contentView`
@@ -36,9 +33,9 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
  * should be displayed.
  *
  * @author Christian Bahl
- * @see CBActivityMvpToolbarViewState
+ * @see CBActivityToolbar
  */
-public abstract class CBActivityMvpToolbarFragmentViewState<CV : View, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbarViewState<CV, D, V, P>() {
+public abstract class CBActivityToolbarFragment : CBActivityToolbar() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -49,8 +46,8 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV : View, D, V : Mv
     }
   }
 
-  override fun getLayoutRes(): Int {
-    return R.layout.cb_activity_mvp_toolbar_fragment
+  override protected fun getLayoutRes(): Int {
+    return R.layout.cb_activity_toolbar_fragment
   }
 
   /**
