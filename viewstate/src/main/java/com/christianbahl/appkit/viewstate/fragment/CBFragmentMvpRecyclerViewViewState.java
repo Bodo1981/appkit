@@ -23,11 +23,25 @@ import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment;
 import java.util.List;
 
 /**
+ * <p>
+ * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support.
+ * </p>
+ *
+ * <p>
+ * The content view is a {@link RecyclerView} with the id <code>R.layout.contentView</code>
+ * </p>
+ *
+ * <p>
+ * You have to implement the {@link A} for the {@link RecyclerView} in {@link #createAdapter()}.
+ * </p>
+ *
  * @author Christian Bahl
+ * @see MvpLceViewStateFragment
  */
 public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
     extends MvpLceViewStateFragment<RecyclerView, D, V, P> {
