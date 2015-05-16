@@ -20,9 +20,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.christianbahl.appkit.core.kotlin.adapter.CBAdapterRecyclerView
+import com.christianbahl.appkit.core.kotlin.view.CBMvpView
 import com.christianbahl.appkit.viewstate.kotlin.R
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment
 import kotlin.properties.Delegates
 
@@ -36,7 +36,7 @@ import kotlin.properties.Delegates
  * @author Christian Bahl
  * @see MvpLceViewStateFragment
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<M, V : MvpLceView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M>> : MvpLceViewStateFragment<RecyclerView, M, V, P>() {
+public abstract class CBFragmentMvpRecyclerViewViewState<M, V : CBMvpView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M>> : MvpLceViewStateFragment<RecyclerView, MutableList<M>, V, P>() {
 
   protected var adapter: A by Delegates.notNull()
   protected var emptyView: View by Delegates.notNull()

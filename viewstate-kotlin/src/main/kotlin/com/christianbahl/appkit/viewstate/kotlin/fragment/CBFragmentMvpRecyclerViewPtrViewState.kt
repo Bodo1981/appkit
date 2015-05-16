@@ -19,9 +19,9 @@ import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
 import com.christianbahl.appkit.core.kotlin.adapter.CBAdapterRecyclerView
+import com.christianbahl.appkit.core.kotlin.view.CBMvpView
 import com.christianbahl.appkit.viewstate.kotlin.R
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 import kotlin.properties.Delegates
 
 /**
@@ -34,7 +34,7 @@ import kotlin.properties.Delegates
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V : MvpLceView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M>> : CBFragmentMvpRecyclerViewViewState<M, V, P, A>() {
+public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V : CBMvpView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M>> : CBFragmentMvpRecyclerViewViewState<M, V, P, A>() {
 
   protected var swipeRefreshLayout: SwipeRefreshLayout by Delegates.notNull()
 

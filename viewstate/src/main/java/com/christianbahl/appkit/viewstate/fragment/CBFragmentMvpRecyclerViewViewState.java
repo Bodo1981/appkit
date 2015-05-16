@@ -20,11 +20,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
+import com.christianbahl.appkit.core.view.CBMvpView;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment;
+import java.util.List;
 
 /**
  * <p>
@@ -42,8 +43,8 @@ import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment;
  * @author Christian Bahl
  * @see MvpLceViewStateFragment
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
-    extends MvpLceViewStateFragment<RecyclerView, M, V, P> {
+public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
+    extends MvpLceViewStateFragment<RecyclerView, List<M>, V, P> {
 
   protected A adapter;
   protected View emptyView;

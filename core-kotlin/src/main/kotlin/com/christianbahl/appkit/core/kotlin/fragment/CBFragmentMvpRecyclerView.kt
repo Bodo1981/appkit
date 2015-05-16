@@ -21,9 +21,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.christianbahl.appkit.core.kotlin.R
 import com.christianbahl.appkit.core.kotlin.adapter.CBAdapterRecyclerView
+import com.christianbahl.appkit.core.kotlin.view.CBMvpView
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
 import kotlin.properties.Delegates
 
 /**
@@ -36,7 +36,7 @@ import kotlin.properties.Delegates
  * @author Christian Bahl
  * @see MvpLceFragment
  */
-public abstract class CBFragmentMvpRecyclerView<M : Any, V : MvpLceView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M>> : MvpLceFragment<RecyclerView, M, V, P>() {
+public abstract class CBFragmentMvpRecyclerView<M : Any, V : CBMvpView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M>> : MvpLceFragment<RecyclerView, MutableList<M>, V, P>() {
 
   protected var adapter: A by Delegates.notNull()
   protected var emptyView: View by Delegates.notNull()
