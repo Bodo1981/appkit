@@ -53,15 +53,15 @@ Newest Version (Jitpack.io):
 
     dependencies {
         // complete library
-        compile 'com.github.Bodo1981:appkit:1.1.3'
+        compile 'com.github.Bodo1981:appkit:1.1.4'
 
         // or submodules (java)
-        compile 'com.github.Bodo1981.appkit:core:1.1.3'
-        compile 'com.github.Bodo1981.appkit:viewstate:1.1.3'
+        compile 'com.github.Bodo1981.appkit:core:1.1.4'
+        compile 'com.github.Bodo1981.appkit:viewstate:1.1.4'
         
         // or submodules (kotlin)
-        compile 'com.github.Bodo1981.appkit:core-kotlin:1.1.3'
-        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.1.3'
+        compile 'com.github.Bodo1981.appkit:core-kotlin:1.1.4'
+        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.1.4'
     }
 
 The library contains submodules written in java and kotlin. Functionality is the same.
