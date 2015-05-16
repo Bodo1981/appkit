@@ -89,7 +89,7 @@ The library contains submodules written in java and kotlin. Functionality is the
             }
             maven {
                 // for material design colors
-                url "http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/"
+                url 'http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/'
             }
         }
     }
