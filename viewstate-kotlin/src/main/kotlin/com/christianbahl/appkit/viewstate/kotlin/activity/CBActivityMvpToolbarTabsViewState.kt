@@ -52,9 +52,6 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
 
     adapter = createAdapter()
 
-    tabs = findViewById(R.id.tabs) as PagerSlidingTabStrip
-    tabs.setViewPager(contentView)
-
     contentView.setAdapter(adapter)
     contentView.setPageMargin(getPageMargin())
 
@@ -62,6 +59,9 @@ public abstract class CBActivityMvpToolbarTabsViewState<A : PagerAdapter, D, V :
     if (pageMarginDrawable != null) {
       contentView.setPageMarginDrawable(pageMarginDrawable)
     }
+
+    tabs = findViewById(R.id.tabs) as PagerSlidingTabStrip
+    tabs.setViewPager(contentView)
   }
 
   override fun getLayoutRes(): Int {
