@@ -22,14 +22,14 @@ import java.util.ArrayList
 
 /**
  * A base [RecyclerView.Adapter] with a [Context], [LayoutInflater] and
- * a [List] of [D] which you would like to display.
+ * a [List] of [M] which you would like to display.
  *
  * This activity has an additional implementation of [onBindViewHolder] which has the view type as parameter.
  *
  * @author Christian Bahl
  * @see RecyclerView.Adapter
  */
-public abstract class CBAdapterRecyclerView<D : Any, L : MutableList<D>>(
+public abstract class CBAdapterRecyclerView<M : Any, L : MutableList<M>>(
     protected var context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
   protected var inflater: LayoutInflater
@@ -45,7 +45,7 @@ public abstract class CBAdapterRecyclerView<D : Any, L : MutableList<D>>(
    * @param position position
    * @return item at position
    */
-  public fun getItem(position: Int): D? {
+  public fun getItem(position: Int): M? {
     return items?.get(position)
   }
 
@@ -67,9 +67,9 @@ public abstract class CBAdapterRecyclerView<D : Any, L : MutableList<D>>(
    *
    * If [items] is null an empty [List] will be created first.
    *
-   * @param item [D]
+   * @param item [M]
    */
-  public fun addNewItem(item: D) {
+  public fun addNewItem(item: M) {
     this.items = this.items ?: createEmptyList()
 
     this.items?.add(item)
@@ -80,7 +80,7 @@ public abstract class CBAdapterRecyclerView<D : Any, L : MutableList<D>>(
    * @return empty [L]
    */
   [suppress("UNCHECKED_CAST")] private fun createEmptyList(): L {
-    return ArrayList<D>() as L
+    return ArrayList<Any>() as L
   }
 
   override fun getItemCount(): Int {

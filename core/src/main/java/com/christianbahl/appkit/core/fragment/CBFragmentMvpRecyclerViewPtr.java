@@ -38,8 +38,8 @@ import java.util.List;
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtr<AD, M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
-    extends CBFragmentMvpRecyclerView<AD, M, V, P, A> {
+public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M, List<M>>>
+    extends CBFragmentMvpRecyclerView<M, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;
 

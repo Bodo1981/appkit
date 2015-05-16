@@ -43,8 +43,8 @@ import java.util.List;
  * @author Christian Bahl
  * @see MvpLceViewStateFragment
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<AD, D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
-    extends MvpLceViewStateFragment<RecyclerView, D, V, P> {
+public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M, List<M>>>
+    extends MvpLceViewStateFragment<RecyclerView, M, V, P> {
 
   protected A adapter;
   protected View emptyView;

@@ -42,7 +42,7 @@ import java.util.List;
  * @author Christian Bahl
  * @see MvpLceFragment
  */
-public abstract class CBFragmentMvpRecyclerView<AD, M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<AD, List<AD>>>
+public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M, List<M>>>
     extends MvpLceFragment<RecyclerView, M, V, P> {
 
   protected A adapter;
