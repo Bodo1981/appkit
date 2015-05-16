@@ -65,7 +65,7 @@ public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceVi
   }
 
   override fun getLayoutRes(): Int {
-    return R.layout.cb_activity_toolbar_tabs
+    return R.layout.cb_activity_mvp_toolbar_tabs
   }
 
   /**
