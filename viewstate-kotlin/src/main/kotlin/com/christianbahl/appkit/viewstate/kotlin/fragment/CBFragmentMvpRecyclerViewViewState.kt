@@ -36,7 +36,7 @@ import kotlin.properties.Delegates
  * @author Christian Bahl
  * @see MvpLceViewStateFragment
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<M, V : MvpLceView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M, MutableList<M>>> : MvpLceViewStateFragment<RecyclerView, M, V, P>() {
+public abstract class CBFragmentMvpRecyclerViewViewState<M, V : MvpLceView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M>> : MvpLceViewStateFragment<RecyclerView, M, V, P>() {
 
   protected var adapter: A by Delegates.notNull()
   protected var emptyView: View by Delegates.notNull()

@@ -34,7 +34,7 @@ import kotlin.properties.Delegates
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtr<M: Any, V : MvpLceView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M, MutableList<M>>> : CBFragmentMvpRecyclerView<M, V, P, A>() {
+public abstract class CBFragmentMvpRecyclerViewPtr<M: Any, V : MvpLceView<M>, P : MvpPresenter<V>, A : CBAdapterRecyclerView<M>> : CBFragmentMvpRecyclerView<M, V, P, A>() {
 
   protected var swipeRefreshLayout: SwipeRefreshLayout by Delegates.notNull()
 

@@ -29,11 +29,11 @@ import java.util.ArrayList
  * @author Christian Bahl
  * @see RecyclerView.Adapter
  */
-public abstract class CBAdapterRecyclerView<M : Any, L : MutableList<M>>(
+public abstract class CBAdapterRecyclerView<M : Any>(
     protected var context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
   protected var inflater: LayoutInflater
-  protected var items: L? = null
+  protected var items: MutableList<M>? = null
 
   init {
     this.inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -52,11 +52,11 @@ public abstract class CBAdapterRecyclerView<M : Any, L : MutableList<M>>(
   /**
    * Add items
    *
-   * If [items] is null an empty [L] will be created first.
+   * If [items] is null an empty [MutableList] will be created first.
    *
-   * @param items [L]
+   * @param items [MutableList]
    */
-  public fun addNewItems(items: L) {
+  public fun addNewItems(items: MutableList<M>) {
     this.items = this.items ?: createEmptyList()
 
     this.items?.addAll(items)
@@ -76,11 +76,11 @@ public abstract class CBAdapterRecyclerView<M : Any, L : MutableList<M>>(
   }
 
   /**
-   * Creates an empty [L]
-   * @return empty [L]
+   * Creates an empty [MutableList]
+   * @return empty [MutableList]
    */
-  [suppress("UNCHECKED_CAST")] private fun createEmptyList(): L {
-    return ArrayList<Any>() as L
+  [suppress("UNCHECKED_CAST")] private fun createEmptyList(): MutableList<M> {
+    return ArrayList<Any>() as MutableList<M>
   }
 
   override fun getItemCount(): Int {

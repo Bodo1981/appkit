@@ -24,7 +24,6 @@ import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
-import java.util.List;
 
 /**
  * <p>
@@ -40,7 +39,7 @@ import java.util.List;
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M, List<M>>>
+public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
     extends CBFragmentMvpRecyclerViewViewState<M, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;

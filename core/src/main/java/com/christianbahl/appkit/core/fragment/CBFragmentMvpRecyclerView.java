@@ -24,7 +24,6 @@ import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import java.util.List;
 
 /**
  * <p>
@@ -42,7 +41,7 @@ import java.util.List;
  * @author Christian Bahl
  * @see MvpLceFragment
  */
-public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M, List<M>>>
+public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
     extends MvpLceFragment<RecyclerView, M, V, P> {
 
   protected A adapter;

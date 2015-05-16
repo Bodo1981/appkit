@@ -35,12 +35,12 @@ import java.util.List;
  * @author Christian Bahl
  * @see RecyclerView.Adapter
  */
-public abstract class CBAdapterRecyclerView<M, L extends List<M>>
+public abstract class CBAdapterRecyclerView<M>
     extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   protected LayoutInflater inflater;
   protected Context context;
-  protected L items;
+  protected List<M> items;
 
   public CBAdapterRecyclerView(Context context) {
     this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -60,11 +60,11 @@ public abstract class CBAdapterRecyclerView<M, L extends List<M>>
   /**
    * Add items
    *
-   * If {@link #items} is null an empty {@link L} will be created first.
+   * If {@link #items} is null an empty {@link List} will be created first.
    *
-   * @param newItems {@link L}
+   * @param newItems {@link List}
    */
-  public void addNewItems(L newItems) {
+  public void addNewItems(List<M> newItems) {
     if (this.items == null) {
       this.items = createEmptyList();
     }
@@ -75,7 +75,7 @@ public abstract class CBAdapterRecyclerView<M, L extends List<M>>
   /**
    * Add a single item.
    *
-   * If {@link #items} is null an empty {@link L} will be created first.
+   * If {@link #items} is null an empty {@link List} will be created first.
    *
    * @param newItem {@link M}
    */
@@ -92,8 +92,8 @@ public abstract class CBAdapterRecyclerView<M, L extends List<M>>
    *
    * @return empty [L]
    */
-  @SuppressWarnings("unchecked") private L createEmptyList() {
-    return (L) new ArrayList<M>();
+  @SuppressWarnings("unchecked") private List<M> createEmptyList() {
+    return new ArrayList<>();
   }
 
   @Override public int getItemCount() {

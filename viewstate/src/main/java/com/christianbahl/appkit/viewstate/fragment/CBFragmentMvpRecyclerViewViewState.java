@@ -25,7 +25,6 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment;
-import java.util.List;
 
 /**
  * <p>
@@ -43,7 +42,7 @@ import java.util.List;
  * @author Christian Bahl
  * @see MvpLceViewStateFragment
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M, List<M>>>
+public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
     extends MvpLceViewStateFragment<RecyclerView, M, V, P> {
 
   protected A adapter;
