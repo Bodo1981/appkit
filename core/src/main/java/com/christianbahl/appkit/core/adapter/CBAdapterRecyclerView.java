@@ -48,6 +48,15 @@ public abstract class CBAdapterRecyclerView<M>
   }
 
   /**
+   * Set items
+   *
+   * @param items items
+   */
+  public void setItems(List<M> items) {
+    this.items = items;
+  }
+
+  /**
    * Get item at position
    *
    * @param position position
