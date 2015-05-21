@@ -13,6 +13,6 @@
 
   <!-- PagerSlidingTabStrip -->
   <color name="cb_pagerslidingtabstrip_text_color_selected">@color/md_white</color>
-  <color name="cb_pagerslidingtabstrip_text_color">?android:attr/textColorPrimary</color>
+  <color name="cb_pagerslidingtabstrip_text_color">#96FFFFFF</color>
 
 </resources>
