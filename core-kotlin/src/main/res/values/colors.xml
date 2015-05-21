@@ -11,4 +11,8 @@
   <color name="cb_swiperefresh_loading_color_1">@color/md_red_500</color>
   <color name="cb_swiperefresh_loading_color_2">@color/md_black</color>
 
+  <!-- PagerSlidingTabStrip -->
+  <color name="cb_pagerslidingtabstrip_text_color_selected">@color/md_white</color>
+  <color name="cb_pagerslidingtabstrip_text_color">?android:attr/textColorPrimary</color>
+
 </resources>

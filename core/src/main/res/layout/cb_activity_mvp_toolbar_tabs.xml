@@ -21,9 +21,10 @@
       android:layout_below="@+id/toolbar"
       android:background="?attr/colorPrimary"
       android:elevation="@dimen/cb_elevation_depth"
-      android:textColor="?android:attr/textColorPrimary"
+      android:textColor="@color/cb_pagerslidingtabstrip_text_color"
       app:pstsShouldExpand="false"
-      app:pstsIndicatorHeight="@dimen/cb_pagerslidingtabstrip_indicator_height"/>
+      app:pstsIndicatorHeight="@dimen/cb_pagerslidingtabstrip_indicator_height"
+      app:pstsTextColorSelected="@color/cb_pagerslidingtabstrip_text_color_selected"/>
 
   <FrameLayout
       android:layout_width="match_parent"
