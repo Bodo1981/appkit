@@ -42,6 +42,10 @@ public abstract class CBActivityToolbar : MosbyActivity() {
     super.onCreate(savedInstanceState)
 
     setContentView(getLayoutRes())
+
+    if (getIntent() != null && getIntent().getExtras() != null) {
+      readExtras(getIntent().getExtras())
+    }
   }
 
   override fun onContentChanged() {
@@ -70,5 +74,14 @@ public abstract class CBActivityToolbar : MosbyActivity() {
    */
   protected open fun getLayoutRes(): Int {
     return R.layout.cb_activity_toolbar_fragment
+  }
+
+  /**
+   * Handle extra bundle data
+   *
+   * @param bundle bundle with extras passed to activity
+   */
+  protected open fun readExtras(bundle : Bundle) {
+
   }
 }

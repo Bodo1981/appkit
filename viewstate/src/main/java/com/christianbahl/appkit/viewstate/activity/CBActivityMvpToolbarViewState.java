@@ -53,12 +53,11 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    Integer layoutResId = getLayoutRes();
-    if (layoutResId == null) {
-      throw new NullPointerException("LayoutResId is null. Do you return NULL in getLayoutRes?");
-    }
+    setContentView(getLayoutRes());
 
-    setContentView(layoutResId);
+    if (getIntent() != null && getIntent().getExtras() != null) {
+      readExtras(getIntent().getExtras());
+    }
   }
 
   @Override public void onContentChanged() {
@@ -109,6 +108,15 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
    * Called after mvp views and toolbar are created
    */
   protected void onMvpViewCreated() {
+
+  }
+
+  /**
+   * Handle extra bundle data
+   *
+   * @param bundle bundle with extras passed to activity
+   */
+  protected void readExtras(Bundle bundle) {
 
   }
 }

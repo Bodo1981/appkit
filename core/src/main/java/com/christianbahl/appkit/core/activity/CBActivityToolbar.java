@@ -48,6 +48,10 @@ public abstract class CBActivityToolbar extends MosbyActivity {
     super.onCreate(savedInstanceState);
 
     setContentView(getLayoutRes());
+
+    if (getIntent() != null && getIntent().getExtras() != null) {
+      readExtras(getIntent().getExtras());
+    }
   }
 
   @Override public void onContentChanged() {
@@ -84,5 +88,14 @@ public abstract class CBActivityToolbar extends MosbyActivity {
    */
   protected Integer getLayoutRes() {
     return R.layout.cb_activity_toolbar;
+  }
+
+  /**
+   * Handle extra bundle data
+   *
+   * @param bundle bundle with extras passed to activity
+   */
+  protected void readExtras(Bundle bundle) {
+
   }
 }

@@ -45,6 +45,10 @@ public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : 
     super.onCreate(savedInstanceState)
 
     setContentView(getLayoutRes())
+
+    if (getIntent() != null && getIntent().getExtras() != null) {
+      readExtras(getIntent().getExtras())
+    }
   }
 
   override fun onContentChanged() {
@@ -87,6 +91,15 @@ public abstract class CBActivityMvpToolbar<CV : View, D, V : MvpLceView<D>, P : 
    * Called after mvp views and toolbar are created
    */
   protected open fun onMvpViewCreated() {
+
+  }
+
+  /**
+   * Handle extra bundle data
+   *
+   * @param bundle bundle with extras passed to activity
+   */
+  protected open fun readExtras(bundle : Bundle) {
 
   }
 }
