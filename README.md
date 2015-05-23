@@ -3,22 +3,38 @@ This is an extension for the [mosby](https://github.com/sockeqwe/mosby) library 
 
 It contains a few default activities and fragments which are often used in android development (e.g. Activity with Toolbar, Activity with Tabs, Fragment with RecyclerView, ...)
 
+#### CBActivityToolbar
+Displays a simple activity with a toolbar on top.<br />
+There is only one optional method you can override:
+
+* **readExtras(Bundle extras)** read extras passed to activity
+
+#### CBActivityToolbarFragment
+Displays a simple activity with a toolbar which contains a fragment.<br />
+Same as CBActivityToolbar plus one additional method:
+
+* **createFragmentToDisplay():** provide the fragment which should be displayed
+
 #### CBActivityMvpToolbar
-Displays a simple activity with a toolbar on top.<br/>
+Displays a simple mvp activity with a toolbar on top.<br/>
 You have to implement only three methods:
 
 * **createPresenter():** provide a presenter which loads the data
 * **loadData(boolean isContentVisible):** load the data (e.g. presenter.loadListData); isContentVisible helps to distinguish between the first load (no data visible) and for example a pull to refresh or click on an error view (data already visible)
 * **setData(D data):** is called when the presenter has loaded the data
+ 
+There a are a few optional methods you can override if you need to:
+* **onMvpViewCreated():** called after all views are set up correctly
+* **readExtras(Bundle extras):** read extras passed to activity
 
 #### CBActivityMvpToolbarTabs
-Displays a simple activity with a toolbar and tabs on top.<br/>
+Displays a simple mvp activity with a toolbar and tabs on top.<br/>
 Same as CBActivityMvpToolbar plus one additional method:
 
 * **createAdapter():** provide a PagerAdapter which is responsible for displaying the tabs
 
 #### CBActivityMvpToolbarFragment
-Displays a simple activity which only contains a fragment.<br/>
+Displays a simple mvp activity with a toolbar which only contains a fragment.<br/>
 Same as CBActivityMvpToolbar plus one additional method:
 
 * **createFragmentToDisplay():** provide the fragment which should be displayed
@@ -53,15 +69,15 @@ Newest Version (Jitpack.io):
 
     dependencies {
         // complete library
-        compile 'com.github.Bodo1981:appkit:1.1.9'
+        compile 'com.github.Bodo1981:appkit:1.2.0'
 
         // or submodules (java)
-        compile 'com.github.Bodo1981.appkit:core:1.1.9'
-        compile 'com.github.Bodo1981.appkit:viewstate:1.1.9'
+        compile 'com.github.Bodo1981.appkit:core:1.2.0'
+        compile 'com.github.Bodo1981.appkit:viewstate:1.2.0'
         
         // or submodules (kotlin)
-        compile 'com.github.Bodo1981.appkit:core-kotlin:1.1.9'
-        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.1.9'
+        compile 'com.github.Bodo1981.appkit:core-kotlin:1.2.0'
+        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.2.0'
     }
 
 The library contains submodules written in java and kotlin. Functionality is the same.
