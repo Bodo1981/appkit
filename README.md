@@ -39,13 +39,6 @@ Same as CBActivityMvpToolbar plus one additional method:
 
 * **createFragmentToDisplay():** provide the fragment which should be displayed
 
-#### CBAdapterRecyclerView
-A simple RecyclerView.Adapter with a few helper methods to add, delete items. It also has a setter and getter for the data.
-
-* **onCreateViewHolder(ViewGroup parent, int viewType):** create the viewholder
-* **onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, int viewType):** bind the viewholder
-* **getItemViewType(int position):** (optional) only needed if you have different view types
-
 #### CBFragmentMvpRecyclerView
 A simple fragment with a recycler view.
 
@@ -59,6 +52,18 @@ Excactly the same as CBFragmentMvpRecyclerView but with pull to refresh function
 The default behavior for pull to refresh is to call the **loadData(true)** function but this can be overriden in **onRefreshStarted()**
 
 All this activities and fragments also have a viewstate implementation. For further information see [Mosby Framework](http://hannesdorfmann.com/android/mosby/)
+
+# Additional stuff
+
+#### CBAdapterRecyclerView
+A simple RecyclerView.Adapter with a few helper methods to add, delete items. It also has a setter and getter for the data.
+
+* **onCreateViewHolder(ViewGroup parent, int viewType):** create the viewholder
+* **onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, int viewType):** bind the viewholder
+* **getItemViewType(int position):** (optional) only needed if you have different view types
+
+#### CBButterknifeViewHolder
+A RecyclerView.ViewHolder that automatically enables Butterknife. You only have to annotate your views with the butterknife annotations
 
 # Dependency
 
