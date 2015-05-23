@@ -9,6 +9,7 @@
       android:layout_height="@dimen/cb_swiperefresh_layout_height"
       android:indeterminate="true"
       android:layout_gravity="center"
+      android:gravity="center"
       android:layout_centerInParent="true"
       app:cpb_colors="@array/cb_swiperefresh_loading_colors"/>
 
