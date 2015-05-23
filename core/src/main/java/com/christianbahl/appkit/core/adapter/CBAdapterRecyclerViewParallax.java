@@ -36,33 +36,14 @@ import android.view.View;
  */
 public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecyclerView<M> {
 
-  private RecyclerView.OnScrollListener additionalOnScrollListener;
-
   private int lastViewHolderPosition;
   private int lastViewType;
   private View lastTopView;
 
-  public CBAdapterRecyclerViewParallax(Context context) {
+  public CBAdapterRecyclerViewParallax(Context context, RecyclerView recyclerView) {
     super(context);
-  }
 
-  /**
-   * Set an additional onScrollListener for the recyclerview
-   *
-   * @param additionalOnScrollListener additional onScrollListener
-   */
-  public void setAdditionalOnScrollListener(
-      RecyclerView.OnScrollListener additionalOnScrollListener) {
-    this.additionalOnScrollListener = additionalOnScrollListener;
-  }
-
-  /**
-   * Get the additional onScrollListener
-   *
-   * @return additional onScrollListener
-   */
-  public RecyclerView.OnScrollListener getAdditionalOnScrollListener() {
-    return additionalOnScrollListener;
+    recyclerView.addOnScrollListener(new RecyclerViewParallaxListener());
   }
 
   /**
@@ -89,7 +70,6 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
 
   private class RecyclerViewParallaxListener extends RecyclerView.OnScrollListener {
     @Override public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
       try {
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
           // reset parallax
@@ -118,10 +98,6 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
                   viewHolder.getItemViewType(), -recyclerView.getChildAt(0).getTop());
             }
           }
-
-          if (additionalOnScrollListener != null) {
-            additionalOnScrollListener.onScrolled(recyclerView, dx, dy);
-          }
         }
       } catch (Exception e) {
         e.printStackTrace();
@@ -129,9 +105,7 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
     }
 
     @Override public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-      if (additionalOnScrollListener != null) {
-        additionalOnScrollListener.onScrollStateChanged(recyclerView, newState);
-      }
+
     }
   }
 }
