@@ -38,6 +38,19 @@ public abstract class CBAdapterRecyclerViewParallax<M>(context: Context) : CBAda
   private var lastViewType: Int = 0
   private var lastTopView: View? = null
 
+  constructor(context: Context, recyclerView: RecyclerView) : this(context) {
+    addParallaxScrollListenerToRecyclerView(recyclerView)
+  }
+
+  /**
+   * Adds the [CBRecyclerViewParallaxListener] to the recycler view
+   *
+   * @param recyclerView recycler view
+   */
+  public fun addParallaxScrollListenerToRecyclerView(recyclerView: RecyclerView) {
+    recyclerView.addOnScrollListener(CBRecyclerViewParallaxListener())
+  }
+
   /**
    * This method gets called to check if the item at a position and view type has parallax effect
    *
@@ -59,7 +72,7 @@ public abstract class CBAdapterRecyclerViewParallax<M>(context: Context) : CBAda
   public abstract fun doParallaxScrolling(viewHolder: RecyclerView.ViewHolder, position: Int,
                                           viewType: Int, pixelAlreadyScrolledOut: Int)
 
-  private inner class RecyclerViewParallaxListener : RecyclerView.OnScrollListener() {
+  private inner class CBRecyclerViewParallaxListener : RecyclerView.OnScrollListener() {
     override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
 
       try {

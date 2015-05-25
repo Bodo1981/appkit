@@ -40,10 +40,23 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
   private int lastViewType;
   private View lastTopView;
 
-  public CBAdapterRecyclerViewParallax(Context context, RecyclerView recyclerView) {
+  public CBAdapterRecyclerViewParallax(Context context) {
     super(context);
+  }
 
-    recyclerView.addOnScrollListener(new RecyclerViewParallaxListener());
+  public CBAdapterRecyclerViewParallax(Context context, RecyclerView recyclerView) {
+    this(context);
+
+    addParallaxScrollListenerToRecyclerView(recyclerView);
+  }
+
+  /**
+   * Adds the {@link CBRecyclerViewParallaxListener} to the recycler view
+   *
+   * @param recyclerView recycler view
+   */
+  public void addParallaxScrollListenerToRecyclerView(RecyclerView recyclerView) {
+    recyclerView.addOnScrollListener(new CBRecyclerViewParallaxListener());
   }
 
   /**
@@ -68,7 +81,7 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
   public abstract void doParallaxScrolling(RecyclerView.ViewHolder viewHolder, int position,
       int viewType, int pixelAlreadyScrolledOut);
 
-  private class RecyclerViewParallaxListener extends RecyclerView.OnScrollListener {
+  private class CBRecyclerViewParallaxListener extends RecyclerView.OnScrollListener {
     @Override public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
       try {
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
