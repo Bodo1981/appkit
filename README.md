@@ -62,6 +62,12 @@ A simple RecyclerView.Adapter with a few helper methods to add, delete items. It
 * **onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, int viewType):** bind the viewholder
 * **getItemViewType(int position):** (optional) only needed if you have different view types
 
+#### CBAdapterRecyclerViewParallax
+Same as CBAdapterRecyclerView with an extra parallax effect to the specified view types
+
+* **isItemParallaxScrollable(int position, int viewType)**: here you can say which item should have the parallax effect by position and/or view type
+* **doParallaxScrolling(RecyclerView.ViewHolder viewHolder, int position, int viewType, int pixelAlreadyScrolledOut):**: do the parallax effect
+
 #### CBButterknifeViewHolder
 A RecyclerView.ViewHolder that automatically enables Butterknife. You only have to annotate your views with the butterknife annotations
 
@@ -74,15 +80,15 @@ Newest Version (Jitpack.io):
 
     dependencies {
         // complete library
-        compile 'com.github.Bodo1981:appkit:1.2.0'
+        compile 'com.github.Bodo1981:appkit:1.2.3'
 
         // or submodules (java)
-        compile 'com.github.Bodo1981.appkit:core:1.2.0'
-        compile 'com.github.Bodo1981.appkit:viewstate:1.2.0'
+        compile 'com.github.Bodo1981.appkit:core:1.2.3'
+        compile 'com.github.Bodo1981.appkit:viewstate:1.2.3'
         
         // or submodules (kotlin)
-        compile 'com.github.Bodo1981.appkit:core-kotlin:1.2.0'
-        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.2.0'
+        compile 'com.github.Bodo1981.appkit:core-kotlin:1.2.3'
+        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.2.3'
     }
 
 The library contains submodules written in java and kotlin. Functionality is the same.
