@@ -107,15 +107,15 @@ The library contains submodules written in java and kotlin. Functionality is the
         repositories {
             jcenter()
             maven {
-                // for icepick
+                // icepick
                 url 'https://clojars.org/repo/'
             }
             maven {
-                // for appkit
+                // appkit
                 url 'https://jitpack.io'
             }
             maven {
-                // for material design colors
+                // material design colors
                 url 'http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/'
             }
         }
