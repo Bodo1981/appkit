@@ -9,7 +9,7 @@ project.ext {
 }
 
 buildscript {
-  ext.kotlinVersion = "0.11.91.4"
+  ext.kotlinVersion = "0.12.200"
   ext.mosbyVersion = "1.1.0"
   ext.supportVersion = "22.2.0"
 
