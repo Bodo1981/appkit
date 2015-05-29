@@ -11,7 +11,7 @@ project.ext {
 buildscript {
   ext.kotlinVersion = "0.11.91.4"
   ext.mosbyVersion = "1.1.0"
-  ext.supportVersion = "22.1.1"
+  ext.supportVersion = "22.2.0"
 
   repositories {
     jcenter()
