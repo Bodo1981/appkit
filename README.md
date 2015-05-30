@@ -3,6 +3,11 @@ This is an extension for the [mosby](https://github.com/sockeqwe/mosby) library 
 
 It contains a few default activities and fragments which are often used in android development (e.g. Activity with Toolbar, Activity with Tabs, Fragment with RecyclerView, ...)
 
+#### CBActivityToolbarFragment
+Displays a simple activity with a container view for a fragment:
+
+* **createFragmentToDisplay():** provide the fragment which should be displayed
+
 #### CBActivityToolbar
 Displays a simple activity with a toolbar on top.<br />
 There is only one optional method you can override:
@@ -80,15 +85,15 @@ Newest Version (Jitpack.io):
 
     dependencies {
         // complete library
-        compile 'com.github.Bodo1981:appkit:1.3.0'
+        compile 'com.github.Bodo1981:appkit:1.3.3'
 
         // or submodules (java)
-        compile 'com.github.Bodo1981.appkit:core:1.3.0'
-        compile 'com.github.Bodo1981.appkit:viewstate:1.3.0'
+        compile 'com.github.Bodo1981.appkit:core:1.3.3'
+        compile 'com.github.Bodo1981.appkit:viewstate:1.3.3'
         
         // or submodules (kotlin)
-        compile 'com.github.Bodo1981.appkit:core-kotlin:1.3.0'
-        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.3.0'
+        compile 'com.github.Bodo1981.appkit:core-kotlin:1.3.3'
+        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.3.3'
     }
 
 The library contains submodules written in java and kotlin. Functionality is the same.
