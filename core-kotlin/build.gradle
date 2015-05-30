@@ -35,9 +35,6 @@ dependencies {
   // Mosby
   compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
 
-  // PagerSlidingTabStrip
-  compile "com.jpardogo.materialtabstrip:library:1.0.9"
-
   // SmoothProgressBar
   compile "com.github.castorflex.smoothprogressbar:library-circular:1.1.0"
 

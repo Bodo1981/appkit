@@ -15,9 +15,9 @@
  */
 package com.christianbahl.appkit.core.kotlin.activity
 
+import android.support.design.widget.TabLayout
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
-import com.astuetz.PagerSlidingTabStrip
 import com.christianbahl.appkit.core.kotlin.R
 import com.hannesdorfmann.mosby.mvp.MvpPresenter
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView
@@ -25,11 +25,10 @@ import kotlin.properties.Delegates
 
 /**
  * An activity which uses the Model-View-Presenter architecture. It also adds a
- * [android.support.v7.widget.Toolbar] on top and has a [ViewPager] with [PagerSlidingTabStrip].
+ * [android.support.v7.widget.Toolbar] on top and has a [ViewPager] with [TabLayout].
  *
  * The layout has to contain a view with id `R.layout.contentView` which must be of
- * type [ViewPager]. You also have to provide a view with id `R.layout.tabs` of
- * type [PagerSlidingTabStrip].
+ * type [ViewPager]. You also have to provide a view with id `R.layout.tabs` of type [TabLayout].
  *
  * The standard layout implements all necessary views. You can override the default layout in
  * [getLayoutRes]. But be careful, you have to provide the necessary views!
@@ -44,7 +43,7 @@ import kotlin.properties.Delegates
  */
 public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceView<D>, P : MvpPresenter<V>> : CBActivityMvpToolbar<ViewPager, D, V, P>() {
 
-  protected var tabs: PagerSlidingTabStrip by Delegates.notNull()
+  protected var tabs: TabLayout by Delegates.notNull()
   protected var adapter: A by Delegates.notNull()
 
   override fun onMvpViewCreated() {
@@ -60,8 +59,8 @@ public abstract class CBActivityMvpToolbarTabs<A : PagerAdapter, D, V : MvpLceVi
       contentView.setPageMarginDrawable(pageMarginDrawable)
     }
 
-    tabs = findViewById(R.id.tabs) as PagerSlidingTabStrip
-    tabs.setViewPager(contentView)
+    tabs = findViewById(R.id.tabs) as TabLayout
+    tabs.setupWithViewPager(contentView)
   }
 
   override fun getLayoutRes(): Int {
