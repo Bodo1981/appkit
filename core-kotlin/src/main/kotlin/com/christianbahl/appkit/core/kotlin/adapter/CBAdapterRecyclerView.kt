@@ -79,7 +79,7 @@ public abstract class CBAdapterRecyclerView<M : Any>(
    * Creates an empty [MutableList]
    * @return empty [MutableList]
    */
-  [suppress("UNCHECKED_CAST")] private fun createEmptyList(): MutableList<M> {
+  @suppress("UNCHECKED_CAST") private fun createEmptyList(): MutableList<M> {
     return ArrayList<Any>() as MutableList<M>
   }
 
