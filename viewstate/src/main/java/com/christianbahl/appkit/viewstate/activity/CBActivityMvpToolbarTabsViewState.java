@@ -17,10 +17,10 @@ package com.christianbahl.appkit.viewstate.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import com.astuetz.PagerSlidingTabStrip;
 import com.christianbahl.appkit.core.activity.CBActivityMvpToolbar;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
@@ -31,13 +31,13 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
  * <p>
  * An activity which uses the Model-View-Presenter architecture with {@link ViewState} support.
  * It also adds a {@link Toolbar} on top and has a {@link ViewPager} with {@link
- * PagerSlidingTabStrip}.
+ * TabLayout}.
  * </p>
  *
  * <p>
  * The layout has to contain a view with id <code>R.layout.content_view</code> which must be of
  * type {@link ViewPager}. You also have to provide a view with id <code>R.layout.tabs</code> of
- * type {@link PagerSlidingTabStrip}.
+ * type {@link TabLayout}.
  * </p>
  *
  * <p>
@@ -58,38 +58,36 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
     extends CBActivityMvpToolbarViewState<ViewPager, D, V, P> {
 
-  protected PagerSlidingTabStrip tabs;
+  protected TabLayout tabs;
   protected A adapter;
-
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
-    adapter = createAdapter();
-
-    if (adapter == null) {
-      throw new IllegalArgumentException(
-          "Adapter is null. Did you forget to create the adapter in createAdapter()?");
-    }
-  }
 
   @Override protected void onMvpViewCreated() {
     super.onMvpViewCreated();
 
-    tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+    tabs = (TabLayout) findViewById(R.id.tabs);
 
     if (tabs == null) {
       throw new IllegalStateException("The tabs is not specified. "
           + "You have to provide a View with R.id.tabs in your inflated xml layout");
     }
 
-    tabs.setViewPager(contentView);
+    adapter = createAdapter();
+    if (adapter == null) {
+      throw new NullPointerException(
+          "No adapter found. Did you forget to create own in createAdapter()?");
+    }
 
     contentView.setAdapter(adapter);
-    contentView.setPageMargin(getPageMargin());
+    tabs.setupWithViewPager(contentView);
 
-    Integer pageMarginDrawable = getViewPagerDividerDrawable();
-    if (pageMarginDrawable != null) {
-      contentView.setPageMarginDrawable(pageMarginDrawable);
+    int margin = Math.max(getPageMargin(), 0);
+    if (margin > 0) {
+      contentView.setPageMargin(margin);
+
+      Integer pageMarginDrawable = getViewPagerDividerDrawable();
+      if (pageMarginDrawable != null) {
+        contentView.setPageMarginDrawable(pageMarginDrawable);
+      }
     }
   }
 

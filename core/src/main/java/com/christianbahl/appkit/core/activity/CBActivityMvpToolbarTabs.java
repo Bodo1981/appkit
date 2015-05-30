@@ -73,10 +73,9 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
       throw new NullPointerException(
           "No adapter found. Did you forget to create own in createAdapter()?");
     }
+
     contentView.setAdapter(adapter);
-    //tabs.setTabsFromPagerAdapter(adapter);
     tabs.setupWithViewPager(contentView);
-    //contentView.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 
     int margin = Math.max(getPageMargin(), 0);
 
