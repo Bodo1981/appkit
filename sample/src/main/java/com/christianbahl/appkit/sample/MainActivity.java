@@ -1,34 +1,28 @@
 package com.christianbahl.appkit.sample;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.christianbahl.appkit.core.activity.CBActivityMvpToolbarTabs;
+import com.christianbahl.appkit.core.view.CBMvpView;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity
+    extends CBActivityMvpToolbarTabs<List<String>, CBMvpView<String>, MainPresenter, MainAdapter>
+    implements CBMvpView<String> {
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+  @Override protected MainAdapter createAdapter() {
+    return new MainAdapter(getSupportFragmentManager());
   }
 
-  @Override public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_main, menu);
-    return true;
+  @Override public MainPresenter createPresenter() {
+    return new MainPresenter();
   }
 
-  @Override public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
+  @Override public void setData(List<String> data) {
+    adapter.setTabs(data);
+    adapter.notifyDataSetChanged();
+    tabs.setTabsFromPagerAdapter(adapter);
+  }
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
-
-    return super.onOptionsItemSelected(item);
+  @Override public void loadData(boolean pullToRefresh) {
+    presenter.loadMenu(pullToRefresh);
   }
 }

@@ -17,10 +17,10 @@ package com.christianbahl.appkit.core.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import com.astuetz.PagerSlidingTabStrip;
 import com.christianbahl.appkit.core.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
@@ -29,13 +29,13 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  * <p>
  * An activity which uses the Model-View-Presenter architecture.<br/>
  * It also adds a {@link Toolbar} on top and has a {@link ViewPager} with {@link
- * PagerSlidingTabStrip}.
+ * TabLayout}.
  * </p>
  *
  * <p>
  * The layout has to contain a view with id <code>R.layout.content_view</code> which must be of
  * type {@link ViewPager}. You also have to provide a view with id <code>R.layout.tabs</code> of
- * type {@link PagerSlidingTabStrip}.
+ * type {@link TabLayout}.
  * </p>
  *
  * <p>
@@ -56,13 +56,13 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends PagerAdapter>
     extends CBActivityMvpToolbar<ViewPager, M, V, P> {
 
-  protected PagerSlidingTabStrip tabs;
+  protected TabLayout tabs;
   protected A adapter;
 
   @Override protected void onMvpViewCreated() {
     super.onMvpViewCreated();
 
-    tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+    tabs = (TabLayout) findViewById(R.id.tabs);
     if (tabs == null) {
       throw new NullPointerException(
           "No tabs found. Did you forget to add it to your layout file with the id R.id.tabs?");
@@ -74,7 +74,9 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
           "No adapter found. Did you forget to create own in createAdapter()?");
     }
     contentView.setAdapter(adapter);
-    tabs.setViewPager(contentView);
+    //tabs.setTabsFromPagerAdapter(adapter);
+    tabs.setupWithViewPager(contentView);
+    //contentView.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 
     int margin = Math.max(getPageMargin(), 0);
 
