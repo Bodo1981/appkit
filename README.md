@@ -3,7 +3,7 @@ This is an extension for the [mosby](https://github.com/sockeqwe/mosby) library 
 
 It contains a few default activities and fragments which are often used in android development (e.g. Activity with Toolbar, Activity with Tabs, Fragment with RecyclerView, ...)
 
-#### CBActivityToolbarFragment
+#### CBActivityFragment
 Displays a simple activity with a container view for a fragment:
 
 * **createFragmentToDisplay():** provide the fragment which should be displayed
