@@ -3,6 +3,11 @@ This is an extension for the [mosby](https://github.com/sockeqwe/mosby) library 
 
 It contains a few default activities and fragments which are often used in android development (e.g. Activity with Toolbar, Activity with Tabs, Fragment with RecyclerView, ...)
 
+#### CBActivityFragment
+Displays a simple activity with a container view for a fragment:
+
+* **createFragmentToDisplay():** provide the fragment which should be displayed
+
 #### CBActivityToolbar
 Displays a simple activity with a toolbar on top.<br />
 There is only one optional method you can override:
@@ -80,15 +85,15 @@ Newest Version (Jitpack.io):
 
     dependencies {
         // complete library
-        compile 'com.github.Bodo1981:appkit:1.3.0'
+        compile 'com.github.Bodo1981:appkit:1.3.3'
 
         // or submodules (java)
-        compile 'com.github.Bodo1981.appkit:core:1.3.0'
-        compile 'com.github.Bodo1981.appkit:viewstate:1.3.0'
+        compile 'com.github.Bodo1981.appkit:core:1.3.3'
+        compile 'com.github.Bodo1981.appkit:viewstate:1.3.3'
         
         // or submodules (kotlin)
-        compile 'com.github.Bodo1981.appkit:core-kotlin:1.3.0'
-        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.3.0'
+        compile 'com.github.Bodo1981.appkit:core-kotlin:1.3.3'
+        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.3.3'
     }
 
 The library contains submodules written in java and kotlin. Functionality is the same.
@@ -129,3 +134,19 @@ The library contains submodules written in java and kotlin. Functionality is the
 #Changelog
 
 The changelog can be found in the [release section](https://github.com/Bodo1981/appkit/releases)
+
+#License
+
+    Copyright 2015 Christian Bahl
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
