@@ -9,9 +9,9 @@ project.ext {
 }
 
 buildscript {
-  ext.kotlinVersion = "0.12.200"
-  ext.mosbyVersion = "1.1.0"
-  ext.supportVersion = "22.2.0"
+  ext.kotlinVersion = "0.12.1218"
+  ext.mosbyVersion = "1.1.1"
+  ext.supportVersion = "22.2.1"
 
   repositories {
     jcenter()
