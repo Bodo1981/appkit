@@ -85,15 +85,15 @@ Newest Version (Jitpack.io):
 
     dependencies {
         // complete library
-        compile 'com.github.Bodo1981:appkit:1.3.3'
+        compile 'com.github.Bodo1981:appkit:1.3.4'
 
         // or submodules (java)
-        compile 'com.github.Bodo1981.appkit:core:1.3.3'
-        compile 'com.github.Bodo1981.appkit:viewstate:1.3.3'
+        compile 'com.github.Bodo1981.appkit:core:1.3.4'
+        compile 'com.github.Bodo1981.appkit:viewstate:1.3.4'
         
         // or submodules (kotlin)
-        compile 'com.github.Bodo1981.appkit:core-kotlin:1.3.3'
-        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.3.3'
+        compile 'com.github.Bodo1981.appkit:core-kotlin:1.3.4'
+        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.3.4'
     }
 
 The library contains submodules written in java and kotlin. Functionality is the same.
@@ -104,7 +104,7 @@ The library contains submodules written in java and kotlin. Functionality is the
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:1.2.3'
-            classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+            classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
         }
     }
 
@@ -128,7 +128,7 @@ The library contains submodules written in java and kotlin. Functionality is the
 
     dependencies {
         apt 'frankiesardo:icepick-processor:3.0.2'
-        apt 'com.hannesdorfmann.fragmentargs:processor:2.1.0'
+        apt 'com.hannesdorfmann.fragmentargs:processor:2.1.2'
     }
 
 #Changelog
