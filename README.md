@@ -56,7 +56,7 @@ A simple fragment with a recycler view.
 Excactly the same as CBFragmentMvpRecyclerView but with pull to refresh functionallity.<br/>
 The default behavior for pull to refresh is to call the **loadData(true)** function but this can be overriden in **onRefreshStarted()**
 
-All this activities and fragments also have a viewstate implementation. For further information see [Mosby Framework](http://hannesdorfmann.com/android/mosby/)
+All this activities and fragments also have a viewstate and dagger1 implementation. For further information see [Mosby Framework](http://hannesdorfmann.com/android/mosby/)
 
 # Additional stuff
 
@@ -85,15 +85,17 @@ Newest Version (Jitpack.io):
 
     dependencies {
         // complete library
-        compile 'com.github.Bodo1981:appkit:1.3.4'
+        compile 'com.github.Bodo1981:appkit:1.4.0'
 
         // or submodules (java)
-        compile 'com.github.Bodo1981.appkit:core:1.3.4'
-        compile 'com.github.Bodo1981.appkit:viewstate:1.3.4'
+        compile 'com.github.Bodo1981.appkit:core:1.4.0'
+        compile 'com.github.Bodo1981.appkit.core:dagger1:1.4.0'
+        compile 'com.github.Bodo1981.appkit:viewstate:1.4.0'
+        compile 'com.github.Bodo1981.appkit.viewstate:dagger1:1.4.0'
         
         // or submodules (kotlin)
-        compile 'com.github.Bodo1981.appkit:core-kotlin:1.3.4'
-        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.3.4'
+        compile 'com.github.Bodo1981.appkit:core-kotlin:1.4.0'
+        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.4.0'
     }
 
 The library contains submodules written in java and kotlin. Functionality is the same.
