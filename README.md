@@ -89,9 +89,9 @@ Newest Version (Jitpack.io):
 
         // or submodules (java)
         compile 'com.github.Bodo1981.appkit:core:1.4.0'
-        compile 'com.github.Bodo1981.appkit.core:dagger1:1.4.0'
+        compile 'com.github.Bodo1981.appkit:core-dagger1:1.4.0'
         compile 'com.github.Bodo1981.appkit:viewstate:1.4.0'
-        compile 'com.github.Bodo1981.appkit.viewstate:dagger1:1.4.0'
+        compile 'com.github.Bodo1981.appkit:viewstate-dagger1:1.4.0'
         
         // or submodules (kotlin)
         compile 'com.github.Bodo1981.appkit:core-kotlin:1.4.0'
