@@ -13,19 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.core.fragment;
+package com.christianbahl.appkit.viewstate.dagger1.fragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
-import com.christianbahl.appkit.core.R;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.core.common.view.CBMvpView;
+import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerView;
+import com.christianbahl.appkit.viewstate.dagger1.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture.
+ * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support and
+ * Dagger 1 for dependency injection.
  * </p>
  *
  * <p>
@@ -37,8 +39,8 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter;
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
-    extends CBFragmentMvpRecyclerView<M, V, P, A> {
+public abstract class CBDagger1FragmentMvpRecyclerViewPtrViewState<M, V extends com.hannesdorfmann.mosby.mvp.lce.MvpLceView<java.util.List<M>>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
+    extends CBDagger1FragmentMvpRecyclerViewViewState<M, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;
 
@@ -51,8 +53,8 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends CBMvpView<M>, P 
 
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pullToRefresh);
     if (swipeRefreshLayout == null) {
-      throw new NullPointerException(
-          "No SwipeRefreshLayout found. Did you forget to add it to your layout with R.id.pull_to_refresh?");
+      throw new IllegalStateException("The swipe refresh layout is not specified. "
+          + "You have to provide a View with R.id.pull_to_refresh in your inflated xml layout");
     }
 
     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

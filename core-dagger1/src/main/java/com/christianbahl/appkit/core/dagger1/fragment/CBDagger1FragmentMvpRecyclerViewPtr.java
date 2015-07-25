@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.core.fragment;
+package com.christianbahl.appkit.core.dagger1.fragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
-import com.christianbahl.appkit.core.R;
-import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
 import com.christianbahl.appkit.core.common.view.CBMvpView;
+import com.christianbahl.appkit.core.dagger1.R;
+import com.christianbahl.appkit.core.dagger1.adapter.CBDagger1AdapterRecyclerView;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 
 /**
@@ -35,10 +35,10 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter;
  * </p>
  *
  * @author Christian Bahl
- * @see CBFragmentMvpRecyclerView
+ * @see CBDagger1FragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
-    extends CBFragmentMvpRecyclerView<M, V, P, A> {
+public abstract class CBDagger1FragmentMvpRecyclerViewPtr<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBDagger1AdapterRecyclerView<M>>
+    extends CBDagger1FragmentMvpRecyclerView<M, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;
 

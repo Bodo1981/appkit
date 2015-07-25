@@ -1,4 +1,4 @@
-apply plugin: "com.android.library"
+apply plugin: 'com.android.library'
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
@@ -20,16 +20,20 @@ android {
 }
 
 dependencies {
-  compile fileTree(dir: "libs", include: ["*.jar"])
-
-  // Submodules
-  compile project(':core-common')
+  compile fileTree(dir: 'libs', include: ['*.jar'])
 
   // Support
-  compile "com.android.support:appcompat-v7:$supportVersion"
+  compile "com.android.support:recyclerview-v7:$supportVersion"
+  compile "com.android.support:design:$supportVersion"
 
   // Mosby
   compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
+
+  // Material Design Colors
+  compile "com.wada811:android-material-design-colors:2.0.0"
+
+  // SmoothProgressBar
+  compile "com.github.castorflex.smoothprogressbar:library-circular:1.1.0"
 }
 
 apply from: "../maven-push.gradle"

@@ -13,22 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate.fragment;
+package com.christianbahl.appkit.viewstate.dagger1.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.viewstate.R;
+import com.christianbahl.appkit.viewstate.dagger1.R;
+import com.hannesdorfmann.mosby.dagger1.viewstate.lce.Dagger1MvpLceViewStateFragment;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment;
 import java.util.List;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support.
+ * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support and
+ * Dagger 1 for dependency injection.
  * </p>
  *
  * <p>
@@ -40,10 +41,10 @@ import java.util.List;
  * </p>
  *
  * @author Christian Bahl
- * @see MvpLceViewStateFragment
+ * @see Dagger1MvpLceViewStateFragment
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannesdorfmann.mosby.mvp.lce.MvpLceView<List<M>>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
-    extends MvpLceViewStateFragment<RecyclerView, List<M>, V, P> {
+public abstract class CBDagger1FragmentMvpRecyclerViewViewState<M, V extends com.hannesdorfmann.mosby.mvp.lce.MvpLceView<List<M>>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
+    extends Dagger1MvpLceViewStateFragment<RecyclerView, List<M>, V, P> {
 
   protected A adapter;
   protected View emptyView;

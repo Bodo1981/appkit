@@ -21,7 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.christianbahl.appkit.core.R;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.core.view.CBMvpView;
+import com.christianbahl.appkit.core.common.view.CBMvpView;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment;
 import java.util.List;

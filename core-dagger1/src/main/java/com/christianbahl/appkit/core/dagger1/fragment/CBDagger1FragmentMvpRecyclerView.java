@@ -13,22 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.viewstate.fragment;
+package com.christianbahl.appkit.core.dagger1.fragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.viewstate.R;
+import com.christianbahl.appkit.core.common.view.CBMvpView;
+import com.christianbahl.appkit.core.dagger1.R;
+import com.christianbahl.appkit.core.dagger1.adapter.CBDagger1AdapterRecyclerView;
+import com.hannesdorfmann.mosby.dagger1.mvp.lce.Dagger1MvpLceFragment;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.MvpLceViewStateFragment;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment;
 import java.util.List;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support.
+ * A fragment which uses the Model-View-Presenter architecture and Dagger 1 for dependency
+ * injection.
  * </p>
  *
  * <p>
@@ -40,10 +42,10 @@ import java.util.List;
  * </p>
  *
  * @author Christian Bahl
- * @see MvpLceViewStateFragment
+ * @see MvpLceFragment
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannesdorfmann.mosby.mvp.lce.MvpLceView<List<M>>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
-    extends MvpLceViewStateFragment<RecyclerView, List<M>, V, P> {
+public abstract class CBDagger1FragmentMvpRecyclerView<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBDagger1AdapterRecyclerView<M>>
+    extends Dagger1MvpLceFragment<RecyclerView, List<M>, V, P> {
 
   protected A adapter;
   protected View emptyView;
@@ -53,34 +55,22 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannes
 
     adapter = createAdapter();
     if (adapter == null) {
-      throw new IllegalStateException(
-          "Adapter is null. Did you forget to return an adapter in #createAdapter()?");
+      throw new NullPointerException(
+          "No Adapter found. Did you forget to create it in createAdapter()?");
     }
-
     contentView.setAdapter(adapter);
 
     emptyView = view.findViewById(R.id.emptyView);
     if (emptyView == null) {
-      throw new IllegalStateException(
-          "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?");
+      throw new NullPointerException(
+          "No emptyView found. Did you forget to add it to your layout with R.id.emptyView?");
     }
 
-    RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
-    if (layoutManager == null) {
-      throw new IllegalStateException(
-          "The RecyclerView.LayoutManager is not specified. You have to provide a "
-              + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
-    } else {
-      contentView.setLayoutManager(layoutManager);
-    }
+    contentView.setLayoutManager(createRecyclerViewLayoutManager());
 
     onMvpViewCreated(view, savedInstanceState);
 
     loadData(false);
-  }
-
-  @Override protected int getLayoutRes() {
-    return R.layout.cb_fragment_recycler_view;
   }
 
   @Override public void showContent() {
@@ -109,12 +99,16 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannes
     }
   }
 
+  @Override protected int getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view;
+  }
+
   @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
     return throwable.getLocalizedMessage();
   }
 
   /**
-   * Creates the {@link RecyclerView.LayoutManager}. <br />
+   * Creates the {@link RecyclerView.LayoutManager}.<br/>
    * Default: {@link LinearLayoutManager}
    *
    * @return {@link RecyclerView.LayoutManager}
@@ -134,8 +128,8 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannes
   }
 
   /**
-   * Creates the {@link A}. <br />
-   * Called in {@link #onViewCreated(View, Bundle)}
+   * Creates the {@link A}.<br/>
+   * Called in {@link #onViewCreated}
    *
    * @return {@link A}
    */

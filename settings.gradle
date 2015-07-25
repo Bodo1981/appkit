@@ -1,1 +1,1 @@
-include ':core', ':core-kotlin', ':viewstate', ':viewstate-kotlin', ':sample'
+include ':core', ':core-dagger1', ':core-kotlin', ':viewstate', ':viewstate-kotlin', ':core-common', ':viewstate-dagger1'

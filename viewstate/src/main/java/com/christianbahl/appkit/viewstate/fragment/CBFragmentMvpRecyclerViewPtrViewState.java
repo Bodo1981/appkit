@@ -20,7 +20,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerView;
-import com.christianbahl.appkit.core.view.CBMvpView;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
@@ -39,7 +38,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
+public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends com.hannesdorfmann.mosby.mvp.lce.MvpLceView<java.util.List<M>>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
     extends CBFragmentMvpRecyclerViewViewState<M, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;
