@@ -51,7 +51,9 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
   }
 
   /**
-   * Adds the {@link CBRecyclerViewParallaxListener} to the recycler view
+   * <p>
+   * Adds the {@link CBRecyclerViewParallaxListener} to the recycler view.
+   * </p>
    *
    * @param recyclerView recycler view
    */
@@ -60,7 +62,9 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
   }
 
   /**
-   * This method gets called to check if the item at a position and view type has parallax effect
+   * <p>
+   * This method gets called to check if the item at a position and view type has parallax effect.
+   * </p>
    *
    * @param position position
    * @param itemViewType item view type
@@ -69,10 +73,12 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
   public abstract boolean isItemParallaxScrollable(int position, int itemViewType);
 
   /**
+   * <p>
    * This method gets called to do the real parallax scrolling. So implement
-   * here your parallax scrolling implementation by manipulating the view
+   * here your parallax scrolling implementation by manipulating the view.
+   * </p>
    *
-   * @param viewHolder {@link RecyclerView.ViewHolder} on top of the screen
+   * @param viewHolder view holder on top of the screen
    * @param position The position (index) in the adapters dataset
    * @param viewType The viewType
    * @param pixelAlreadyScrolledOut The number of pixels, that are already scrolled out or in on

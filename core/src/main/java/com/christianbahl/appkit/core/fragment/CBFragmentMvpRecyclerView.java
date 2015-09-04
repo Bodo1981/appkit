@@ -16,9 +16,12 @@
 package com.christianbahl.appkit.core.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import com.christianbahl.appkit.core.R;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
 import com.christianbahl.appkit.core.common.view.CBMvpView;
@@ -47,6 +50,33 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P ext
 
   protected A adapter;
   protected View emptyView;
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    injectDependencies();
+
+    super.onCreate(savedInstanceState);
+  }
+
+  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    Integer layoutRes = getLayoutRes();
+    if (layoutRes == null) {
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+    }
+
+    return inflater.inflate(layoutRes, container, false);
+  }
+
+  /**
+   * <p>
+   * Provide the layout res id for the activity.
+   * </p>
+   *
+   * @return layout res id
+   */
+  protected Integer getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view;
+  }
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
@@ -97,17 +127,15 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P ext
     }
   }
 
-  @Override protected int getLayoutRes() {
-    return R.layout.cb_fragment_recycler_view;
-  }
-
   @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
     return throwable.getLocalizedMessage();
   }
 
   /**
+   * <p>
    * Creates the {@link RecyclerView.LayoutManager}.<br/>
-   * Default: {@link LinearLayoutManager}
+   * Default: {@link LinearLayoutManager}.
+   * </p>
    *
    * @return {@link RecyclerView.LayoutManager}
    */
@@ -116,18 +144,32 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P ext
   }
 
   /**
-   * Called after the mvp views and the recycler view are created
+   * <p>
+   * Called after the mvp views and the recycler view are created.
+   * </p>
    *
-   * @param view {@link View}
-   * @param savedInstanceState {@link Bundle}
+   * @param view view
+   * @param savedInstanceState saved instance state
    */
   protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
 
   }
 
   /**
+   * <p>
+   * This method will be called from {@link #onCreate(Bundle)} and this is the right place to
+   * inject dependencies (i.e. by using dagger).
+   * </p>
+   */
+  protected void injectDependencies() {
+
+  }
+
+  /**
+   * <p>
    * Creates the {@link A}.<br/>
-   * Called in {@link #onViewCreated}
+   * Called in {@link #onViewCreated}.
+   * </p>
    *
    * @return {@link A}
    */

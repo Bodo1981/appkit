@@ -56,7 +56,7 @@ public abstract class CBActivityToolbarFragment extends CBActivityToolbar {
     }
   }
 
-  protected Integer getLayoutRes() {
+  @Override protected Integer getLayoutRes() {
     return R.layout.cb_activity_toolbar_fragment;
   }
 

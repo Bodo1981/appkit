@@ -61,12 +61,14 @@ public abstract class CBActivityMvpToolbarFragment<CV extends View, M, V extends
     }
   }
 
-  protected Integer getLayoutRes() {
+  @Override protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_fragment;
   }
 
   /**
+   * <p>
    * Returns the {@link Fragment} which should be displayed by this activity.
+   * </p>
    *
    * @return {@link Fragment}
    */

@@ -17,9 +17,9 @@ package com.christianbahl.appkit.core.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import com.christianbahl.appkit.core.R;
-import com.hannesdorfmann.mosby.MosbyActivity;
 
 /**
  * <p>
@@ -38,15 +38,20 @@ import com.hannesdorfmann.mosby.MosbyActivity;
  * </p>
  *
  * @author Christian Bahl
- * @see MosbyActivity
  */
-public abstract class CBActivityToolbar extends MosbyActivity {
+public abstract class CBActivityToolbar extends AppCompatActivity {
 
   protected Toolbar toolbar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    injectDependencies();
+
+    Integer layoutRes = getLayoutRes();
+    if (layoutRes == null) {
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+    }
     setContentView(getLayoutRes());
 
     if (getIntent() != null && getIntent().getExtras() != null) {
@@ -73,16 +78,20 @@ public abstract class CBActivityToolbar extends MosbyActivity {
   }
 
   /**
+   * <p>
    * Should the title be displayed in the toolbar.
+   * </p>
    *
-   * @return `true` if title should be displayed in toolbar otherwise `false`
+   * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
    */
   protected boolean isDisplayShowTitleEnabled() {
     return true;
   }
 
   /**
+   * <p>
    * Provide the layout res id for the activity.
+   * </p>
    *
    * @return layout res id
    */
@@ -91,11 +100,23 @@ public abstract class CBActivityToolbar extends MosbyActivity {
   }
 
   /**
-   * Handle extra bundle data
+   * <p>
+   * Handle extra bundle data.
+   * </p>
    *
    * @param bundle bundle with extras passed to activity
    */
   protected void readExtras(Bundle bundle) {
+
+  }
+
+  /**
+   * <p>
+   * This method will be called from {@link #onCreate(Bundle)} and this is the right place to
+   * inject dependencies (i.e. by using dagger).
+   * </p>
+   */
+  protected void injectDependencies() {
 
   }
 }

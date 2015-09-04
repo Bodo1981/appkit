@@ -48,7 +48,9 @@ public abstract class CBAdapterRecyclerView<M>
   }
 
   /**
-   * Set items
+   * <p>
+   * Set items.
+   * </p>
    *
    * @param items items
    */
@@ -57,7 +59,9 @@ public abstract class CBAdapterRecyclerView<M>
   }
 
   /**
-   * Get item at position
+   * <p>
+   * Get item at position.
+   * </p>
    *
    * @param position position
    * @return item at position
@@ -67,11 +71,15 @@ public abstract class CBAdapterRecyclerView<M>
   }
 
   /**
-   * Add items
+   * <p>
+   * Add items.
+   * </p>
    *
-   * If {@link #items} is null an empty {@link List} will be created first.
+   * <p>
+   * If {@link #items} is null an empty list of {@link M} will be created first.
+   * </p>
    *
-   * @param newItems {@link List}
+   * @param newItems items
    */
   public void addNewItems(List<M> newItems) {
     if (this.items == null) {
@@ -82,11 +90,15 @@ public abstract class CBAdapterRecyclerView<M>
   }
 
   /**
+   * <p>
    * Add a single item.
+   * </p>
    *
+   * <p>
    * If {@link #items} is null an empty {@link List} will be created first.
+   * </p>
    *
-   * @param newItem {@link M}
+   * @param newItem item to add
    */
   public void addNewItem(M newItem) {
     if (this.items == null) {
@@ -97,9 +109,11 @@ public abstract class CBAdapterRecyclerView<M>
   }
 
   /**
-   * Creates an empty [L]
+   * <p>
+   * Creates an empty list of {@link M}.
+   * </p>
    *
-   * @return empty [L]
+   * @return empty list of {@link M}
    */
   @SuppressWarnings("unchecked") private List<M> createEmptyList() {
     return new ArrayList<>();
@@ -114,9 +128,11 @@ public abstract class CBAdapterRecyclerView<M>
   }
 
   /**
-   * Bind the [RecyclerView.ViewHolder]
+   * <p>
+   * Bind the {@link RecyclerView.ViewHolder}
+   * </p>
    *
-   * @param viewHolder [RecyclerView.ViewHolder]
+   * @param viewHolder view holder
    * @param position position
    * @param viewType view type
    */

@@ -29,7 +29,7 @@ import com.hannesdorfmann.mosby.mvp.MvpPresenter;
  * </p>
  *
  * <p>
- * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pull_to_refresh</code>.
+ * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pullToRefresh</code>.
  * After the refresh is started the function {@link #onRefreshStarted()} is called. In the default
  * implementation {@link #loadData(boolean)} is called but you can override this if you need to.
  * </p>
@@ -42,7 +42,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends CBMvpView<M>, P 
 
   protected SwipeRefreshLayout swipeRefreshLayout;
 
-  @Override protected int getLayoutRes() {
+  @Override protected Integer getLayoutRes() {
     return R.layout.cb_fragment_recycler_view_ptr;
   }
 
@@ -52,7 +52,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends CBMvpView<M>, P 
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pullToRefresh);
     if (swipeRefreshLayout == null) {
       throw new NullPointerException(
-          "No SwipeRefreshLayout found. Did you forget to add it to your layout with R.id.pull_to_refresh?");
+          "No SwipeRefreshLayout found. Did you forget to add it to your layout with R.id.pullToRefresh?");
     }
 
     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -85,8 +85,10 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends CBMvpView<M>, P 
   }
 
   /**
+   * <p>
    * Called from the {@link SwipeRefreshLayout.OnRefreshListener}.<br/>
-   * Default: call of {@link #loadData(boolean)}
+   * Default: call of {@link #loadData(boolean)}.
+   * </p>
    */
   protected void onRefreshStarted() {
     loadData(true);

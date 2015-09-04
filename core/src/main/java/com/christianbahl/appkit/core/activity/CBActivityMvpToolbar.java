@@ -49,8 +49,14 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   protected Toolbar toolbar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
+    injectDependencies();
+
     super.onCreate(savedInstanceState);
 
+    Integer layoutRes = getLayoutRes();
+    if (layoutRes == null) {
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+    }
     setContentView(getLayoutRes());
 
     if (getIntent() != null && getIntent().getExtras() != null) {
@@ -85,7 +91,9 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   }
 
   /**
+   * <p>
    * Should the title be displayed in the toolbar.
+   * </p>
    *
    * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
    */
@@ -94,7 +102,9 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   }
 
   /**
+   * <p>
    * Provide the layout res id for the activity.
+   * </p>
    *
    * @return layout res id
    */
@@ -103,18 +113,32 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   }
 
   /**
-   * Called after mvp views and toolbar are created
+   * <p>
+   * Called after mvp views and toolbar are created.
+   * </p>
    */
   protected void onMvpViewCreated() {
 
   }
 
   /**
-   * Handle extra bundle data
+   * <p>
+   * Handle extra bundle data.
+   * </p>
    *
    * @param bundle bundle with extras passed to activity
    */
   protected void readExtras(Bundle bundle) {
+
+  }
+
+  /**
+   * <p>
+   * This method will be called from {@link #onCreate(Bundle)} and this is the right place to
+   * inject dependencies (i.e. by using dagger).
+   * </p>
+   */
+  protected void injectDependencies() {
 
   }
 }

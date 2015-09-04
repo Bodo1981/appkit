@@ -17,13 +17,13 @@ package com.christianbahl.appkit.core.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
 import com.christianbahl.appkit.core.R;
-import com.hannesdorfmann.mosby.MosbyActivity;
 
 /**
  * <p>
- * An activity which uses the Model-View-Presenter architecture.
+ * An activity which displays a simple {@link Fragment}.
  * </p>
  *
  * <p>
@@ -42,13 +42,18 @@ import com.hannesdorfmann.mosby.MosbyActivity;
  * </p>
  *
  * @author Christian Bahl
- * @see MosbyActivity
  */
-public abstract class CBActivityFragment extends MosbyActivity {
+public abstract class CBActivityFragment extends AppCompatActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    injectDependencies();
+
+    Integer layoutRes = getLayoutRes();
+    if (layoutRes == null) {
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+    }
     setContentView(getLayoutRes());
 
     if (getIntent() != null && getIntent().getExtras() != null) {
@@ -63,7 +68,9 @@ public abstract class CBActivityFragment extends MosbyActivity {
   }
 
   /**
+   * <p>
    * Provide the layout res id for the activity.
+   * </p>
    *
    * @return layout res id
    */
@@ -72,7 +79,9 @@ public abstract class CBActivityFragment extends MosbyActivity {
   }
 
   /**
-   * Handle extra bundle data
+   * <p>
+   * Handle extra bundle data.
+   * </p>
    *
    * @param bundle bundle with extras passed to activity
    */
@@ -81,7 +90,19 @@ public abstract class CBActivityFragment extends MosbyActivity {
   }
 
   /**
+   * <p>
+   * This method will be called from {@link #onCreate(Bundle)} and this is the right place to
+   * inject dependencies (i.e. by using dagger).
+   * </p>
+   */
+  protected void injectDependencies() {
+
+  }
+
+  /**
+   * <p>
    * Returns the {@link Fragment} which should be displayed by this activity.
+   * </p>
    *
    * @return {@link Fragment}
    */

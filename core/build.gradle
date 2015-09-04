@@ -22,14 +22,11 @@ android {
 dependencies {
   compile fileTree(dir: "libs", include: ["*.jar"])
 
-  // Submodules
-  compile project(':core-common')
-
   // Support
   compile "com.android.support:appcompat-v7:$supportVersion"
 
-  // Mosby
-  compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
+  // Submodules
+  compile project(':core-common')
 }
 
 apply from: "../maven-push.gradle"
