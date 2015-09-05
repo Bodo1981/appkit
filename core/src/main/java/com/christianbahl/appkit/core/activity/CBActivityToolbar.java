@@ -46,8 +46,6 @@ public abstract class CBActivityToolbar extends AppCompatActivity {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    injectDependencies();
-
     Integer layoutRes = getLayoutRes();
     if (layoutRes == null) {
       throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
@@ -107,16 +105,6 @@ public abstract class CBActivityToolbar extends AppCompatActivity {
    * @param bundle bundle with extras passed to activity
    */
   protected void readExtras(Bundle bundle) {
-
-  }
-
-  /**
-   * <p>
-   * This method will be called from {@link #onCreate(Bundle)} and this is the right place to
-   * inject dependencies (i.e. by using dagger).
-   * </p>
-   */
-  protected void injectDependencies() {
 
   }
 }

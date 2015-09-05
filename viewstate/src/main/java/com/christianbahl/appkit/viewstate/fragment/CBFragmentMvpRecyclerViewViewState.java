@@ -16,9 +16,12 @@
 package com.christianbahl.appkit.viewstate.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
@@ -79,8 +82,14 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannes
     loadData(false);
   }
 
-  @Override protected int getLayoutRes() {
-    return R.layout.cb_fragment_recycler_view;
+  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    Integer layoutRes = getLayoutRes();
+    if (layoutRes == null) {
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+    }
+
+    return inflater.inflate(layoutRes, container, false);
   }
 
   @Override public void showContent() {
@@ -114,8 +123,21 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannes
   }
 
   /**
-   * Creates the {@link RecyclerView.LayoutManager}. <br />
+   * <p>
+   * Provide the layout res id for the activity.
+   * </p>
+   *
+   * @return layout res id
+   */
+  protected Integer getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view;
+  }
+
+  /**
+   * <p>
+   * Creates the {@link RecyclerView.LayoutManager}.<br/>
    * Default: {@link LinearLayoutManager}
+   * </p>
    *
    * @return {@link RecyclerView.LayoutManager}
    */
@@ -124,7 +146,9 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannes
   }
 
   /**
+   * <p>
    * Called after the mvp views and the recycler view are created
+   * </p>
    *
    * @param view {@link View}
    * @param savedInstanceState {@link Bundle}
@@ -134,8 +158,10 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends com.hannes
   }
 
   /**
-   * Creates the {@link A}. <br />
+   * <p>
+   * Creates the {@link A}.<br/>
    * Called in {@link #onViewCreated(View, Bundle)}
+   * </p>
    *
    * @return {@link A}
    */

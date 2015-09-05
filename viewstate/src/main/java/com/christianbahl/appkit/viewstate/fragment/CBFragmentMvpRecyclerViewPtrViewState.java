@@ -30,7 +30,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
  * </p>
  *
  * <p>
- * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pull_to_refresh</code>.
+ * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pullToRefresh</code>.
  * After the refresh is started the function {@link #onRefreshStarted()} is called. In the default
  * implementation {@link #loadData(boolean)} is called but you can override this if you need to.
  * </p>
@@ -43,7 +43,7 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends com.han
 
   protected SwipeRefreshLayout swipeRefreshLayout;
 
-  @Override protected int getLayoutRes() {
+  @Override protected Integer getLayoutRes() {
     return R.layout.cb_fragment_recycler_view_ptr;
   }
 
@@ -53,7 +53,7 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends com.han
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pullToRefresh);
     if (swipeRefreshLayout == null) {
       throw new IllegalStateException("The swipe refresh layout is not specified. "
-          + "You have to provide a View with R.id.pull_to_refresh in your inflated xml layout");
+          + "You have to provide a View with R.id.pullToRefresh in your inflated xml layout");
     }
 
     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

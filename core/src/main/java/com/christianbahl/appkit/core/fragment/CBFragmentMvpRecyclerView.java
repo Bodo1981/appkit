@@ -51,12 +51,6 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P ext
   protected A adapter;
   protected View emptyView;
 
-  @Override public void onCreate(Bundle savedInstanceState) {
-    injectDependencies();
-
-    super.onCreate(savedInstanceState);
-  }
-
   @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     Integer layoutRes = getLayoutRes();
@@ -152,16 +146,6 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P ext
    * @param savedInstanceState saved instance state
    */
   protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
-
-  }
-
-  /**
-   * <p>
-   * This method will be called from {@link #onCreate(Bundle)} and this is the right place to
-   * inject dependencies (i.e. by using dagger).
-   * </p>
-   */
-  protected void injectDependencies() {
 
   }
 

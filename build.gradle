@@ -4,14 +4,12 @@ project.ext {
   buildToolsVersion = "23.0.0"
   minSdkVersion = 15
   targetSdkVersion = 23
-  versionCode = 2
-  versionName = "1.3.0"
+  versionCode = 1
+  versionName = "2.0.0"
 }
 
 buildscript {
-  ext.kotlinVersion = "0.12.1230"
   ext.mosbyVersion = "2.0.0"
-//  ext.mosbyVersion = "1.3.1"
   ext.supportVersion = "23.0.1"
 
   repositories {
@@ -21,9 +19,6 @@ buildscript {
   dependencies {
     classpath "com.android.tools.build:gradle:1.3.1"
 
-    // Kotlin
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-
     // Bintray
     classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.3.1"
     classpath "com.github.dcendents:android-maven-gradle-plugin:1.3"
@@ -31,9 +26,6 @@ buildscript {
 }
 
 allprojects {
-  version = "2.0.0"
-  group = "com.christianbahl"
-
   repositories {
     jcenter()
 

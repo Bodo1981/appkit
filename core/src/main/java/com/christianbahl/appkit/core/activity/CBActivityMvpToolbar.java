@@ -49,8 +49,6 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   protected Toolbar toolbar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
-    injectDependencies();
-
     super.onCreate(savedInstanceState);
 
     Integer layoutRes = getLayoutRes();
@@ -129,16 +127,6 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
    * @param bundle bundle with extras passed to activity
    */
   protected void readExtras(Bundle bundle) {
-
-  }
-
-  /**
-   * <p>
-   * This method will be called from {@link #onCreate(Bundle)} and this is the right place to
-   * inject dependencies (i.e. by using dagger).
-   * </p>
-   */
-  protected void injectDependencies() {
 
   }
 }
