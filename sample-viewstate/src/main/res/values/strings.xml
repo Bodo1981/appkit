@@ -1,0 +1,9 @@
+<resources>
+
+  <string name="app_name">sample-viewstate</string>
+
+  <string name="activity_toolbar">Activity with Toolbar (Viewstate)</string>
+  <string name="activity_toolbar_fragment">Activity with Toolbar and Fragment (Viewstate)</string>
+  <string name="activity_toolbar_tabs">Activity with Toolbar and Tabs (Viewstate)</string>
+
+</resources>

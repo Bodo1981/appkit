@@ -76,10 +76,6 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
     if (actionBar != null) {
       actionBar.setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
     }
-
-    onMvpViewCreated();
-
-    loadData(false);
   }
 
   @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
@@ -102,13 +98,6 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
    */
   protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_fragment;
-  }
-
-  /**
-   * Called after mvp views and toolbar are created
-   */
-  protected void onMvpViewCreated() {
-
   }
 
   /**

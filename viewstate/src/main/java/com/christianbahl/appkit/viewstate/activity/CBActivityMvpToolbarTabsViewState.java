@@ -55,14 +55,14 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
  * @author Christian Bahl
  * @see CBActivityMvpToolbar
  */
-public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
+public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends PagerAdapter>
     extends CBActivityMvpToolbarViewState<ViewPager, D, V, P> {
 
   protected TabLayout tabs;
   protected A adapter;
 
-  @Override protected void onMvpViewCreated() {
-    super.onMvpViewCreated();
+  @Override public void onContentChanged() {
+    super.onContentChanged();
 
     tabs = (TabLayout) findViewById(R.id.tabs);
 
@@ -115,7 +115,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<A extends PagerAdapter, 
   }
 
   /**
-   * Creates the {@link A} for the {@link ViewPager}. <br>
+   * Creates the {@link A} for the {@link ViewPager}. <br />
    * Called in {@link #onCreate(Bundle)}
    *
    * @return {@link A}

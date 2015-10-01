@@ -21,24 +21,19 @@
         android:name=".activity_fragment.ActivityFragment"/>
 
     <activity
-        android:name=".activity_toolbar.ActivityToolbar"
-        android:theme="@style/AppTheme.NoActionBar"/>
+        android:name=".activity_toolbar.ActivityToolbar"/>
 
     <activity
-        android:name=".activity_toolbar_fragment.ActivityToolbarFragment"
-        android:theme="@style/AppTheme.NoActionBar"/>
+        android:name=".activity_toolbar_fragment.ActivityToolbarFragment"/>
 
     <activity
-        android:name=".activity_toolbar_mvp.ActivityToolbarMvp"
-        android:theme="@style/AppTheme.NoActionBar"/>
+        android:name=".activity_toolbar_mvp.ActivityToolbarMvp"/>
 
     <activity
-        android:name=".activity_toolbar_fragment_mvp.ActivityToolbarFragmentMvp"
-        android:theme="@style/AppTheme.NoActionBar"/>
+        android:name=".activity_toolbar_fragment_mvp.ActivityToolbarFragmentMvp"/>
 
     <activity
-        android:name=".activity_toolbar_tabs_mvp.ActivityToolbarTabsMvp"
-        android:theme="@style/AppTheme.NoActionBar"/>
+        android:name=".activity_toolbar_tabs_mvp.ActivityToolbarTabsMvp"/>
   </application>
 
 </manifest>

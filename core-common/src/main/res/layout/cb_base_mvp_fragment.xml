@@ -8,9 +8,9 @@
       android:layout_height="match_parent"/>
 
   <include
-      layout="@layout/cb_base_loading_view"/>
+      layout="@layout/cb_base_error_view"/>
 
   <include
-      layout="@layout/cb_base_error_view"/>
+      layout="@layout/cb_base_loading_view"/>
 
 </merge>

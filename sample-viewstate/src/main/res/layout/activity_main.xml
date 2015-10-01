@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,13 +18,6 @@
       tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/activity_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_fragment"
-        style="@style/text_button"/>
-
-    <TextView
         android:id="@+id/activity_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,24 +32,10 @@
         style="@style/text_button"/>
 
     <TextView
-        android:id="@+id/activity_mvp_toolbar"
+        android:id="@+id/activity_toolbar_tabs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/activity_toolbar_mvp"
-        style="@style/text_button"/>
-
-    <TextView
-        android:id="@+id/activity_mvp_toolbar_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_toolbar_fragment_mvp"
-        style="@style/text_button"/>
-
-    <TextView
-        android:id="@+id/activity_mvp_toolbar_tabs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_toolbar_viewpager_mvp"
+        android:text="@string/activity_toolbar_tabs"
         style="@style/text_button"/>
 
   </LinearLayout>

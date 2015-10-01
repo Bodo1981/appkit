@@ -2,8 +2,11 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <include
-      layout="@layout/cb_base_loading_view"/>
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/contentView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scrollbars="vertical"/>
 
   <include
       layout="@layout/cb_base_error_view"/>
@@ -11,10 +14,7 @@
   <include
       layout="@layout/cb_base_empty_view"/>
 
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/contentView"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:scrollbars="vertical"/>
+  <include
+      layout="@layout/cb_base_loading_view"/>
 
 </merge>

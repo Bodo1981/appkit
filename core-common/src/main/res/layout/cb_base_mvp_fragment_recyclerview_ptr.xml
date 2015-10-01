@@ -2,15 +2,6 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <include
-      layout="@layout/cb_base_loading_view"/>
-
-  <include
-      layout="@layout/cb_base_error_view"/>
-
-  <include
-      layout="@layout/cb_base_empty_view"/>
-
   <android.support.v4.widget.SwipeRefreshLayout
       android:id="@+id/pullToRefresh"
       android:layout_width="match_parent"
@@ -25,5 +16,14 @@
         android:clipToPadding="false"/>
 
   </android.support.v4.widget.SwipeRefreshLayout>
+
+  <include
+      layout="@layout/cb_base_error_view"/>
+
+  <include
+      layout="@layout/cb_base_empty_view"/>
+
+  <include
+      layout="@layout/cb_base_loading_view"/>
 
 </merge>

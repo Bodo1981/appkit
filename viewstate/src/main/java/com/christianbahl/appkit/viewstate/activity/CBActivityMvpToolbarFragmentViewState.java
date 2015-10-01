@@ -61,7 +61,7 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, 
 
       if (fragment == null) {
         throw new IllegalArgumentException(
-            "Fragment is null. Did you forget to create the Fragment in the createFragmentToDisplay()");
+            "Fragment is null. Did you forget to create the Fragment in the createFragmentToDisplay()?");
       }
 
       getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
