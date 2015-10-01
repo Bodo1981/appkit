@@ -55,7 +55,7 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P ext
       Bundle savedInstanceState) {
     Integer layoutRes = getLayoutRes();
     if (layoutRes == null) {
-      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes()?");
     }
 
     return inflater.inflate(layoutRes, container, false);

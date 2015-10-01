@@ -1,0 +1,15 @@
+<resources>
+
+  <string name="app_name">sample-core</string>
+
+  <string name="hello_world">Hello world!</string>
+  <string name="action_settings">Settings</string>
+  <string name="activity_fragment">Activity with Fragment</string>
+  <string name="activity_toolbar">Activity with Toolbar</string>
+  <string name="activity_toolbar_fragment">Activity with Toolbar and Fragment</string>
+  <string name="activity_toolbar_mvp">Activity with Toolbar (MVP)</string>
+  <string name="activity_toolbar_fragment_mvp">Activity with Toolbar and Fragment (MVP)</string>
+  <string name="activity_toolbar_viewpager_mvp">Activity with Toolbar and ViewPager/Tabs (MVP)
+  </string>
+
+</resources>

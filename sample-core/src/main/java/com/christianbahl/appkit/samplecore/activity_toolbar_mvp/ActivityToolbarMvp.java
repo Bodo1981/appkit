@@ -1,0 +1,37 @@
+package com.christianbahl.appkit.samplecore.activity_toolbar_mvp;
+
+import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.widget.FrameLayout;
+import android.widget.Toast;
+import com.christianbahl.appkit.core.activity.CBActivityMvpToolbar;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+
+/**
+ * @author Christian Bahl
+ */
+public class ActivityToolbarMvp extends CBActivityMvpToolbar<FrameLayout, String, MvpLceView<String>, ActivityToolbarMvpPresenter> {
+
+  public static Intent getStartIntent(Context context) {
+    return new Intent(context, ActivityToolbarMvp.class);
+  }
+
+  @Override public void onContentChanged() {
+    super.onContentChanged();
+
+    getSupportActionBar().setTitle("Activity with Toolbar (MVP)");
+  }
+
+  @NonNull @Override public ActivityToolbarMvpPresenter createPresenter() {
+    return new ActivityToolbarMvpPresenter();
+  }
+
+  @Override public void setData(String data) {
+    Toast.makeText(this, data, Toast.LENGTH_LONG).show();
+  }
+
+  @Override public void loadData(boolean pullToRefresh) {
+    presenter.loadData(pullToRefresh);
+  }
+}

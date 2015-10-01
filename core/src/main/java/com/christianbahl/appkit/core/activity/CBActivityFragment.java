@@ -50,7 +50,7 @@ public abstract class CBActivityFragment extends AppCompatActivity {
 
     Integer layoutRes = getLayoutRes();
     if (layoutRes == null) {
-      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes()?");
     }
     setContentView(getLayoutRes());
 
@@ -59,9 +59,14 @@ public abstract class CBActivityFragment extends AppCompatActivity {
     }
 
     if (savedInstanceState == null) {
-      getSupportFragmentManager().beginTransaction()
-          .replace(R.id.contentView, createFragmentToDisplay())
-          .commit();
+      Fragment fragment = createFragmentToDisplay();
+
+      if (fragment == null) {
+        throw new NullPointerException(
+            "Fragment is null. Did you return null in createFragmentToDisplay()?");
+      }
+
+      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
     }
   }
 

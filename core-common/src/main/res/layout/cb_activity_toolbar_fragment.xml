@@ -1,18 +1,11 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-  <android.support.v7.widget.Toolbar
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="?android:attr/actionBarSize"
-      android:background="?attr/colorPrimary"
-      android:elevation="@dimen/cb_elevation_depth"
-      android:theme="@style/cb_toolbar_theme"
-      app:popupTheme="@style/cb_toolbar_popup_theme"/>
+  <include
+      layout="@layout/cb_base_toolbar"/>
 
   <FrameLayout
       xmlns:android="http://schemas.android.com/apk/res/android"

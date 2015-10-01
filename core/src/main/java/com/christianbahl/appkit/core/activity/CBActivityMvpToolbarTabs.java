@@ -72,7 +72,7 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
     adapter = createAdapter();
     if (adapter == null) {
       throw new NullPointerException(
-          "No adapter found. Did you forget to create own in createAdapter()?");
+          "No adapter found. Did you forget to create one in createAdapter()?");
     }
 
     contentView.setAdapter(adapter);

@@ -9,15 +9,8 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="@dimen/cb_elevation_depth"
-        android:theme="@style/cb_toolbar_theme"
-        app:popupTheme="@style/cb_toolbar_popup_theme"
-        app:layout_scrollFlags="scroll|enterAlways"/>
+    <include
+        layout="@layout/cb_base_toolbar"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"

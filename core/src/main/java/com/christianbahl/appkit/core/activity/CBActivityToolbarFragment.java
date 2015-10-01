@@ -50,9 +50,14 @@ public abstract class CBActivityToolbarFragment extends CBActivityToolbar {
     super.onCreate(savedInstanceState);
 
     if (savedInstanceState == null) {
-      getSupportFragmentManager().beginTransaction()
-          .replace(R.id.contentView, createFragmentToDisplay())
-          .commit();
+      Fragment fragment = createFragmentToDisplay();
+
+      if (fragment == null) {
+        throw new NullPointerException(
+            "Fragment is null. Did you return null in createFragmentToDisplay()?");
+      }
+
+      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
     }
   }
 
@@ -66,5 +71,4 @@ public abstract class CBActivityToolbarFragment extends CBActivityToolbar {
    * @return {@link Fragment}
    */
   protected abstract Fragment createFragmentToDisplay();
-
 }

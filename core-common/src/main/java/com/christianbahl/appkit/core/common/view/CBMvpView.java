@@ -19,7 +19,10 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**
+ * An extension of the {@link MvpLceView} which uses a list of {@link M} for the model.
+ *
  * @author Christian Bahl
+ * @see MvpLceView
  */
 public interface CBMvpView<M> extends MvpLceView<List<M>> {
 

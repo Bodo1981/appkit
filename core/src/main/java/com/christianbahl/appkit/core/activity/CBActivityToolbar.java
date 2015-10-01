@@ -48,7 +48,7 @@ public abstract class CBActivityToolbar extends AppCompatActivity {
 
     Integer layoutRes = getLayoutRes();
     if (layoutRes == null) {
-      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes()?");
     }
     setContentView(getLayoutRes());
 
@@ -60,13 +60,11 @@ public abstract class CBActivityToolbar extends AppCompatActivity {
   @Override public void onContentChanged() {
     super.onContentChanged();
 
-    // throws an exception if toolbar is not a toolbar
     toolbar = (Toolbar) findViewById(R.id.toolbar);
     if (toolbar == null) {
       throw new NullPointerException(
           "No Toolbar found. Did you forget to add it to your layout file with the id R.id.toolbar?");
     }
-
     setSupportActionBar(toolbar);
 
     ActionBar actionBar = getSupportActionBar();

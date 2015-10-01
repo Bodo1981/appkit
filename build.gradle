@@ -28,13 +28,9 @@ buildscript {
 allprojects {
   repositories {
     jcenter()
-
-    maven {
-      url "http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/"
-    }
   }
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = "2.6"
+  gradleVersion = "2.7"
 }
