@@ -29,7 +29,6 @@ You have to implement only three methods:
 * **setData(D data):** is called when the presenter has loaded the data
  
 There a are a few optional methods you can override if you need to:
-* **onMvpViewCreated():** called after all views are set up correctly
 * **readExtras(Bundle extras):** read extras passed to activity
 
 #### CBActivityMvpToolbarTabs
@@ -56,7 +55,7 @@ A simple fragment with a recycler view.
 Excactly the same as CBFragmentMvpRecyclerView but with pull to refresh functionallity.<br/>
 The default behavior for pull to refresh is to call the **loadData(true)** function but this can be overriden in **onRefreshStarted()**
 
-All this activities and fragments also have a viewstate and dagger1 implementation. For further information see [Mosby Framework](http://hannesdorfmann.com/android/mosby/)
+All this activities and fragments also have a viewstate implementation. For further information see [Mosby Framework](http://hannesdorfmann.com/mosby/)
 
 # Additional stuff
 
@@ -73,64 +72,16 @@ Same as CBAdapterRecyclerView with an extra parallax effect to the specified vie
 * **isItemParallaxScrollable(int position, int viewType)**: here you can say which item should have the parallax effect by position and/or view type
 * **doParallaxScrolling(RecyclerView.ViewHolder viewHolder, int position, int viewType, int pixelAlreadyScrolledOut):**: do the parallax effect
 
-#### CBButterknifeViewHolder
-A RecyclerView.ViewHolder that automatically enables Butterknife. You only have to annotate your views with the butterknife annotations
-
 # Dependency
 
-Newest Version (Jitpack.io):
+Newest Version (Jcenter):
 
 [![Release](https://img.shields.io/github/release/Bodo1981/appkit.svg?label=maven)]
 (https://jitpack.io/#Bodo1981/appkit)
 
     dependencies {
-        // complete library
-        compile 'com.github.Bodo1981:appkit:1.4.0'
-
-        // or submodules (java)
-        compile 'com.github.Bodo1981.appkit:core:1.4.0'
-        compile 'com.github.Bodo1981.appkit:core-dagger1:1.4.0'
-        compile 'com.github.Bodo1981.appkit:viewstate:1.4.0'
-        compile 'com.github.Bodo1981.appkit:viewstate-dagger1:1.4.0'
-        
-        // or submodules (kotlin)
-        compile 'com.github.Bodo1981.appkit:core-kotlin:1.4.0'
-        compile 'com.github.Bodo1981.appkit:viewstate-kotlin:1.4.0'
-    }
-
-The library contains submodules written in java and kotlin. Functionality is the same.
- 
-    buildscript {
-        repositories {
-            jcenter()
-        }
-        dependencies {
-            classpath 'com.android.tools.build:gradle:1.2.3'
-            classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
-        }
-    }
-
-    allprojects {
-        repositories {
-            jcenter()
-            maven {
-                // icepick
-                url 'https://clojars.org/repo/'
-            }
-            maven {
-                // appkit
-                url 'https://jitpack.io'
-            }
-            maven {
-                // material design colors
-                url 'http://raw.github.com/wada811/Android-Material-Design-Colors/master/repository/'
-            }
-        }
-    }
-
-    dependencies {
-        apt 'frankiesardo:icepick-processor:3.0.2'
-        apt 'com.hannesdorfmann.fragmentargs:processor:2.1.2'
+        compile 'com.christianbahl.appkit:core:2.0.0'
+        compile 'com.christianbahl.appkit:viewstate:2.0.0'
     }
 
 #Changelog
