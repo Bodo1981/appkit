@@ -1,13 +1,15 @@
-package com.christianbahl.appkit.samplecore.activity_toolbar_mvp;
+package com.christianbahl.appkit.samplecore.fragment_recyclerview;
 
+import com.christianbahl.appkit.core.common.view.CBMvpView;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbarMvpPresenter extends MvpBasePresenter<MvpLceView<String>> {
+public class FragmentRecyclerViewPresenter extends MvpBasePresenter<CBMvpView<String>> {
 
   public void loadData(boolean contentPresent) {
     if (isViewAttached()) {
@@ -20,9 +22,19 @@ public class ActivityToolbarMvpPresenter extends MvpBasePresenter<MvpLceView<Str
       }
     } else {
       if (isViewAttached()) {
-        getView().setData("Activity Toolbar Mvp data loaded");
+        getView().setData(getItems());
         getView().showContent();
       }
     }
+  }
+
+  private List<String> getItems() {
+    List<String> items = new ArrayList<>();
+
+    for (int i = 1; i <= 30; i++) {
+      items.add("Item " + i);
+    }
+
+    return items;
   }
 }

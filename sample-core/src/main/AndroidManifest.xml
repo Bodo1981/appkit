@@ -34,6 +34,15 @@
 
     <activity
         android:name=".activity_toolbar_tabs_mvp.ActivityToolbarTabsMvp"/>
+
+    <activity
+        android:name=".fragment_recyclerview.FragmentActivtyRecyclerView"/>
+
+    <activity
+        android:name=".fragment_recyclerview_ptr.FragmentActivtyRecyclerViewPtr"/>
+
+    <activity
+        android:name=".fragment_recyclerview_parallax.FragmentActivtyRecyclerViewParallax"/>
   </application>
 
 </manifest>

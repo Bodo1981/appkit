@@ -1,4 +1,4 @@
-package com.christianbahl.appkit.samplecore.activity_toolbar_fragment_mvp;
+package com.christianbahl.appkit.samplecore.common;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbarFragmentMvpPresenter extends MvpBasePresenter<MvpLceView<String>> {
+public class StringPresenter extends MvpBasePresenter<MvpLceView<String>> {
 
   public void loadData(boolean contentPresent) {
     if (isViewAttached()) {
@@ -20,7 +20,7 @@ public class ActivityToolbarFragmentMvpPresenter extends MvpBasePresenter<MvpLce
       }
     } else {
       if (isViewAttached()) {
-        getView().setData("Data loaded");
+        getView().setData("Activity Toolbar Mvp data loaded");
         getView().showContent();
       }
     }

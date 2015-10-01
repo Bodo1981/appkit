@@ -9,6 +9,9 @@ import com.christianbahl.appkit.samplecore.activity_toolbar_fragment.ActivityToo
 import com.christianbahl.appkit.samplecore.activity_toolbar_fragment_mvp.ActivityToolbarFragmentMvp;
 import com.christianbahl.appkit.samplecore.activity_toolbar_mvp.ActivityToolbarMvp;
 import com.christianbahl.appkit.samplecore.activity_toolbar_tabs_mvp.ActivityToolbarTabsMvp;
+import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentActivtyRecyclerView;
+import com.christianbahl.appkit.samplecore.fragment_recyclerview_parallax.FragmentActivtyRecyclerViewParallax;
+import com.christianbahl.appkit.samplecore.fragment_recyclerview_ptr.FragmentActivtyRecyclerViewPtr;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,6 +58,27 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.activity_mvp_toolbar_tabs).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(ActivityToolbarTabsMvp.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView
+    findViewById(R.id.fragment_recyclerview).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivtyRecyclerView.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView PullToRefresh
+    findViewById(R.id.fragment_recyclerview_ptr).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivtyRecyclerViewPtr.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView Parallax
+    findViewById(R.id.fragment_recyclerview_parallax).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivtyRecyclerViewParallax.getStartIntent(MainActivity.this));
       }
     });
   }

@@ -8,12 +8,14 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.christianbahl.appkit.core.activity.CBActivityMvpToolbarFragment;
 import com.christianbahl.appkit.samplecore.activity_fragment.FragmentToDisplay;
+import com.christianbahl.appkit.samplecore.common.StringPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbarFragmentMvp extends CBActivityMvpToolbarFragment<FrameLayout, String, MvpLceView<String>, ActivityToolbarFragmentMvpPresenter> {
+public class ActivityToolbarFragmentMvp
+    extends CBActivityMvpToolbarFragment<FrameLayout, String, MvpLceView<String>, StringPresenter> {
 
   public static Intent getStartIntent(Context context) {
     return new Intent(context, ActivityToolbarFragmentMvp.class);
@@ -29,8 +31,8 @@ public class ActivityToolbarFragmentMvp extends CBActivityMvpToolbarFragment<Fra
     getSupportActionBar().setTitle("Activity with Toolbar and Fragment (MVP)");
   }
 
-  @NonNull @Override public ActivityToolbarFragmentMvpPresenter createPresenter() {
-    return new ActivityToolbarFragmentMvpPresenter();
+  @NonNull @Override public StringPresenter createPresenter() {
+    return new StringPresenter();
   }
 
   @Override public void setData(String data) {

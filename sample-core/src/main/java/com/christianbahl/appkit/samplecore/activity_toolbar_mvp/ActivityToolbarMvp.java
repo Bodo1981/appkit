@@ -6,12 +6,13 @@ import android.support.annotation.NonNull;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.christianbahl.appkit.core.activity.CBActivityMvpToolbar;
+import com.christianbahl.appkit.samplecore.common.StringPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbarMvp extends CBActivityMvpToolbar<FrameLayout, String, MvpLceView<String>, ActivityToolbarMvpPresenter> {
+public class ActivityToolbarMvp extends CBActivityMvpToolbar<FrameLayout, String, MvpLceView<String>, StringPresenter> {
 
   public static Intent getStartIntent(Context context) {
     return new Intent(context, ActivityToolbarMvp.class);
@@ -23,8 +24,8 @@ public class ActivityToolbarMvp extends CBActivityMvpToolbar<FrameLayout, String
     getSupportActionBar().setTitle("Activity with Toolbar (MVP)");
   }
 
-  @NonNull @Override public ActivityToolbarMvpPresenter createPresenter() {
-    return new ActivityToolbarMvpPresenter();
+  @NonNull @Override public StringPresenter createPresenter() {
+    return new StringPresenter();
   }
 
   @Override public void setData(String data) {

@@ -46,7 +46,7 @@ import java.util.List;
  * @see MvpLceFragment
  */
 public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
-    extends MvpLceFragment<RecyclerView, List<M>, V, P> {
+    extends MvpLceFragment<RecyclerView, List<M>, V, P> implements CBMvpView<M> {
 
   protected A adapter;
   protected View emptyView;
