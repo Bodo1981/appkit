@@ -80,7 +80,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends CBMvpView<M>, P 
   @Override public void showError(Throwable e, boolean isContentVisible) {
     super.showError(e, isContentVisible);
 
-    swipeRefreshLayout.setVisibility(View.GONE);
+    swipeRefreshLayout.setVisibility(View.VISIBLE);
     swipeRefreshLayout.setRefreshing(false);
   }
 

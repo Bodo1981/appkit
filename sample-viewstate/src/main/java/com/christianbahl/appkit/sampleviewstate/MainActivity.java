@@ -6,6 +6,8 @@ import android.view.View;
 import com.christianbahl.appkit.sampleviewstate.activity_toolbar.ActivityToolbar;
 import com.christianbahl.appkit.sampleviewstate.activity_toolbar_fragment.ActivityToolbarFragment;
 import com.christianbahl.appkit.sampleviewstate.activity_toolbar_tabs.ActivityToolbarTabs;
+import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview.FragmentActivtyRecyclerView;
+import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview_ptr.FragmentActivtyRecyclerViewPtr;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +33,20 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.activity_toolbar_tabs).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(ActivityToolbarTabs.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView
+    findViewById(R.id.fragment_recyclerview).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivtyRecyclerView.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView PullToRefresh
+    findViewById(R.id.fragment_recyclerview_ptr).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivtyRecyclerViewPtr.getStartIntent(MainActivity.this));
       }
     });
   }

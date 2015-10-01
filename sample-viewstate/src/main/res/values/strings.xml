@@ -5,5 +5,7 @@
   <string name="activity_toolbar">Activity with Toolbar (Viewstate)</string>
   <string name="activity_toolbar_fragment">Activity with Toolbar and Fragment (Viewstate)</string>
   <string name="activity_toolbar_tabs">Activity with Toolbar and Tabs (Viewstate)</string>
+  <string name="fragment_recyclerview">Fragment RecyclerView (Viewstate)</string>
+  <string name="fragment_recyclerview_ptr">Fragment RecyclerView PullToRefresh (Viewstate)</string>
 
 </resources>

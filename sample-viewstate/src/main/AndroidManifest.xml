@@ -16,9 +16,20 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".activity_toolbar.ActivityToolbar"/>
-    <activity android:name=".activity_toolbar_fragment.ActivityToolbarFragment"/>
-    <activity android:name=".activity_toolbar_tabs.ActivityToolbarTabs"/>
+    <activity
+        android:name=".activity_toolbar.ActivityToolbar"/>
+
+    <activity
+        android:name=".activity_toolbar_fragment.ActivityToolbarFragment"/>
+
+    <activity
+        android:name=".activity_toolbar_tabs.ActivityToolbarTabs"/>
+
+    <activity
+        android:name=".fragment_recyclerview.FragmentActivtyRecyclerView"/>
+
+    <activity
+        android:name=".fragment_recyclerview_ptr.FragmentActivtyRecyclerViewPtr"/>
   </application>
 
 </manifest>

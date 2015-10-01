@@ -38,5 +38,19 @@
         android:text="@string/activity_toolbar_tabs"
         style="@style/text_button"/>
 
+    <TextView
+        android:id="@+id/fragment_recyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_recyclerview"
+        style="@style/text_button"/>
+
+    <TextView
+        android:id="@+id/fragment_recyclerview_ptr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_recyclerview_ptr"
+        style="@style/text_button"/>
+
   </LinearLayout>
 </ScrollView>

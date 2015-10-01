@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
+import com.christianbahl.appkit.core.common.view.CBMvpView;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerView;
 import com.christianbahl.appkit.viewstate.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
@@ -38,7 +39,7 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
  * @author Christian Bahl
  * @see CBFragmentMvpRecyclerView
  */
-public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends com.hannesdorfmann.mosby.mvp.lce.MvpLceView<java.util.List<M>>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
+public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
     extends CBFragmentMvpRecyclerViewViewState<M, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;
@@ -47,8 +48,8 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends com.han
     return R.layout.cb_fragment_recycler_view_ptr;
   }
 
-  @Override protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
-    super.onMvpViewCreated(view, savedInstanceState);
+  @Override public void onViewCreated(View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pullToRefresh);
     if (swipeRefreshLayout == null) {
@@ -81,7 +82,7 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends com.han
   @Override public void showError(Throwable e, boolean isContentVisible) {
     super.showError(e, isContentVisible);
 
-    swipeRefreshLayout.setVisibility(View.GONE);
+    swipeRefreshLayout.setVisibility(View.VISIBLE);
     swipeRefreshLayout.setRefreshing(false);
   }
 
