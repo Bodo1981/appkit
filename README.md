@@ -76,8 +76,7 @@ Same as CBAdapterRecyclerView with an extra parallax effect to the specified vie
 
 Newest Version (Jcenter):
 
-[![Release](https://img.shields.io/github/release/Bodo1981/appkit.svg?label=maven)]
-(https://jitpack.io/#Bodo1981/appkit)
+[ ![Download](https://api.bintray.com/packages/bodo1981/maven/appkit/images/download.svg) ](https://bintray.com/bodo1981/maven/appkit/_latestVersion)
 
     dependencies {
         compile 'com.christianbahl.appkit:core:2.0.0'
