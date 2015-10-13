@@ -26,10 +26,16 @@
         android:name=".activity_toolbar_tabs.ActivityToolbarTabs"/>
 
     <activity
-        android:name=".fragment_recyclerview.FragmentActivtyRecyclerView"/>
+        android:name=".fragment_recyclerview.FragmentActivityRecyclerView"/>
+
+    <activity
+        android:name=".fragment_recyclerview_list.FragmentActivityRecyclerViewList"/>
 
     <activity
         android:name=".fragment_recyclerview_ptr.FragmentActivtyRecyclerViewPtr"/>
+
+    <activity
+        android:name=".fragment_recyclerview_ptr_list.FragmentActivtyRecyclerViewListPtr"/>
   </application>
 
 </manifest>

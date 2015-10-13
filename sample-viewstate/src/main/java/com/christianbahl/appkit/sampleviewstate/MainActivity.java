@@ -6,8 +6,10 @@ import android.view.View;
 import com.christianbahl.appkit.sampleviewstate.activity_toolbar.ActivityToolbar;
 import com.christianbahl.appkit.sampleviewstate.activity_toolbar_fragment.ActivityToolbarFragment;
 import com.christianbahl.appkit.sampleviewstate.activity_toolbar_tabs.ActivityToolbarTabs;
-import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview.FragmentActivtyRecyclerView;
+import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview.FragmentActivityRecyclerView;
+import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview_list.FragmentActivityRecyclerViewList;
 import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview_ptr.FragmentActivtyRecyclerViewPtr;
+import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview_ptr_list.FragmentActivtyRecyclerViewListPtr;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +41,14 @@ public class MainActivity extends AppCompatActivity {
     // Fragment RecyclerView
     findViewById(R.id.fragment_recyclerview).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        startActivity(FragmentActivtyRecyclerView.getStartIntent(MainActivity.this));
+        startActivity(FragmentActivityRecyclerView.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView (List)
+    findViewById(R.id.fragment_recyclerview_list).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivityRecyclerViewList.getStartIntent(MainActivity.this));
       }
     });
 
@@ -47,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
     findViewById(R.id.fragment_recyclerview_ptr).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(FragmentActivtyRecyclerViewPtr.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView PullToRefresh (List)
+    findViewById(R.id.fragment_recyclerview_ptr_list).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivtyRecyclerViewListPtr.getStartIntent(MainActivity.this));
       }
     });
   }
