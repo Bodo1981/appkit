@@ -1,16 +1,16 @@
 package com.christianbahl.appkit.samplecore.fragment_recyclerview_parallax;
 
 import android.widget.Toast;
-import com.christianbahl.appkit.core.common.view.CBMvpView;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerViewPtr;
 import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentRecyclerViewPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**
  * @author Christian Bahl
  */
 public class FragmentRecyclerViewParallaxFragment extends
-    CBFragmentMvpRecyclerViewPtr<String, CBMvpView<String>, FragmentRecyclerViewPresenter, FragmentRecyclerViewParallaxAdapter> {
+    CBFragmentMvpRecyclerViewPtr<List<String>, MvpLceView<List<String>>, FragmentRecyclerViewPresenter, FragmentRecyclerViewParallaxAdapter> {
 
   public static FragmentRecyclerViewParallaxFragment newInstance() {
     return new FragmentRecyclerViewParallaxFragment();

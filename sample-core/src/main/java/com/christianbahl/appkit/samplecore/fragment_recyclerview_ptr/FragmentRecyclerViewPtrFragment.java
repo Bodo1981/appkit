@@ -1,17 +1,17 @@
 package com.christianbahl.appkit.samplecore.fragment_recyclerview_ptr;
 
 import android.widget.Toast;
-import com.christianbahl.appkit.core.common.view.CBMvpView;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerViewPtr;
 import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentRecyclerViewAdapter;
 import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentRecyclerViewPresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**
  * @author Christian Bahl
  */
 public class FragmentRecyclerViewPtrFragment extends
-    CBFragmentMvpRecyclerViewPtr<String, CBMvpView<String>, FragmentRecyclerViewPresenter, FragmentRecyclerViewAdapter> {
+    CBFragmentMvpRecyclerViewPtr<List<String>, MvpLceView<List<String>>, FragmentRecyclerViewPresenter, FragmentRecyclerViewAdapter> {
 
   public static FragmentRecyclerViewPtrFragment newInstance() {
     return new FragmentRecyclerViewPtrFragment();

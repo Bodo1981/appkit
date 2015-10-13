@@ -23,11 +23,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.christianbahl.appkit.core.R;
-import com.christianbahl.appkit.core.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.core.common.view.CBMvpView;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceFragment;
-import java.util.List;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 
 /**
  * <p>
@@ -45,8 +43,8 @@ import java.util.List;
  * @author Christian Bahl
  * @see MvpLceFragment
  */
-public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends CBAdapterRecyclerView<M>>
-    extends MvpLceFragment<RecyclerView, List<M>, V, P> implements CBMvpView<M> {
+public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
+    extends MvpLceFragment<RecyclerView, M, V, P> {
 
   protected A adapter;
   protected View emptyView;
@@ -81,6 +79,9 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P ext
           "No Adapter found. Did you forget to create it in createAdapter()?");
     }
     contentView.setAdapter(adapter);
+
+    // Performance boost
+    contentView.setHasFixedSize(hasFixedSize());
 
     emptyView = view.findViewById(R.id.emptyView);
     if (emptyView == null) {
@@ -152,10 +153,22 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends CBMvpView<M>, P ext
   /**
    * <p>
    * Creates the {@link A}.<br/>
-   * Called in {@link #onViewCreated}.
+   * Called in {@link ##onViewCreated(View, Bundle)}.
    * </p>
    *
    * @return {@link A}
    */
   protected abstract A createAdapter();
+
+  /**
+   * <p>
+   * Performance boost for recycler view.<br />
+   * Called in {@link #onViewCreated(View, Bundle)}
+   * </p>
+   *
+   * @return true true if recyclerview has fixed size, otherwise false
+   */
+  protected boolean hasFixedSize() {
+    return true;
+  }
 }

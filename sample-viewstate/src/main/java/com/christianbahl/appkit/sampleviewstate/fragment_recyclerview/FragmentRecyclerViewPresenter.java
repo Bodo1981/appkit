@@ -1,7 +1,7 @@
 package com.christianbahl.appkit.sampleviewstate.fragment_recyclerview;
 
-import com.christianbahl.appkit.core.common.view.CBMvpView;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * @author Christian Bahl
  */
-public class FragmentRecyclerViewPresenter extends MvpBasePresenter<CBMvpView<String>> {
+public class FragmentRecyclerViewPresenter extends MvpBasePresenter<MvpLceView<List<String>>> {
 
   public void loadData(boolean contentPresent) {
     if (isViewAttached()) {
