@@ -1,7 +1,7 @@
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
 
 ext {
-  artifact = 'core-common'
+  artifact = 'rx'
 }
 
 android {
@@ -26,16 +26,10 @@ android {
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
 
-  // Support
-  compile "com.android.support:recyclerview-v7:$supportVersion"
-  compile "com.android.support:design:$supportVersion"
-
   // Mosby
   compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
 
-  // SmoothProgressBar
-  compile "com.github.castorflex.smoothprogressbar:library-circular:1.1.0"
+  // RxAndroid + RxJava
+  compile 'io.reactivex:rxandroid:1.0.1'
+  compile 'io.reactivex:rxjava:1.0.14'
 }
-
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/Bodo1981/bintray/master/bintray.gradle'

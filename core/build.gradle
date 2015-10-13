@@ -1,27 +1,7 @@
 apply plugin: "com.android.library"
 
 ext {
-  bintrayRepo = 'maven'
-  bintrayName = 'appkit'
-
-  publishedGroupId = 'com.christianbahl.appkit'
-  libraryName = 'appkit'
   artifact = 'core'
-
-  libraryDescription = 'This is an extension for the mosby library (Hannes Dorfmann)'
-
-  siteUrl = 'https://github.com/Bodo1981/appkit'
-  gitUrl = 'https://github.com/Bodo1981/appkit.git'
-
-  libraryVersion = '2.0.1'
-
-  developerId = 'Bodo1981'
-  developerName = 'Christian Bahl'
-  developerEmail = 'christian.bahl@gmail.com'
-
-  licenseName = 'The Apache Software License, Version 2.0'
-  licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-  allLicenses = ["Apache-2.0"]
 }
 
 android {
