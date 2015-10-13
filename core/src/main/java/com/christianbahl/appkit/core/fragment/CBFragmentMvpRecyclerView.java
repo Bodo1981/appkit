@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.core.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -79,10 +80,15 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
           "No Adapter found. Did you forget to create it in createAdapter()?");
     }
     contentView.setAdapter(adapter);
-    contentView.setLayoutManager(createRecyclerViewLayoutManager());
-
-    // Performance boost
     contentView.setHasFixedSize(hasFixedSize());
+
+    RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
+    if (layoutManager == null) {
+      throw new IllegalStateException(
+          "The RecyclerView.LayoutManager is not specified. You have to provide a "
+              + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
+    }
+    contentView.setLayoutManager(layoutManager);
 
     emptyView = view.findViewById(R.id.emptyView);
     if (emptyView == null) {
@@ -133,7 +139,7 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
    *
    * @return {@link RecyclerView.LayoutManager}
    */
-  protected RecyclerView.LayoutManager createRecyclerViewLayoutManager() {
+  @NonNull protected RecyclerView.LayoutManager createRecyclerViewLayoutManager() {
     return new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
   }
 
@@ -151,16 +157,6 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
 
   /**
    * <p>
-   * Creates the {@link A}.<br/>
-   * Called in {@link ##onViewCreated(View, Bundle)}.
-   * </p>
-   *
-   * @return {@link A}
-   */
-  protected abstract A createAdapter();
-
-  /**
-   * <p>
    * Performance boost for recycler view.<br />
    * Called in {@link #onViewCreated(View, Bundle)}
    * </p>
@@ -170,4 +166,14 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
   protected boolean hasFixedSize() {
     return true;
   }
+
+  /**
+   * <p>
+   * Creates the {@link A}.<br/>
+   * Called in {@link ##onViewCreated(View, Bundle)}.
+   * </p>
+   *
+   * @return {@link A}
+   */
+  protected abstract A createAdapter();
 }

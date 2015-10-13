@@ -53,8 +53,8 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends MvpLceV
 
     swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pullToRefresh);
     if (swipeRefreshLayout == null) {
-      throw new IllegalStateException("The swipe refresh layout is not specified. "
-          + "You have to provide a View with R.id.pullToRefresh in your inflated xml layout");
+      throw new NullPointerException(
+          "No SwipeRefreshLayout found. Did you forget to add it to your layout with R.id.pullToRefresh?");
     }
 
     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -87,8 +87,10 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends MvpLceV
   }
 
   /**
+   * <p>
    * Called from the {@link SwipeRefreshLayout.OnRefreshListener}.<br/>
-   * Default: call of {@link #loadData(boolean)}
+   * Default: call of {@link #loadData(boolean)}.
+   * </p>
    */
   protected void onRefreshStarted() {
     loadData(true);

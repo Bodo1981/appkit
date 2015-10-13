@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.viewstate.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -50,41 +51,56 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView
   protected A adapter;
   protected View emptyView;
 
+  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    Integer layoutRes = getLayoutRes();
+    if (layoutRes == null) {
+      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes()?");
+    }
+
+    return inflater.inflate(layoutRes, container, false);
+  }
+
+  /**
+   * <p>
+   * Provide the layout res id for the activity.
+   * </p>
+   *
+   * @return layout res id
+   */
+  protected Integer getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view;
+  }
+
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
     adapter = createAdapter();
     if (adapter == null) {
-      throw new IllegalStateException(
-          "Adapter is null. Did you forget to return an adapter in #createAdapter()?");
+      throw new NullPointerException(
+          "No Adapter found. Did you forget to create it in createAdapter()?");
     }
 
     contentView.setAdapter(adapter);
-
-    emptyView = view.findViewById(R.id.emptyView);
-    if (emptyView == null) {
-      throw new IllegalStateException(
-          "Empty View is null. Do you have a View with id = R.id.emptyView in your xml layout?");
-    }
+    contentView.setHasFixedSize(hasFixedSize());
 
     RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
     if (layoutManager == null) {
       throw new IllegalStateException(
           "The RecyclerView.LayoutManager is not specified. You have to provide a "
               + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
-    } else {
-      contentView.setLayoutManager(layoutManager);
     }
-  }
+    contentView.setLayoutManager(layoutManager);
 
-  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-    Integer layoutRes = getLayoutRes();
-    if (layoutRes == null) {
-      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes?");
+    emptyView = view.findViewById(R.id.emptyView);
+    if (emptyView == null) {
+      throw new NullPointerException(
+          "No emptyView found. Did you forget to add it to your layout with R.id.emptyView?");
     }
 
-    return inflater.inflate(layoutRes, container, false);
+    onMvpViewCreated(view, savedInstanceState);
+
+    loadData(false);
   }
 
   @Override public void showContent() {
@@ -119,25 +135,38 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView
 
   /**
    * <p>
-   * Provide the layout res id for the activity.
-   * </p>
-   *
-   * @return layout res id
-   */
-  protected Integer getLayoutRes() {
-    return R.layout.cb_fragment_recycler_view;
-  }
-
-  /**
-   * <p>
    * Creates the {@link RecyclerView.LayoutManager}.<br/>
-   * Default: {@link LinearLayoutManager}
+   * Default: {@link LinearLayoutManager}.
    * </p>
    *
    * @return {@link RecyclerView.LayoutManager}
    */
-  protected RecyclerView.LayoutManager createRecyclerViewLayoutManager() {
+  @NonNull protected RecyclerView.LayoutManager createRecyclerViewLayoutManager() {
     return new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+  }
+
+  /**
+   * <p>
+   * Called after the mvp views and the recycler view are created.
+   * </p>
+   *
+   * @param view view
+   * @param savedInstanceState saved instance state
+   */
+  protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
+
+  }
+
+  /**
+   * <p>
+   * Performance boost for recycler view.<br />
+   * Called in {@link #onViewCreated(View, Bundle)}
+   * </p>
+   *
+   * @return true true if recyclerview has fixed size, otherwise false
+   */
+  protected boolean hasFixedSize() {
+    return true;
   }
 
   /**
