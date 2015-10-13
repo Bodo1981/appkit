@@ -8,10 +8,10 @@ import com.christianbahl.appkit.core.activity.CBActivityFragment;
 /**
  * @author Christian Bahl
  */
-public class FragmentActivtyRecyclerViewParallax extends CBActivityFragment {
+public class FragmentActivityRecyclerViewParallax extends CBActivityFragment {
 
   public static Intent getStartIntent(Context context) {
-    return new Intent(context, FragmentActivtyRecyclerViewParallax.class);
+    return new Intent(context, FragmentActivityRecyclerViewParallax.class);
   }
 
   @Override protected Fragment createFragmentToDisplay() {

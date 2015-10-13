@@ -79,6 +79,7 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
           "No Adapter found. Did you forget to create it in createAdapter()?");
     }
     contentView.setAdapter(adapter);
+    contentView.setLayoutManager(createRecyclerViewLayoutManager());
 
     // Performance boost
     contentView.setHasFixedSize(hasFixedSize());
@@ -88,8 +89,6 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
       throw new NullPointerException(
           "No emptyView found. Did you forget to add it to your layout with R.id.emptyView?");
     }
-
-    contentView.setLayoutManager(createRecyclerViewLayoutManager());
 
     onMvpViewCreated(view, savedInstanceState);
 

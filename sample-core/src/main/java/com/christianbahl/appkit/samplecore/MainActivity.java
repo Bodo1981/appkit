@@ -9,9 +9,11 @@ import com.christianbahl.appkit.samplecore.activity_toolbar_fragment.ActivityToo
 import com.christianbahl.appkit.samplecore.activity_toolbar_fragment_mvp.ActivityToolbarFragmentMvp;
 import com.christianbahl.appkit.samplecore.activity_toolbar_mvp.ActivityToolbarMvp;
 import com.christianbahl.appkit.samplecore.activity_toolbar_tabs_mvp.ActivityToolbarTabsMvp;
-import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentActivtyRecyclerView;
-import com.christianbahl.appkit.samplecore.fragment_recyclerview_parallax.FragmentActivtyRecyclerViewParallax;
-import com.christianbahl.appkit.samplecore.fragment_recyclerview_ptr.FragmentActivtyRecyclerViewPtr;
+import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentActivityRecyclerView;
+import com.christianbahl.appkit.samplecore.fragment_recyclerview_list.FragmentActivityRecyclerViewList;
+import com.christianbahl.appkit.samplecore.fragment_recyclerview_list_ptr.FragmentActivityRecyclerViewListPtr;
+import com.christianbahl.appkit.samplecore.fragment_recyclerview_parallax.FragmentActivityRecyclerViewParallax;
+import com.christianbahl.appkit.samplecore.fragment_recyclerview_ptr.FragmentActivityRecyclerViewPtr;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,21 +66,35 @@ public class MainActivity extends AppCompatActivity {
     // Fragment RecyclerView
     findViewById(R.id.fragment_recyclerview).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        startActivity(FragmentActivtyRecyclerView.getStartIntent(MainActivity.this));
+        startActivity(FragmentActivityRecyclerView.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView (List)
+    findViewById(R.id.fragment_recyclerview_list).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivityRecyclerViewList.getStartIntent(MainActivity.this));
       }
     });
 
     // Fragment RecyclerView PullToRefresh
     findViewById(R.id.fragment_recyclerview_ptr).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        startActivity(FragmentActivtyRecyclerViewPtr.getStartIntent(MainActivity.this));
+        startActivity(FragmentActivityRecyclerViewPtr.getStartIntent(MainActivity.this));
+      }
+    });
+
+    // Fragment RecyclerView PullToRefresh (List)
+    findViewById(R.id.fragment_recyclerview_ptr_list).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        startActivity(FragmentActivityRecyclerViewListPtr.getStartIntent(MainActivity.this));
       }
     });
 
     // Fragment RecyclerView Parallax
     findViewById(R.id.fragment_recyclerview_parallax).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        startActivity(FragmentActivtyRecyclerViewParallax.getStartIntent(MainActivity.this));
+        startActivity(FragmentActivityRecyclerViewParallax.getStartIntent(MainActivity.this));
       }
     });
   }

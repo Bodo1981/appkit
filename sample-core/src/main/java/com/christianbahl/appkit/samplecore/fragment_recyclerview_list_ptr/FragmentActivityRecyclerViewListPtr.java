@@ -1,4 +1,4 @@
-package com.christianbahl.appkit.samplecore.fragment_recyclerview_ptr;
+package com.christianbahl.appkit.samplecore.fragment_recyclerview_list_ptr;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,13 +8,13 @@ import com.christianbahl.appkit.core.activity.CBActivityFragment;
 /**
  * @author Christian Bahl
  */
-public class FragmentActivtyRecyclerViewPtr extends CBActivityFragment {
+public class FragmentActivityRecyclerViewListPtr extends CBActivityFragment {
 
   public static Intent getStartIntent(Context context) {
-    return new Intent(context, FragmentActivtyRecyclerViewPtr.class);
+    return new Intent(context, FragmentActivityRecyclerViewListPtr.class);
   }
 
   @Override protected Fragment createFragmentToDisplay() {
-    return FragmentRecyclerViewPtrFragment.newInstance();
+    return FragmentRecyclerViewListPtrFragment.newInstance();
   }
 }

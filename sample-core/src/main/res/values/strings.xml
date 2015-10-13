@@ -10,7 +10,9 @@
   <string name="activity_toolbar_viewpager_mvp">Activity with Toolbar and ViewPager/Tabs (MVP)
   </string>
   <string name="fragment_recyclerview">Fragment RecyclerView</string>
+  <string name="fragment_recyclerview_list">Fragment RecyclerView (List)</string>
   <string name="fragment_recyclerview_ptr">Fragment RecyclerView PullToRefresh</string>
+  <string name="fragment_recyclerview_ptr_list">Fragment RecyclerView PullToRefresh (List)</string>
   <string name="fragment_recyclerview_parallax">Fragment RecyclerView Parallax</string>
 
 </resources>

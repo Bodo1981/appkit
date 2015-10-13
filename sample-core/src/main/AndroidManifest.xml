@@ -36,13 +36,19 @@
         android:name=".activity_toolbar_tabs_mvp.ActivityToolbarTabsMvp"/>
 
     <activity
-        android:name=".fragment_recyclerview.FragmentActivtyRecyclerView"/>
+        android:name=".fragment_recyclerview.FragmentActivityRecyclerView"/>
 
     <activity
-        android:name=".fragment_recyclerview_ptr.FragmentActivtyRecyclerViewPtr"/>
+        android:name=".fragment_recyclerview_list.FragmentActivityRecyclerViewList"/>
 
     <activity
-        android:name=".fragment_recyclerview_parallax.FragmentActivtyRecyclerViewParallax"/>
+        android:name=".fragment_recyclerview_ptr.FragmentActivityRecyclerViewPtr"/>
+
+    <activity
+        android:name=".fragment_recyclerview_list_ptr.FragmentActivityRecyclerViewListPtr"/>
+
+    <activity
+        android:name=".fragment_recyclerview_parallax.FragmentActivityRecyclerViewParallax"/>
   </application>
 
 </manifest>
