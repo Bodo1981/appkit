@@ -33,3 +33,6 @@ dependencies {
   compile 'io.reactivex:rxandroid:1.0.1'
   compile 'io.reactivex:rxjava:1.0.14'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/Bodo1981/bintray/master/bintray.gradle'
