@@ -81,6 +81,7 @@ Newest Version (Jcenter):
     dependencies {
         compile 'com.christianbahl.appkit:core:2.0.3'
         compile 'com.christianbahl.appkit:viewstate:2.0.3'
+        compile 'com.christianbahl.appkit:rx:2.0.3'
     }
 
 #Changelog
