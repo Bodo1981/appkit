@@ -78,12 +78,20 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
     }
   }
 
+  @Override public void onNewViewStateInstance() {
+    if (isAutoLoadDataEnabled()) {
+      super.onNewViewStateInstance();
+    }
+  }
+
   @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
     return throwable.getLocalizedMessage();
   }
 
   /**
+   * <p>
    * Should the title be displayed in the toolbar.
+   * </p>
    *
    * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
    */
@@ -92,7 +100,22 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
   }
 
   /**
+   * <p>
+   * Should the {@link #loadData(boolean)} method be called in {@link #onNewViewStateInstance()}
+   * or not.
+   * </p>
+   *
+   * @return <code>true</code> if loadData should be called automatically, otherwise
+   * <code>false</code>
+   */
+  protected boolean isAutoLoadDataEnabled() {
+    return true;
+  }
+
+  /**
+   * <p>
    * Provide the layout res id for the activity.
+   * </p>
    *
    * @return layout res id
    */
@@ -101,7 +124,9 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
   }
 
   /**
-   * Handle extra bundle data
+   * <p>
+   * Handle extra bundle data.
+   * </p>
    *
    * @param bundle bundle with extras passed to activity
    */

@@ -98,7 +98,9 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
 
     onMvpViewCreated(view, savedInstanceState);
 
-    loadData(false);
+    if (isAutoLoadDataEnabled()) {
+      loadData(false);
+    }
   }
 
   @Override public void showContent() {
@@ -141,6 +143,19 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
    */
   @NonNull protected RecyclerView.LayoutManager createRecyclerViewLayoutManager() {
     return new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+  }
+
+  /**
+   * <p>
+   * Should the {@link #loadData(boolean)} method be called in {@link #onViewCreated(View, Bundle)}
+   * or not.
+   * </p>
+   *
+   * @return <code>true</code> if loadData should be called automatically, otherwise
+   * <code>false</code>
+   */
+  protected boolean isAutoLoadDataEnabled() {
+    return true;
   }
 
   /**

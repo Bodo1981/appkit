@@ -79,7 +79,9 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
 
     onMvpViewCreated();
 
-    loadData(false);
+    if (isAutoLoadDataEnabled()) {
+      loadData(false);
+    }
   }
 
   @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
@@ -94,6 +96,18 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
    * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
    */
   protected boolean isDisplayShowTitleEnabled() {
+    return true;
+  }
+
+  /**
+   * <p>
+   * Should the {@link #loadData(boolean)} method be called in {@link #onContentChanged()} or not.
+   * </p>
+   *
+   * @return <code>true</code> if loadData should be called automatically, otherwise
+   * <code>false</code>
+   */
+  protected boolean isAutoLoadDataEnabled() {
     return true;
   }
 

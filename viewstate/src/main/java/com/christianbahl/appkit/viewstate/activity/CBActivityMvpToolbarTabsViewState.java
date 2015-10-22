@@ -96,7 +96,9 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
   }
 
   /**
-   * The margin between the pages in the {@link ViewPager}
+   * <p>
+   * The margin between the pages in the {@link ViewPager}.
+   * </p>
    *
    * @return margin between pages in {@link ViewPager}
    */
@@ -105,8 +107,10 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
   }
 
   /**
+   * <p>
    * The {@link Drawable} which will be displayed between the pages in the {@link ViewPager}
    * if <code>{@link #getPageMargin()} > 0</code>
+   * </p>
    *
    * @return divider {@link Drawable} for the {@link ViewPager}
    */
@@ -115,8 +119,10 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
   }
 
   /**
+   * <p>
    * Creates the {@link A} for the {@link ViewPager}. <br />
    * Called in {@link #onCreate(Bundle)}
+   * </p>
    *
    * @return {@link A}
    */

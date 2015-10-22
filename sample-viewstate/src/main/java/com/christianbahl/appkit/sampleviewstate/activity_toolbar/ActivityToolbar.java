@@ -48,8 +48,4 @@ public class ActivityToolbar extends
   @Override public void loadData(boolean pullToRefresh) {
     presenter.loadData(pullToRefresh);
   }
-
-  @Override public void onNewViewStateInstance() {
-    super.onNewViewStateInstance();
-  }
 }

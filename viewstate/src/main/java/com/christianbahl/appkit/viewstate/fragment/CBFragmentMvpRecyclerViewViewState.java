@@ -97,10 +97,12 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView
       throw new NullPointerException(
           "No emptyView found. Did you forget to add it to your layout with R.id.emptyView?");
     }
+  }
 
-    onMvpViewCreated(view, savedInstanceState);
-
-    loadData(false);
+  @Override public void onNewViewStateInstance() {
+    if (isAutoLoadDataEnabled()) {
+      super.onNewViewStateInstance();
+    }
   }
 
   @Override public void showContent() {
@@ -147,14 +149,15 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView
 
   /**
    * <p>
-   * Called after the mvp views and the recycler view are created.
+   * Should the {@link #loadData(boolean)} method be called in {@link #onViewCreated(View, Bundle)}
+   * or not.
    * </p>
    *
-   * @param view view
-   * @param savedInstanceState saved instance state
+   * @return <code>true</code> if loadData should be called automatically, otherwise
+   * <code>false</code>
    */
-  protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
-
+  protected boolean isAutoLoadDataEnabled() {
+    return true;
   }
 
   /**

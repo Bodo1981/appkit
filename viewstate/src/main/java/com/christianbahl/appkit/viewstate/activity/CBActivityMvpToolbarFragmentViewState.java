@@ -73,7 +73,9 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, 
   }
 
   /**
+   * <p>
    * Returns the {@link Fragment} which should be displayed by this activity.
+   * </p>
    *
    * @return {@link Fragment}
    */
