@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <item name="toolbar" type="id"/>
+  <item name="tabs" type="id"/>
+  <item name="emptyView" type="id"/>
+  <item name="pullToRefresh" type="id"/>
+  <item name="appBarLayout" type="id"/>
+
+</resources>
