@@ -55,7 +55,7 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
     if (layoutRes == null) {
       throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes()?");
     }
-    setContentView(getLayoutRes());
+    setContentView(layoutRes);
 
     if (getIntent() != null && getIntent().getExtras() != null) {
       readExtras(getIntent().getExtras());
