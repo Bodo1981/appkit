@@ -30,7 +30,9 @@ dependencies {
   compile project(":core")
 
   // Mosby
-  compile "com.hannesdorfmann.mosby:viewstate:$mosbyVersion"
+  compile ("com.hannesdorfmann.mosby:viewstate:$mosbyVersion") {
+    exclude group: "com.android.support"
+  }
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'

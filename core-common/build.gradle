@@ -27,14 +27,17 @@ dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
 
   // Support
-  compile "com.android.support:recyclerview-v7:$supportVersion"
   compile "com.android.support:design:$supportVersion"
 
   // Mosby
-  compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
+  compile("com.hannesdorfmann.mosby:mvp:$mosbyVersion") {
+    exclude group: "com.android.support"
+  }
 
   // SmoothProgressBar
-  compile "com.github.castorflex.smoothprogressbar:library-circular:1.1.0"
+  compile("com.github.castorflex.smoothprogressbar:library-circular:1.2.0") {
+    exclude group: "com.android.support"
+  }
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
