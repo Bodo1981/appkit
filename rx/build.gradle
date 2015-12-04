@@ -31,7 +31,7 @@ dependencies {
 
   // RxAndroid + RxJava
   compile 'io.reactivex:rxandroid:1.0.1'
-  compile 'io.reactivex:rxjava:1.0.16'
+  compile 'io.reactivex:rxjava:1.0.17'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
