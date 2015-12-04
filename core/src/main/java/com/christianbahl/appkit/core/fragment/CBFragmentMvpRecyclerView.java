@@ -106,7 +106,7 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
   @Override public void showContent() {
     super.showContent();
 
-    if (adapter.getItemCount() == 0) {
+    if (isEmptyViewEnabled() && adapter.getItemCount() == 0) {
       emptyView.setVisibility(View.VISIBLE);
     } else {
       emptyView.setVisibility(View.GONE);
@@ -155,6 +155,17 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
    * <code>false</code>
    */
   protected boolean isAutoLoadDataEnabled() {
+    return true;
+  }
+
+  /**
+   * <p>
+   * Should the <code>R.layout.emptyView</code> be displayed if adapter.getItemCount() == 0.
+   * </p>
+   *
+   * @return true if empty view should be used
+   */
+  protected boolean isEmptyViewEnabled() {
     return true;
   }
 
