@@ -37,8 +37,10 @@ import rx.Subscriber;
 public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresenter<V> {
 
   protected Subscriber<M> subscriber;
+  protected CBAndroidSchedulerTransformer<M> transformer;
 
   public CBLceRxPresenter() {
+    this.transformer = new CBAndroidSchedulerTransformer<>();
   }
 
   protected void unsubscribe() {
@@ -75,7 +77,7 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
   }
 
   protected Observable<M> applyScheduler(Observable<M> observable) {
-    return observable.compose(new CBAndroidSchedulerTransformer<M>());
+    return observable.compose(transformer);
   }
 
   protected void onCompleted() {

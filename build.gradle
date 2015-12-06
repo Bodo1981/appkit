@@ -5,7 +5,7 @@ ext {
   minSdkVersion = 14
   targetSdkVersion = 23
   versionCode = 1
-  versionName = "2.0.7"
+  versionName = "2.0.8"
 
   bintrayRepo = 'maven'
   bintrayName = 'appkit'
@@ -18,7 +18,7 @@ ext {
   siteUrl = 'https://github.com/Bodo1981/appkit'
   gitUrl = 'https://github.com/Bodo1981/appkit.git'
 
-  libraryVersion = '2.0.7'
+  libraryVersion = '2.0.8'
 
   developerId = 'Bodo1981'
   developerName = 'Christian Bahl'
