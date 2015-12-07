@@ -90,10 +90,12 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
     }
     contentView.setLayoutManager(layoutManager);
 
-    emptyView = view.findViewById(R.id.emptyView);
-    if (emptyView == null) {
-      throw new NullPointerException(
-          "No emptyView found. Did you forget to add it to your layout with R.id.emptyView?");
+    if (isEmptyViewEnabled()) {
+      emptyView = view.findViewById(R.id.emptyView);
+      if (emptyView == null) {
+        throw new NullPointerException(
+            "No emptyView found. Did you forget to add it to your layout with R.id.emptyView?");
+      }
     }
 
     onMvpViewCreated(view, savedInstanceState);
