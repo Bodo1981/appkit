@@ -20,6 +20,7 @@ import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 import rx.Observable;
 import rx.Subscriber;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * <p>
@@ -36,7 +37,7 @@ import rx.Subscriber;
  */
 public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresenter<V> {
 
-  protected Subscriber<M> subscriber;
+  protected CompositeSubscription compositeSubscription;
   protected CBAndroidSchedulerTransformer<M> transformer;
 
   public CBLceRxPresenter() {
@@ -44,11 +45,11 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
   }
 
   protected void unsubscribe() {
-    if (subscriber != null && !subscriber.isUnsubscribed()) {
-      subscriber.unsubscribe();
+    if (compositeSubscription != null && !compositeSubscription.isUnsubscribed()) {
+      compositeSubscription.unsubscribe();
     }
 
-    subscriber = null;
+    compositeSubscription = null;
   }
 
   public void subscribe(Observable<M> observable, final boolean contentPresent) {
@@ -56,9 +57,7 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
       getView().showLoading(contentPresent);
     }
 
-    unsubscribe();
-
-    subscriber = new Subscriber<M>() {
+    compositeSubscription.add(applyScheduler(observable).subscribe(new Subscriber<M>() {
       @Override public void onCompleted() {
         CBLceRxPresenter.this.onCompleted();
       }
@@ -70,10 +69,7 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
       @Override public void onNext(M m) {
         CBLceRxPresenter.this.onNext(m);
       }
-    };
-
-    observable = applyScheduler(observable);
-    observable.subscribe(subscriber);
+    }));
   }
 
   protected Observable<M> applyScheduler(Observable<M> observable) {
@@ -100,6 +96,12 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
     if (isViewAttached()) {
       getView().setData(data);
     }
+  }
+
+  @Override public void attachView(V view) {
+    super.attachView(view);
+
+    compositeSubscription = new CompositeSubscription();
   }
 
   @Override public void detachView(boolean retainInstance) {
