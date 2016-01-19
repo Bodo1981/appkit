@@ -44,17 +44,13 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
     this.transformer = new CBAndroidSchedulerTransformer<>();
   }
 
-  protected void unsubscribe() {
-    if (compositeSubscription != null && !compositeSubscription.isUnsubscribed()) {
-      compositeSubscription.unsubscribe();
-    }
-
-    compositeSubscription = null;
-  }
-
   public void subscribe(Observable<M> observable, final boolean contentPresent) {
     if (isViewAttached()) {
       getView().showLoading(contentPresent);
+    }
+
+    if (compositeSubscription == null) {
+      compositeSubscription = new CompositeSubscription();
     }
 
     compositeSubscription.add(applyScheduler(observable).subscribe(new Subscriber<M>() {
@@ -74,6 +70,14 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
 
   protected Observable<M> applyScheduler(Observable<M> observable) {
     return observable.compose(transformer);
+  }
+
+  protected void unsubscribe() {
+    if (compositeSubscription != null && !compositeSubscription.isUnsubscribed()) {
+      compositeSubscription.unsubscribe();
+    }
+
+    compositeSubscription = null;
   }
 
   protected void onCompleted() {
@@ -96,12 +100,6 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
     if (isViewAttached()) {
       getView().setData(data);
     }
-  }
-
-  @Override public void attachView(V view) {
-    super.attachView(view);
-
-    compositeSubscription = new CompositeSubscription();
   }
 
   @Override public void detachView(boolean retainInstance) {
