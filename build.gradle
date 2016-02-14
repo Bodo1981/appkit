@@ -5,7 +5,7 @@ ext {
   minSdkVersion = 14
   targetSdkVersion = 23
   versionCode = 1
-  versionName = "2.0.11"
+  versionName = "2.0.12"
 
   bintrayRepo = 'maven'
   bintrayName = 'appkit'
@@ -18,7 +18,7 @@ ext {
   siteUrl = 'https://github.com/Bodo1981/appkit'
   gitUrl = 'https://github.com/Bodo1981/appkit.git'
 
-  libraryVersion = '2.0.11'
+  libraryVersion = '2.0.12'
 
   developerId = 'Bodo1981'
   developerName = 'Christian Bahl'
@@ -53,5 +53,5 @@ allprojects {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = "2.10"
+  gradleVersion = "2.11"
 }
