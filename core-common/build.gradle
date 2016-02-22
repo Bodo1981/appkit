@@ -30,14 +30,10 @@ dependencies {
   compile "com.android.support:design:$supportVersion"
 
   // Mosby
-  compile("com.hannesdorfmann.mosby:mvp:$mosbyVersion") {
-    exclude group: "com.android.support"
-  }
+  compile "com.hannesdorfmann.mosby:mvp:$mosbyVersion"
 
   // SmoothProgressBar
-  compile("com.github.castorflex.smoothprogressbar:library-circular:1.2.0") {
-    exclude group: "com.android.support"
-  }
+  compile "com.github.castorflex.smoothprogressbar:library-circular:1.2.0"
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
