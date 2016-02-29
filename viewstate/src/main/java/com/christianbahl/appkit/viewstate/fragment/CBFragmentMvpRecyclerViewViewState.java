@@ -86,8 +86,8 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView
 
     RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
     if (layoutManager == null) {
-      throw new IllegalStateException(
-          "The RecyclerView.LayoutManager is not specified. You have to provide a "
+      throw new NullPointerException(
+          "The RecyclerView.LayoutManager is null. You have to provide a "
               + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
     }
     contentView.setLayoutManager(layoutManager);
