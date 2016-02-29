@@ -101,6 +101,13 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView
     }
   }
 
+  @Override public void onDestroyView() {
+    super.onDestroyView();
+
+    adapter = null;
+    emptyView = null;
+  }
+
   @Override public void onNewViewStateInstance() {
     if (isAutoLoadDataEnabled()) {
       super.onNewViewStateInstance();

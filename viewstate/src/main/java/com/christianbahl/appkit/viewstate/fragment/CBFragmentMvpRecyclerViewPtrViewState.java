@@ -64,6 +64,12 @@ public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends MvpLceV
     });
   }
 
+  @Override public void onDestroyView() {
+    super.onDestroyView();
+
+    swipeRefreshLayout = null;
+  }
+
   @Override public void showContent() {
     super.showContent();
 
