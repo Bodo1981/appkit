@@ -15,6 +15,7 @@
  */
 package com.christianbahl.appkit.rx;
 
+import android.support.annotation.NonNull;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -34,7 +35,7 @@ public class CBAndroidSchedulerTransformer<T> implements CBSchedulerTransformer<
   public CBAndroidSchedulerTransformer() {
   }
 
-  public Observable<T> call(Observable<T> observable) {
+  @NonNull public Observable<T> call(Observable<T> observable) {
     return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
   }
 }

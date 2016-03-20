@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.core.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -91,7 +92,7 @@ public abstract class CBActivityToolbar extends AppCompatActivity {
    *
    * @return layout res id
    */
-  protected Integer getLayoutRes() {
+  @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_toolbar;
   }
 

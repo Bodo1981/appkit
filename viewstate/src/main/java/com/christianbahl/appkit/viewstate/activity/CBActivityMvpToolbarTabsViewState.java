@@ -17,6 +17,8 @@ package com.christianbahl.appkit.viewstate.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -91,7 +93,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
     }
   }
 
-  @Override protected Integer getLayoutRes() {
+  @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_tabs;
   }
 
@@ -114,7 +116,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
    *
    * @return divider {@link Drawable} for the {@link ViewPager}
    */
-  protected Integer getViewPagerDividerDrawable() {
+  @Nullable protected Integer getViewPagerDividerDrawable() {
     return R.drawable.cb_viewpager_divider;
   }
 
@@ -126,5 +128,5 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
    *
    * @return {@link A}
    */
-  protected abstract A createAdapter();
+  @NonNull protected abstract A createAdapter();
 }

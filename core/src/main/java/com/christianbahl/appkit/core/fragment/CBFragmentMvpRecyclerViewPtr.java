@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.core.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -42,7 +43,7 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends MvpLceView<M>, P
 
   protected SwipeRefreshLayout swipeRefreshLayout;
 
-  @Override protected Integer getLayoutRes() {
+  @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_fragment_recycler_view_ptr;
   }
 

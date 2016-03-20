@@ -17,6 +17,7 @@ package com.christianbahl.appkit.core.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -90,7 +91,7 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
     }
   }
 
-  @Override protected Integer getLayoutRes() {
+  @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_tabs;
   }
 
@@ -125,5 +126,5 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
    *
    * @return {@link A}
    */
-  protected abstract A createAdapter();
+  @NonNull protected abstract A createAdapter();
 }

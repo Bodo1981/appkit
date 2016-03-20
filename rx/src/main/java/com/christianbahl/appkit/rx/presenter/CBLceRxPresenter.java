@@ -15,6 +15,7 @@
  */
 package com.christianbahl.appkit.rx.presenter;
 
+import android.support.annotation.NonNull;
 import com.christianbahl.appkit.rx.CBAndroidSchedulerTransformer;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
@@ -68,7 +69,7 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
     }));
   }
 
-  protected Observable<M> applyScheduler(Observable<M> observable) {
+  @NonNull protected Observable<M> applyScheduler(Observable<M> observable) {
     return observable.compose(transformer);
   }
 

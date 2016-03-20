@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.viewstate.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -68,7 +69,7 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, 
     }
   }
 
-  @Override protected Integer getLayoutRes() {
+  @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_fragment;
   }
 
@@ -79,5 +80,5 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, 
    *
    * @return {@link Fragment}
    */
-  protected abstract Fragment createFragmentToDisplay();
+  @NonNull protected abstract Fragment createFragmentToDisplay();
 }

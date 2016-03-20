@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.core.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
@@ -77,7 +78,7 @@ public abstract class CBActivityFragment extends AppCompatActivity {
    *
    * @return layout res id
    */
-  protected Integer getLayoutRes() {
+  @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_fragment;
   }
 
@@ -99,5 +100,5 @@ public abstract class CBActivityFragment extends AppCompatActivity {
    *
    * @return {@link Fragment}
    */
-  protected abstract Fragment createFragmentToDisplay();
+  @NonNull protected abstract Fragment createFragmentToDisplay();
 }

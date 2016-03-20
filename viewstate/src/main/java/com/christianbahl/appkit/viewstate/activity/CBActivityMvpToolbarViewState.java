@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.viewstate.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -123,7 +124,7 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
    *
    * @return layout res id
    */
-  protected Integer getLayoutRes() {
+  @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_fragment;
   }
 

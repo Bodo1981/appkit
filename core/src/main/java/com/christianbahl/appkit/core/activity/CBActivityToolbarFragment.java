@@ -16,6 +16,7 @@
 package com.christianbahl.appkit.core.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
@@ -61,7 +62,7 @@ public abstract class CBActivityToolbarFragment extends CBActivityToolbar {
     }
   }
 
-  @Override protected Integer getLayoutRes() {
+  @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_toolbar_fragment;
   }
 
@@ -70,5 +71,5 @@ public abstract class CBActivityToolbarFragment extends CBActivityToolbar {
    *
    * @return {@link Fragment}
    */
-  protected abstract Fragment createFragmentToDisplay();
+  @NonNull protected abstract Fragment createFragmentToDisplay();
 }

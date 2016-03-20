@@ -68,7 +68,7 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView
    *
    * @return layout res id
    */
-  protected Integer getLayoutRes() {
+  @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_fragment_recycler_view;
   }
 
@@ -200,5 +200,5 @@ public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView
    *
    * @return {@link A}
    */
-  protected abstract A createAdapter();
+  @NonNull protected abstract A createAdapter();
 }
