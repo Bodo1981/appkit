@@ -31,17 +31,17 @@ ext {
 
 buildscript {
   ext.mosbyVersion = "2.0.1"
-  ext.supportVersion = "23.2.1"
+  ext.supportVersion = "23.3.0"
 
   repositories {
     jcenter()
   }
 
   dependencies {
-    classpath "com.android.tools.build:gradle:1.5.0"
+    classpath 'com.android.tools.build:gradle:2.1.0-rc1'
 
     // Bintray
-    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5"
+    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6"
     classpath "com.github.dcendents:android-maven-gradle-plugin:1.3"
   }
 }
@@ -53,5 +53,5 @@ allprojects {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = "2.12"
+  gradleVersion = "2.13"
 }
