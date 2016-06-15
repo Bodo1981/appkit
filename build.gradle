@@ -5,7 +5,7 @@ ext {
   minSdkVersion = 14
   targetSdkVersion = 23
   versionCode = 1
-  versionName = "2.0.17"
+  versionName = "2.0.18"
 
   bintrayRepo = 'maven'
   bintrayName = 'appkit'
@@ -18,7 +18,7 @@ ext {
   siteUrl = 'https://github.com/Bodo1981/appkit'
   gitUrl = 'https://github.com/Bodo1981/appkit.git'
 
-  libraryVersion = '2.0.17'
+  libraryVersion = '2.0.18'
 
   developerId = 'Bodo1981'
   developerName = 'Christian Bahl'
@@ -31,7 +31,7 @@ ext {
 
 buildscript {
   ext.mosbyVersion = "2.0.1"
-  ext.supportVersion = "23.4.0"
+  ext.supportVersion = "24.0.0"
 
   repositories {
     jcenter()
