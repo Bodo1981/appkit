@@ -21,7 +21,7 @@ public class ActivityToolbarFragmentMvp
     return new Intent(context, ActivityToolbarFragmentMvp.class);
   }
 
-  @Override protected Fragment createFragmentToDisplay() {
+  @NonNull @Override protected Fragment createFragmentToDisplay() {
     return FragmentToDisplay.newInstance();
   }
 

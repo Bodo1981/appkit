@@ -15,11 +15,14 @@
  */
 package com.christianbahl.appkit.core.activity;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import com.christianbahl.appkit.core.R;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity;
@@ -65,6 +68,12 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
 
   @Override public void onContentChanged() {
     super.onContentChanged();
+
+    if (loadingView instanceof ProgressBar) {
+      ((ProgressBar) loadingView).getIndeterminateDrawable()
+          .setColorFilter(ContextCompat.getColor(this, R.color.cb_progressbar_color),
+              PorterDuff.Mode.SRC_ATOP);
+    }
 
     toolbar = (Toolbar) findViewById(R.id.toolbar);
     if (toolbar == null) {
