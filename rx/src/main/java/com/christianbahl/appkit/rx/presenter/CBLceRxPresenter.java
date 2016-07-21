@@ -50,7 +50,7 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
       getView().showLoading(contentPresent);
     }
 
-    if (compositeSubscription == null) {
+    if (compositeSubscription == null || compositeSubscription.isUnsubscribed()) {
       compositeSubscription = new CompositeSubscription();
     }
 
@@ -85,16 +85,12 @@ public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresent
     if (isViewAttached()) {
       getView().showContent();
     }
-
-    unsubscribe();
   }
 
   protected void onError(Throwable e, boolean contentPresent) {
     if (isViewAttached()) {
       getView().showError(e, contentPresent);
     }
-
-    this.unsubscribe();
   }
 
   protected void onNext(M data) {
