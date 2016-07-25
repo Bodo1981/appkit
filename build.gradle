@@ -5,7 +5,7 @@ ext {
   minSdkVersion = 14
   targetSdkVersion = 24
   versionCode = 1
-  versionName = "2.0.20"
+  versionName = "2.0.21"
 
   bintrayRepo = 'maven'
   bintrayName = 'appkit'
@@ -18,7 +18,7 @@ ext {
   siteUrl = 'https://github.com/Bodo1981/appkit'
   gitUrl = 'https://github.com/Bodo1981/appkit.git'
 
-  libraryVersion = '2.0.20'
+  libraryVersion = '2.0.21'
 
   developerId = 'Bodo1981'
   developerName = 'Christian Bahl'
@@ -31,7 +31,7 @@ ext {
 
 buildscript {
   ext.mosbyVersion = "2.0.1"
-  ext.supportVersion = "24.1.0"
+  ext.supportVersion = "24.1.1"
 
   repositories {
     jcenter()
@@ -41,8 +41,8 @@ buildscript {
     classpath 'com.android.tools.build:gradle:2.1.2'
 
     // Bintray
-    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.1"
-    classpath "com.github.dcendents:android-maven-gradle-plugin:1.4.1"
+    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7"
+    classpath "com.github.dcendents:android-maven-gradle-plugin:1.4"
   }
 }
 
