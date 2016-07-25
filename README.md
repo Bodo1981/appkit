@@ -79,9 +79,9 @@ Newest Version (Jcenter):
 [ ![Download](https://api.bintray.com/packages/bodo1981/maven/appkit/images/download.svg) ](https://bintray.com/bodo1981/maven/appkit/_latestVersion)
 
     dependencies {
-        compile 'com.christianbahl.appkit:core:2.0.19'
-        compile 'com.christianbahl.appkit:viewstate:2.0.19'
-        compile 'com.christianbahl.appkit:rx:2.0.19'
+        compile 'com.christianbahl.appkit:core:2.0.21'
+        compile 'com.christianbahl.appkit:viewstate:2.0.21'
+        compile 'com.christianbahl.appkit:rx:2.0.21'
     }
 
 #Changelog
