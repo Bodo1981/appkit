@@ -38,7 +38,7 @@ dependencies {
   compile ("io.reactivex:rxandroid:1.2.1") {
     exclude module: "rxjava"
   }
-  compile "io.reactivex:rxjava:1.1.9"
+  compile "io.reactivex:rxjava:1.1.10"
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'

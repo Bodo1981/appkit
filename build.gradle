@@ -1,11 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 ext {
   compileSdkVersion = 24
-  buildToolsVersion = "24.0.1"
+  buildToolsVersion = "24.0.2"
   minSdkVersion = 14
   targetSdkVersion = 24
   versionCode = 1
-  versionName = "2.0.22"
+  versionName = "2.0.23"
 
   bintrayRepo = 'maven'
   bintrayName = 'appkit'
@@ -18,7 +18,7 @@ ext {
   siteUrl = 'https://github.com/Bodo1981/appkit'
   gitUrl = 'https://github.com/Bodo1981/appkit.git'
 
-  libraryVersion = '2.0.22'
+  libraryVersion = '2.0.23'
 
   developerId = 'Bodo1981'
   developerName = 'Christian Bahl'
@@ -31,7 +31,7 @@ ext {
 
 buildscript {
   ext.mosbyVersion = "2.0.1"
-  ext.supportVersion = "24.2.0"
+  ext.supportVersion = "24.2.1"
 
   repositories {
     jcenter()
