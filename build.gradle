@@ -35,7 +35,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.2.0-rc2'
+    classpath 'com.android.tools.build:gradle:2.2.0'
 
     // Bintray
     classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7"
