@@ -4,15 +4,17 @@ ext {
   artifact = 'rx'
 }
 
+def globalConf = rootProject.ext
+
 android {
-  compileSdkVersion rootProject.ext.compileSdkVersion
-  buildToolsVersion rootProject.ext.buildToolsVersion
+  compileSdkVersion globalConf.compileSdkVersion
+  buildToolsVersion globalConf.buildToolsVersion
 
   defaultConfig {
-    minSdkVersion rootProject.ext.minSdkVersion
-    targetSdkVersion rootProject.ext.targetSdkVersion
-    versionCode rootProject.ext.versionCode
-    versionName rootProject.ext.versionName
+    minSdkVersion globalConf.minSdk
+    targetSdkVersion globalConf.targetSdk
+    versionCode globalConf.versionCode
+    versionName globalConf.versionName
   }
 
   buildTypes {
@@ -21,24 +23,29 @@ android {
       proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
     }
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
+  Map<String, String> dependencies = globalConf.dependencies
 
-  compile "com.android.support:appcompat-v7:$supportVersion"
+  compile dependencies.appCompat
 
   // Mosby
-  compile ("com.hannesdorfmann.mosby:mvp:$mosbyVersion") {
+  compile (dependencies.mosbyMvp) {
     exclude module: "support-annotations"
     exclude module: "appcompat-v7"
   }
 
   // RxAndroid + RxJava
-  compile ("io.reactivex:rxandroid:1.2.1") {
+  compile (dependencies.rxAndroid1) {
     exclude module: "rxjava"
   }
-  compile "io.reactivex:rxjava:1.1.10"
+  compile dependencies.rxJava1
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'

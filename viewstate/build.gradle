@@ -4,15 +4,17 @@ ext {
   artifact = 'viewstate'
 }
 
+def globalConf = rootProject.ext
+
 android {
-  compileSdkVersion rootProject.ext.compileSdkVersion
-  buildToolsVersion rootProject.ext.buildToolsVersion
+  compileSdkVersion globalConf.compileSdkVersion
+  buildToolsVersion globalConf.buildToolsVersion
 
   defaultConfig {
-    minSdkVersion rootProject.ext.minSdkVersion
-    targetSdkVersion rootProject.ext.targetSdkVersion
-    versionCode rootProject.ext.versionCode
-    versionName rootProject.ext.versionName
+    minSdkVersion globalConf.minSdk
+    targetSdkVersion globalConf.targetSdk
+    versionCode globalConf.versionCode
+    versionName globalConf.versionName
   }
 
   buildTypes {
@@ -21,16 +23,21 @@ android {
       proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
     }
   }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
 }
 
 dependencies {
-  compile fileTree(dir: "libs", include: ["*.jar"])
+  Map<String, String> dependencies = globalConf.dependencies
 
   // Core
   compile project(":core")
 
   // Mosby
-  compile ("com.hannesdorfmann.mosby:viewstate:$mosbyVersion") {
+  compile (dependencies.mosbyViewstate) {
     exclude module: "support-annotations"
     exclude module: "appcompat-v7"
   }

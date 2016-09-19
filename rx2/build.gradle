@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 ext {
-  artifact = 'core-common'
+  artifact = 'rx2'
 }
 
 def globalConf = rootProject.ext
@@ -33,14 +33,19 @@ android {
 dependencies {
   Map<String, String> dependencies = globalConf.dependencies
 
-  // Support
-  compile dependencies.design
+  compile dependencies.appCompat
 
   // Mosby
   compile (dependencies.mosbyMvp) {
     exclude module: "support-annotations"
     exclude module: "appcompat-v7"
   }
+
+  // RxAndroid + RxJava
+  compile (dependencies.rxAndroid2) {
+    exclude module: "rxjava"
+  }
+  compile dependencies.rxJava2
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
