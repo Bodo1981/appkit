@@ -60,8 +60,8 @@ import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
 public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends PagerAdapter>
     extends CBActivityMvpToolbarViewState<ViewPager, D, V, P> {
 
-  protected TabLayout tabs;
-  protected A adapter;
+  public TabLayout tabs;
+  public A adapter;
 
   @Override public void onContentChanged() {
     super.onContentChanged();

@@ -42,7 +42,7 @@ import com.christianbahl.appkit.core.R;
  */
 public abstract class CBActivityToolbar extends AppCompatActivity {
 
-  protected Toolbar toolbar;
+  public Toolbar toolbar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

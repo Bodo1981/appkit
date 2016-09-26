@@ -29,7 +29,7 @@ public class ActivityToolbarFragment extends
     setRetainInstance(true);
   }
 
-  @Override protected Fragment createFragmentToDisplay() {
+  @NonNull @Override protected Fragment createFragmentToDisplay() {
     return ActivityToolbarFragmentFragment.newInstance();
   }
 

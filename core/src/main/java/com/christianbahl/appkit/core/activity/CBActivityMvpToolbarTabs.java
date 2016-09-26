@@ -58,8 +58,8 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends PagerAdapter>
     extends CBActivityMvpToolbar<ViewPager, M, V, P> {
 
-  protected TabLayout tabs;
-  protected A adapter;
+  public TabLayout tabs;
+  public A adapter;
 
   @Override protected void onMvpViewCreated() {
     super.onMvpViewCreated();

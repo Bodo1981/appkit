@@ -41,7 +41,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
     extends CBFragmentMvpRecyclerView<M, V, P, A> {
 
-  protected SwipeRefreshLayout swipeRefreshLayout;
+  public SwipeRefreshLayout swipeRefreshLayout;
 
   @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_fragment_recycler_view_ptr;

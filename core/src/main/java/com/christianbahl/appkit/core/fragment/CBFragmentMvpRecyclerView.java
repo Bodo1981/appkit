@@ -47,8 +47,8 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
     extends MvpLceFragment<RecyclerView, M, V, P> {
 
-  protected A adapter;
-  protected View emptyView;
+  public A adapter;
+  public View emptyView;
 
   @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

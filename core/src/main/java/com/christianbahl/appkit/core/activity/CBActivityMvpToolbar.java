@@ -50,7 +50,7 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
 public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceView<M>, P extends MvpPresenter<V>>
     extends MvpLceActivity<CV, M, V, P> {
 
-  protected Toolbar toolbar;
+  public Toolbar toolbar;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
