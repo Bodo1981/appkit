@@ -203,5 +203,5 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
    *
    * @return {@link A}
    */
-  protected abstract A createAdapter();
+  @NonNull protected abstract A createAdapter();
 }

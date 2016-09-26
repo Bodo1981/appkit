@@ -2,6 +2,7 @@ package com.christianbahl.appkit.samplecore.fragment_recyclerview_parallax;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import com.christianbahl.appkit.core.activity.CBActivityFragment;
 
@@ -14,7 +15,7 @@ public class FragmentActivityRecyclerViewParallax extends CBActivityFragment {
     return new Intent(context, FragmentActivityRecyclerViewParallax.class);
   }
 
-  @Override protected Fragment createFragmentToDisplay() {
+  @NonNull @Override protected Fragment createFragmentToDisplay() {
     return FragmentRecyclerViewParallaxFragment.newInstance();
   }
 }

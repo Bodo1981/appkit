@@ -148,7 +148,7 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
    *
    * @param bundle bundle with extras passed to activity
    */
-  protected void readExtras(Bundle bundle) {
+  protected void readExtras(@NonNull Bundle bundle) {
 
   }
 }

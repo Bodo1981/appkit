@@ -27,7 +27,7 @@ public class ActivityToolbarTabs extends
     setRetainInstance(true);
   }
 
-  @Override protected ActivityToolbarTabsAdapter createAdapter() {
+  @NonNull @Override protected ActivityToolbarTabsAdapter createAdapter() {
     return new ActivityToolbarTabsAdapter(getSupportFragmentManager());
   }
 

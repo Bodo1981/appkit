@@ -28,7 +28,7 @@ public class FragmentRecyclerViewListPtrFragment extends
     setRetainInstance(true);
   }
 
-  @Override protected FragmentRecyclerViewAdapter createAdapter() {
+  @NonNull @Override protected FragmentRecyclerViewAdapter createAdapter() {
     return new FragmentRecyclerViewAdapter(getActivity());
   }
 

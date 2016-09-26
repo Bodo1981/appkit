@@ -103,7 +103,7 @@ public abstract class CBActivityToolbar extends AppCompatActivity {
    *
    * @param bundle bundle with extras passed to activity
    */
-  protected void readExtras(Bundle bundle) {
+  protected void readExtras(@NonNull Bundle bundle) {
 
   }
 }

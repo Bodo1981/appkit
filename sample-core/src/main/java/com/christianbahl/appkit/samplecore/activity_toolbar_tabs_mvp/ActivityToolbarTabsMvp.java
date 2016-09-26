@@ -17,7 +17,7 @@ public class ActivityToolbarTabsMvp extends
     return new Intent(context, ActivityToolbarTabsMvp.class);
   }
 
-  @Override protected ActivityToolbarTabsMvpAdapter createAdapter() {
+  @NonNull @Override protected ActivityToolbarTabsMvpAdapter createAdapter() {
     return new ActivityToolbarTabsMvpAdapter(getSupportFragmentManager());
   }
 
