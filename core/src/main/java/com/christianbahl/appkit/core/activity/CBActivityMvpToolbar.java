@@ -55,15 +55,15 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    if (getIntent() != null && getIntent().getExtras() != null) {
+      readExtras(getIntent().getExtras());
+    }
+
     Integer layoutRes = getLayoutRes();
     if (layoutRes == null) {
       throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes()?");
     }
     setContentView(layoutRes);
-
-    if (getIntent() != null && getIntent().getExtras() != null) {
-      readExtras(getIntent().getExtras());
-    }
   }
 
   @Override public void onContentChanged() {
