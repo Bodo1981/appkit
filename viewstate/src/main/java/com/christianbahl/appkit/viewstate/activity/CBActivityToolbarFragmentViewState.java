@@ -3,11 +3,13 @@ package com.christianbahl.appkit.viewstate.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.MvpView;
 
 /**
  * @author Christian Bahl
  */
-public abstract class CBActivityToolbarFragmentViewState extends CBActivityToolbarViewState {
+public abstract class CBActivityToolbarFragmentViewState<V extends MvpView, P extends MvpPresenter<V>> extends CBActivityToolbarViewState<V, P> {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

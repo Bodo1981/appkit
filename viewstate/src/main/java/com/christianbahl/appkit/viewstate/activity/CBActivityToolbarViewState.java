@@ -5,12 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import com.christianbahl.appkit.viewstate.R;
+import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby.mvp.MvpView;
 import com.hannesdorfmann.mosby.mvp.viewstate.MvpViewStateActivity;
 
 /**
  * @author Christian Bahl
  */
-public abstract class CBActivityToolbarViewState extends MvpViewStateActivity {
+public abstract class CBActivityToolbarViewState<V extends MvpView, P extends MvpPresenter<V>> extends MvpViewStateActivity<V, P> {
 
   public Toolbar toolbar;
 
