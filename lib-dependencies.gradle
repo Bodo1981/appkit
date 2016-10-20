@@ -1,6 +1,6 @@
 ext {
   mosbyVersion = "2.0.1"
-  supportVersion = "24.2.1"
+  supportVersion = "25.0.0"
   rxAndroid1Version = "1.2.1"
   rxJava1Version = "1.2.1"
   rxAndroid2Version = "2.0.0-RC1"
