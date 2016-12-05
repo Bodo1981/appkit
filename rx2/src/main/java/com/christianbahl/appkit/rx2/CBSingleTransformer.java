@@ -36,7 +36,7 @@ public class CBSingleTransformer<T> implements SingleTransformer<T, T> {
   public CBSingleTransformer() {
   }
 
-  @Override public SingleSource<T> apply(Single<T> single) throws Exception {
+  @Override public SingleSource<T> apply(Single<T> single) {
     return single.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
   }
 }

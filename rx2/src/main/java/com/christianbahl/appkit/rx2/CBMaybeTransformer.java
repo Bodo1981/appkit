@@ -36,7 +36,7 @@ public class CBMaybeTransformer<T> implements MaybeTransformer<T, T> {
   public CBMaybeTransformer() {
   }
 
-  @Override public MaybeSource<T> apply(Maybe<T> maybe) throws Exception {
+  @Override public MaybeSource<T> apply(Maybe<T> maybe) {
     return maybe.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
   }
 }

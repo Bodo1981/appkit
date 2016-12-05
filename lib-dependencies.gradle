@@ -1,10 +1,10 @@
 ext {
   mosbyVersion = "2.0.1"
-  supportVersion = "25.0.0"
+  supportVersion = "25.0.1"
   rxAndroid1Version = "1.2.1"
-  rxJava1Version = "1.2.2"
+  rxJava1Version = "1.2.3"
   rxAndroid2Version = "2.0.1"
-  rxJava2Version = "2.0.1"
+  rxJava2Version = "2.0.2"
 
   dependencies = [appCompat     : "com.android.support:appcompat-v7:$supportVersion",
                   design        : "com.android.support:design:$supportVersion",

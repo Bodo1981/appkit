@@ -36,7 +36,7 @@ public class CBObservableTransformer<T> implements ObservableTransformer<T, T> {
   public CBObservableTransformer() {
   }
 
-  @Override public ObservableSource<T> apply(Observable<T> observable) throws Exception {
+  @Override public ObservableSource<T> apply(Observable<T> observable) {
     return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
   }
 }
