@@ -15,16 +15,21 @@
  */
 package com.christianbahl.appkit.rx;
 
+import android.support.annotation.NonNull;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * <p>
- * Rx Transformer for manipulating the data in an {@link Observable}
+ * Sets the typical threads for subscribeOn (Schedulers.io()) and observeOn(AndroidSchedulers.mainThread()) for Android.
  * </p>
  *
  * @param <T> data of the {@link Observable}
  * @author Christian Bahl
- * @see Observable.Transformer
  */
-public interface CBSchedulerTransformer<T> extends Observable.Transformer<T, T> {
+public class CBObservableTransformer<T> implements Observable.Transformer<T, T> {
+  @NonNull public Observable<T> call(Observable<T> observable) {
+    return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+  }
 }

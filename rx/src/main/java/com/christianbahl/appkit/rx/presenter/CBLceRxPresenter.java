@@ -16,7 +16,7 @@
 package com.christianbahl.appkit.rx.presenter;
 
 import android.support.annotation.NonNull;
-import com.christianbahl.appkit.rx.CBAndroidSchedulerTransformer;
+import com.christianbahl.appkit.rx.CBObservableTransformer;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import rx.Observable;
@@ -29,8 +29,7 @@ import rx.subscriptions.CompositeSubscription;
  * </p>
  *
  * <p>
- * The functions for Lce are called automatically when calling {@link #subscribe(Observable,
- * boolean)}.
+ * The functions for Lce are called automatically when calling {@link #subscribe(Observable, boolean)}.
  * </p>
  *
  * @author Christian Bahl
@@ -39,10 +38,10 @@ import rx.subscriptions.CompositeSubscription;
 public class CBLceRxPresenter<V extends MvpLceView<M>, M> extends MvpBasePresenter<V> {
 
   protected CompositeSubscription compositeSubscription;
-  protected CBAndroidSchedulerTransformer<M> transformer;
+  protected CBObservableTransformer<M> transformer;
 
   public CBLceRxPresenter() {
-    this.transformer = new CBAndroidSchedulerTransformer<>();
+    this.transformer = new CBObservableTransformer<>();
   }
 
   public void subscribe(Observable<M> observable, final boolean contentPresent) {

@@ -15,27 +15,21 @@
  */
 package com.christianbahl.appkit.rx;
 
-import android.support.annotation.NonNull;
 import rx.Observable;
+import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
  * <p>
- * Sets the typical threads for subscribeOn (Schedulers.io()) and observeOn(AndroidSchedulers.mainThread())
- * for Android.
+ * Sets the typical threads for subscribeOn (Schedulers.io()) and observeOn(AndroidSchedulers.mainThread()) for Android.
  * </p>
  *
  * @param <T> data of the {@link Observable}
  * @author Christian Bahl
- * @see CBSchedulerTransformer
  */
-public class CBAndroidSchedulerTransformer<T> implements CBSchedulerTransformer<T> {
-
-  public CBAndroidSchedulerTransformer() {
-  }
-
-  @NonNull public Observable<T> call(Observable<T> observable) {
-    return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+public class CBSingleTransformer<T> implements Single.Transformer<T, T> {
+  @Override public Single<T> call(Single<T> single) {
+    return single.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
   }
 }
