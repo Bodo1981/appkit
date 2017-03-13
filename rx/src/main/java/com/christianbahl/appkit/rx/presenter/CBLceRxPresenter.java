@@ -17,8 +17,8 @@ package com.christianbahl.appkit.rx.presenter;
 
 import android.support.annotation.NonNull;
 import com.christianbahl.appkit.rx.CBAndroidSchedulerTransformer;
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import rx.Observable;
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;

@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.christianbahl.appkit.core.activity.CBActivityMvpToolbarFragment;
 import com.christianbahl.appkit.samplecore.activity_fragment.FragmentToDisplay;
 import com.christianbahl.appkit.samplecore.common.StringPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 
 /**
  * @author Christian Bahl

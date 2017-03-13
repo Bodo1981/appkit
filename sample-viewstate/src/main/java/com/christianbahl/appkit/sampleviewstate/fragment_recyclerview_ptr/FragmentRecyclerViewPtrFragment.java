@@ -6,9 +6,9 @@ import android.widget.Toast;
 import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview.FragmentRecyclerViewAdapter;
 import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview.FragmentRecyclerViewPresenter;
 import com.christianbahl.appkit.viewstate.fragment.CBFragmentMvpRecyclerViewPtrViewState;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import java.util.List;
 
 /**

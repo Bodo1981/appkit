@@ -24,25 +24,30 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import com.christianbahl.appkit.core.R;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 
 /**
  * <p>
  * An activity which uses the Model-View-Presenter architecture.<br/>
- * It also adds a {@link Toolbar} on top and has a {@link ViewPager} with {@link
- * TabLayout}.
- * </p>
- *
- * <p>
- * The layout has to contain a view with id <code>R.layout.content_view</code> which must be of
- * type {@link ViewPager}. You also have to provide a view with id <code>R.layout.tabs</code> of
- * type {@link TabLayout}.
+ * It also adds a {@link Toolbar} on top and has a {@link ViewPager} with a {@link TabLayout}.
  * </p>
  *
  * <p>
  * The standard layout implements all necessary views. You can override the default layout in
  * {@link #getLayoutRes()}. But be careful, you have to provide the necessary views!
+ * </p>
+ *
+ * <p>
+ * The layout has to contain a {@link ViewPager} view with id specified in {@link #createContentView()} <b>default:</b>
+ * <code>R.id.contentView</code>.
+ * </p>
+ * <p>
+ * You also have to provide a {@link TabLayout} with id specified in {@link #getTabsLayoutRes()} <b>default:</b> <code>R.id.tabs</code>.
+ * </p>
+ *
+ * <p>
+ * Implement {@link #createAdapter()} to provide your {@link PagerAdapter} for displaying the tabs
  * </p>
  *
  * <p>
@@ -64,20 +69,19 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
   @Override protected void onMvpViewCreated() {
     super.onMvpViewCreated();
 
-    tabs = (TabLayout) findViewById(R.id.tabs);
+    tabs = (TabLayout) findViewById(getTabsLayoutRes());
     if (tabs == null) {
       throw new NullPointerException(
-          "No tabs found. Did you forget to add it to your layout file with the id R.id.tabs?");
+          "No tabs found. Did you forget to add it to your layout file with the id specified in getTabsLayoutRes()?");
     }
 
     adapter = createAdapter();
     if (adapter == null) {
-      throw new NullPointerException(
-          "No adapter found. Did you forget to create one in createAdapter()?");
+      throw new NullPointerException("No adapter found. Did you forget to create one in createAdapter()?");
     }
 
     contentView.setAdapter(adapter);
-    tabs.setupWithViewPager(contentView);
+    tabs.setupWithViewPager(contentView, true);
 
     int margin = Math.max(getPageMargin(), 0);
 
@@ -93,6 +97,17 @@ public abstract class CBActivityMvpToolbarTabs<M, V extends MvpLceView<M>, P ext
 
   @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_tabs;
+  }
+
+  /**
+   * <p>
+   * Layout id for the tabs. <b>MUST<b/> be a {@link TabLayout}
+   * </p>
+   *
+   * @return layout id for the tabs
+   */
+  @NonNull protected Integer getTabsLayoutRes() {
+    return R.id.tabs;
   }
 
   /**

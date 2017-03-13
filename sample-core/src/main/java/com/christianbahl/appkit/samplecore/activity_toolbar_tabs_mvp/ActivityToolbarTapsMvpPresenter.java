@@ -1,7 +1,7 @@
 package com.christianbahl.appkit.samplecore.activity_toolbar_tabs_mvp;
 
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

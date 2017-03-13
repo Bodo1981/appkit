@@ -2,15 +2,14 @@ package com.christianbahl.appkit.sampleviewstate.activity_toolbar_fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.christianbahl.appkit.viewstate.activity.CBActivityMvpToolbarFragmentViewState;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 
 /**
  * @author Christian Bahl
@@ -24,16 +23,11 @@ public class ActivityToolbarFragment extends
     return new Intent(context, ActivityToolbarFragment.class);
   }
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setRetainInstance(true);
-  }
-
   @NonNull @Override protected Fragment createFragmentToDisplay() {
     return ActivityToolbarFragmentFragment.newInstance();
   }
 
-  @Override public LceViewState<String, MvpLceView<String>> createViewState() {
+  @NonNull @Override public LceViewState<String, MvpLceView<String>> createViewState() {
     return new RetainingLceViewState<>();
   }
 

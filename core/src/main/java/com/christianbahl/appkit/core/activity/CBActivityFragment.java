@@ -28,13 +28,13 @@ import com.christianbahl.appkit.core.R;
  * </p>
  *
  * <p>
- * The layout must have a {@link ViewGroup} for the {@link Fragment} with the id
- * <code>R.layout.contentView</code>
+ * The standard layout implements all necessary views. You can override the default layout in
+ * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * The layout must have a {@link ViewGroup} for the {@link Fragment}. Its default layout id is
+ * <code>R.layout.contentView</code> but can also be overridden {@link #getFragmentContainerViewRes}.
  * </p>
  *
  * <p>
@@ -63,17 +63,19 @@ public abstract class CBActivityFragment extends AppCompatActivity {
       Fragment fragment = createFragmentToDisplay();
 
       if (fragment == null) {
-        throw new NullPointerException(
-            "Fragment is null. Did you return null in createFragmentToDisplay()?");
+        throw new NullPointerException("Fragment is null. Did you return null in createFragmentToDisplay()?");
       }
 
-      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
+      getSupportFragmentManager().beginTransaction().replace(getFragmentContainerViewRes(), fragment).commit();
     }
   }
 
   /**
    * <p>
    * Provide the layout res id for the activity.
+   * </p>
+   * <p>
+   * <b>Default: </b> <code>R.layout.cb_activity_fragment</code>
    * </p>
    *
    * @return layout res id
@@ -84,13 +86,25 @@ public abstract class CBActivityFragment extends AppCompatActivity {
 
   /**
    * <p>
-   * Handle extra bundle data.
+   * Provide the content view res id for the fragment container.
+   * </p>
+   * <p>
+   * <b>Default: </b> <code>R.id.contentView</code>
+   * </p>
+   */
+  @NonNull protected Integer getFragmentContainerViewRes() {
+    return R.id.contentView;
+  }
+
+  /**
+   * <p>
+   * Handle extra bundle data. Is only called if {@link #getIntent()} != null and intent has extras. If there are any extras in the intent
+   * this method is called directly before {@link #setContentView(int)}.
    * </p>
    *
    * @param bundle bundle with extras passed to activity
    */
   protected void readExtras(@NonNull Bundle bundle) {
-
   }
 
   /**

@@ -25,9 +25,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import com.christianbahl.appkit.core.activity.CBActivityMvpToolbar;
 import com.christianbahl.appkit.viewstate.R;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
 /**
  * <p>

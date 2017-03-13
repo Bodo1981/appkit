@@ -22,9 +22,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerView;
 import com.christianbahl.appkit.viewstate.R;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby.mvp.viewstate.ViewState;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
 /**
  * <p>

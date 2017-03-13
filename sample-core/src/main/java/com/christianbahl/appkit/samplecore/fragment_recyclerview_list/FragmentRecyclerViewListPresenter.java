@@ -1,7 +1,7 @@
 package com.christianbahl.appkit.samplecore.fragment_recyclerview_list;
 
 import com.christianbahl.appkit.core.common.view.CBMvpView;
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

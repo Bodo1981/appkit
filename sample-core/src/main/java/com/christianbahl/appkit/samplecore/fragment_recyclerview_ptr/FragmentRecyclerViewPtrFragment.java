@@ -4,7 +4,7 @@ import android.widget.Toast;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerViewPtr;
 import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentRecyclerViewAdapter;
 import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentRecyclerViewPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**

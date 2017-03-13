@@ -2,7 +2,7 @@ package com.christianbahl.appkit.samplecore.fragment_recyclerview;
 
 import android.widget.Toast;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerView;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**

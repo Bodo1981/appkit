@@ -37,7 +37,7 @@ dependencies {
   compile dependencies.design
 
   // Mosby
-  compile (dependencies.mosbyMvp) {
+  compile (dependencies.mosbyLce) {
     exclude module: "support-annotations"
     exclude module: "appcompat-v7"
   }

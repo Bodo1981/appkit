@@ -22,8 +22,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import com.christianbahl.appkit.core.R;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 
 /**
  * <p>
@@ -32,13 +32,13 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  * </p>
  *
  * <p>
- * The layout must have a {@link ViewGroup} for the {@link Fragment} with the id
- * <code>R.layout.contentView</code>
+ * The standard layout implements all necessary views. You can override the default layout in
+ * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * The layout must have a {@link ViewGroup} for the {@link Fragment}. Its default layout id is
+ * <code>R.layout.contentView</code> but can also be overridden {@link #getFragmentContainerViewRes}.
  * </p>
  *
  * <p>
@@ -59,16 +59,27 @@ public abstract class CBActivityMvpToolbarFragment<CV extends View, M, V extends
       Fragment fragment = createFragmentToDisplay();
 
       if (fragment == null) {
-        throw new NullPointerException(
-            "Fragment is null. Did you return null in createFragmentToDisplay()?");
+        throw new NullPointerException("Fragment is null. Did you return null in createFragmentToDisplay()?");
       }
 
-      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
+      getSupportFragmentManager().beginTransaction().replace(getFragmentContainerViewRes(), fragment).commit();
     }
   }
 
   @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_fragment;
+  }
+
+  /**
+   * <p>
+   * Provide the content view res id for the fragment container.
+   * </p>
+   * <p>
+   * <b>Default: </b> <code>R.id.contentView</code>
+   * </p>
+   */
+  @NonNull protected Integer getFragmentContainerViewRes() {
+    return R.id.contentView;
   }
 
   /**

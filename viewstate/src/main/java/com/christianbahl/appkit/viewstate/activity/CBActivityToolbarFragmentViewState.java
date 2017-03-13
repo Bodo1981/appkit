@@ -3,13 +3,15 @@ package com.christianbahl.appkit.viewstate.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.MvpView;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
 /**
  * @author Christian Bahl
  */
-public abstract class CBActivityToolbarFragmentViewState<V extends MvpView, P extends MvpPresenter<V>> extends CBActivityToolbarViewState<V, P> {
+public abstract class CBActivityToolbarFragmentViewState<V extends MvpView, P extends MvpPresenter<V>, VS extends ViewState<V>>
+    extends CBActivityToolbarViewState<V, P, VS> {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -18,13 +20,10 @@ public abstract class CBActivityToolbarFragmentViewState<V extends MvpView, P ex
       Fragment fragment = createFragmentToDisplay();
 
       if (fragment == null) {
-        throw new NullPointerException(
-            "Fragment is null. Did you return null in createFragmentToDisplay()?");
+        throw new NullPointerException("Fragment is null. Did you return null in createFragmentToDisplay()?");
       }
 
-      getSupportFragmentManager().beginTransaction()
-          .replace(com.christianbahl.appkit.core.R.id.contentView, fragment)
-          .commit();
+      getSupportFragmentManager().beginTransaction().replace(com.christianbahl.appkit.core.R.id.contentView, fragment).commit();
     }
   }
 

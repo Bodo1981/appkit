@@ -2,20 +2,18 @@ package com.christianbahl.appkit.sampleviewstate.activity_toolbar;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.christianbahl.appkit.viewstate.activity.CBActivityMvpToolbarViewState;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbar extends
-    CBActivityMvpToolbarViewState<FrameLayout, String, MvpLceView<String>, ActivityToolbarPresenter> {
+public class ActivityToolbar extends CBActivityMvpToolbarViewState<FrameLayout, String, MvpLceView<String>, ActivityToolbarPresenter> {
 
   private String data;
 
@@ -23,12 +21,7 @@ public class ActivityToolbar extends
     return new Intent(context, ActivityToolbar.class);
   }
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setRetainInstance(true);
-  }
-
-  @Override public LceViewState<String, MvpLceView<String>> createViewState() {
+  @NonNull @Override public LceViewState<String, MvpLceView<String>> createViewState() {
     return new RetainingLceViewState<>();
   }
 

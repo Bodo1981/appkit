@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import com.christianbahl.appkit.core.activity.CBActivityMvpToolbarTabs;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import java.util.List;
 
 /**

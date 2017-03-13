@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.christianbahl.appkit.core.activity.CBActivityMvpToolbar;
 import com.christianbahl.appkit.samplecore.common.StringPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 
 /**
  * @author Christian Bahl

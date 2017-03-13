@@ -19,14 +19,13 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ProgressBar;
 import com.christianbahl.appkit.core.R;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceActivity;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 
 /**
  * <p>
@@ -34,14 +33,19 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
  * </p>
  *
  * <p>
- * This activity also enables {@link ActionBar#setDisplayShowHomeEnabled(boolean)} so the
- * toolbar will show the title. If you do not want this in your activity you can override this
- * in {@link #isDisplayShowTitleEnabled()}.
+ * The standard layout implements all necessary views. You can override the default layout in
+ * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * As loadingView a {@link ContentLoadingProgressBar} will be used. This can be changed by overriding {@link #createLoadingView()}. If you
+ * only want to change the loading view color for the default loadingView you have to override the color attribute
+ * <code>R.color.cb_progress_color</code>
+ * </p>
+ *
+ * <p>
+ * The errorView as default displays the {@link Throwable#getLocalizedMessage()}. Override {@link #getErrorMessage(Throwable, boolean)} to
+ * change the default behavior.
  * </p>
  *
  * @author Christian Bahl
@@ -69,23 +73,11 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   @Override public void onContentChanged() {
     super.onContentChanged();
 
-    if (loadingView instanceof ProgressBar) {
-      ((ProgressBar) loadingView).getIndeterminateDrawable()
-          .setColorFilter(ContextCompat.getColor(this, R.color.cb_progressbar_color),
-              PorterDuff.Mode.SRC_ATOP);
-    }
-
     toolbar = (Toolbar) findViewById(R.id.toolbar);
     if (toolbar == null) {
-      throw new NullPointerException(
-          "No Toolbar found. Did you forget to add it to your layout file with the id R.id.toolbar?");
+      throw new NullPointerException("No Toolbar found. Did you forget to add it to your layout file with the id R.id.toolbar?");
     }
     setSupportActionBar(toolbar);
-
-    ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) {
-      actionBar.setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
-    }
 
     onMvpViewCreated();
 
@@ -94,19 +86,16 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
     }
   }
 
-  @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
-    return throwable.getLocalizedMessage();
+  @NonNull @Override protected View createLoadingView() {
+    ContentLoadingProgressBar loadingView = (ContentLoadingProgressBar) super.createLoadingView();
+    loadingView.getIndeterminateDrawable()
+        .setColorFilter(ContextCompat.getColor(this, R.color.cb_progressbar_color), PorterDuff.Mode.SRC_ATOP);
+
+    return loadingView;
   }
 
-  /**
-   * <p>
-   * Should the title be displayed in the toolbar.
-   * </p>
-   *
-   * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
-   */
-  protected boolean isDisplayShowTitleEnabled() {
-    return true;
+  @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
+    return throwable.getLocalizedMessage();
   }
 
   /**
@@ -114,8 +103,7 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
    * Should the {@link #loadData(boolean)} method be called in {@link #onContentChanged()} or not.
    * </p>
    *
-   * @return <code>true</code> if loadData should be called automatically, otherwise
-   * <code>false</code>
+   * @return <code>true</code> if loadData should be called automatically otherwise <code>false</code>
    */
   protected boolean isAutoLoadDataEnabled() {
     return true;
@@ -134,21 +122,20 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
 
   /**
    * <p>
-   * Called after mvp views and toolbar are created.
+   * Called after mvp views and toolbar are created in {@link #onContentChanged()}.
    * </p>
    */
   protected void onMvpViewCreated() {
-
   }
 
   /**
    * <p>
-   * Handle extra bundle data.
+   * Handle extra bundle data. Is only called if {@link #getIntent()} != null and intent has extras. If there are any extras in the intent
+   * this method is called directly before {@link #setContentView(int)}.
    * </p>
    *
    * @param bundle bundle with extras passed to activity
    */
   protected void readExtras(@NonNull Bundle bundle) {
-
   }
 }

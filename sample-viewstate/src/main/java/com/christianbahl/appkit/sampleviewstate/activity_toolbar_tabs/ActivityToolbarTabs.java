@@ -2,12 +2,11 @@ package com.christianbahl.appkit.sampleviewstate.activity_toolbar_tabs;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import com.christianbahl.appkit.viewstate.activity.CBActivityMvpToolbarTabsViewState;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import java.util.List;
 
 /**
@@ -22,16 +21,11 @@ public class ActivityToolbarTabs extends
     return new Intent(context, ActivityToolbarTabs.class);
   }
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setRetainInstance(true);
-  }
-
   @NonNull @Override protected ActivityToolbarTabsAdapter createAdapter() {
     return new ActivityToolbarTabsAdapter(getSupportFragmentManager());
   }
 
-  @Override public LceViewState<List<String>, MvpLceView<List<String>>> createViewState() {
+  @NonNull @Override public LceViewState<List<String>, MvpLceView<List<String>>> createViewState() {
     return new RetainingLceViewState<>();
   }
 
@@ -48,7 +42,7 @@ public class ActivityToolbarTabs extends
 
     adapter.setItems(data);
     adapter.notifyDataSetChanged();
-    tabs.setTabsFromPagerAdapter(adapter);
+    tabs.setupWithViewPager(contentView, true);
   }
 
   @Override public void loadData(boolean pullToRefresh) {

@@ -17,8 +17,8 @@ package com.christianbahl.appkit.rx2.presenter;
 
 import android.support.annotation.NonNull;
 import com.christianbahl.appkit.rx2.CBFlowableTransformer;
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import io.reactivex.Flowable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.subscribers.ResourceSubscriber;

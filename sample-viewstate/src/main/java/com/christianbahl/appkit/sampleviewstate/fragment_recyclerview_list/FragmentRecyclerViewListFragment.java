@@ -6,8 +6,8 @@ import android.widget.Toast;
 import com.christianbahl.appkit.core.common.view.CBMvpView;
 import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview.FragmentRecyclerViewAdapter;
 import com.christianbahl.appkit.viewstate.fragment.CBFragmentMvpListRecyclerViewViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.LceViewState;
-import com.hannesdorfmann.mosby.mvp.viewstate.lce.data.RetainingLceViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
+import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import java.util.List;
 
 /**

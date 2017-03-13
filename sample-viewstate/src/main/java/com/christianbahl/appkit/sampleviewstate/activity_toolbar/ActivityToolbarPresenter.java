@@ -1,7 +1,7 @@
 package com.christianbahl.appkit.sampleviewstate.activity_toolbar;
 
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
-import com.hannesdorfmann.mosby.mvp.lce.MvpLceView;
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import java.util.Random;
 
 /**

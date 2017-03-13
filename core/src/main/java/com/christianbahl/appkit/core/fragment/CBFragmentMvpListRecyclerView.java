@@ -17,7 +17,7 @@ package com.christianbahl.appkit.core.fragment;
 
 import android.support.v7.widget.RecyclerView;
 import com.christianbahl.appkit.core.common.view.CBMvpView;
-import com.hannesdorfmann.mosby.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import java.util.List;
 
 /**
