@@ -1,5 +1,2 @@
-<manifest package="com.christianbahl.appkit.rx2">
-
-  <application />
-
-</manifest>
+<manifest
+    package="com.christianbahl.appkit.rx2"/>

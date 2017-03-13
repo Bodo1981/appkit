@@ -29,8 +29,7 @@ import io.reactivex.subscribers.ResourceSubscriber;
  * </p>
  *
  * <p>
- * The functions for Lce are called automatically when calling {@link #subscribe(Flowable,
- * boolean)}.
+ * The functions for Lce are called automatically when calling {@link #subscribe(Flowable, boolean)}.
  * </p>
  *
  * @author Christian Bahl

@@ -23,19 +23,13 @@ import org.reactivestreams.Publisher;
 
 /**
  * <p>
- * Sets the typical threads for subscribeOn (Schedulers.io()) and observeOn(AndroidSchedulers.mainThread())
- * for Android.
+ * Sets the typical threads for subscribeOn (Schedulers.io()) and observeOn(AndroidSchedulers.mainThread()) for Android.
  * </p>
  *
  * @param <T> data of the {@link Flowable}
  * @author Christian Bahl
- * @see CBFlowableTransformer
  */
 public class CBFlowableTransformer<T> implements FlowableTransformer<T, T> {
-
-  public CBFlowableTransformer() {
-  }
-
   @Override public Publisher<T> apply(Flowable<T> upstream) {
     return upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
   }

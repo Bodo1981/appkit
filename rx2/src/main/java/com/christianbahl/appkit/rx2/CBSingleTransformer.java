@@ -23,19 +23,13 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * <p>
- * Sets the typical threads for subscribeOn (Schedulers.io()) and observeOn(AndroidSchedulers.mainThread())
- * for Android.
+ * Sets the typical threads for subscribeOn (Schedulers.io()) and observeOn(AndroidSchedulers.mainThread()) for Android.
  * </p>
  *
  * @param <T> data of the {@link Single}
  * @author Christian Bahl
- * @see CBSingleTransformer
  */
 public class CBSingleTransformer<T> implements SingleTransformer<T, T> {
-
-  public CBSingleTransformer() {
-  }
-
   @Override public SingleSource<T> apply(Single<T> single) {
     return single.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
   }
