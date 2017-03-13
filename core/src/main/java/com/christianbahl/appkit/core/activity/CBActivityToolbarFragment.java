@@ -28,13 +28,13 @@ import com.christianbahl.appkit.core.R;
  * </p>
  *
  * <p>
- * The layout must have a {@link ViewGroup} for the {@link Fragment} with the id
- * <code>R.layout.contentView</code>.
+ * The standard layout implements all necessary views. You can override the default layout in
+ * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * The layout must have a {@link ViewGroup} for the {@link Fragment}. Its default layout id is
+ * <code>R.layout.contentView</code> but can also be overridden {@link #getFragmentContainerViewRes}.
  * </p>
  *
  * <p>
@@ -54,16 +54,27 @@ public abstract class CBActivityToolbarFragment extends CBActivityToolbar {
       Fragment fragment = createFragmentToDisplay();
 
       if (fragment == null) {
-        throw new NullPointerException(
-            "Fragment is null. Did you return null in createFragmentToDisplay()?");
+        throw new NullPointerException("Fragment is null. Did you return null in createFragmentToDisplay()?");
       }
 
-      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
+      getSupportFragmentManager().beginTransaction().replace(getFragmentContainerViewRes(), fragment).commit();
     }
   }
 
   @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_toolbar_fragment;
+  }
+
+  /**
+   * <p>
+   * Provide the content view res id for the fragment container.
+   * </p>
+   * <p>
+   * <b>Default: </b> <code>R.id.contentView</code>
+   * </p>
+   */
+  @NonNull protected Integer getFragmentContainerViewRes() {
+    return R.id.contentView;
   }
 
   /**

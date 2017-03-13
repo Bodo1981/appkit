@@ -26,9 +26,8 @@ import android.view.View;
  * </p>
  *
  * <p>
- * Specify the view types that should get the parallax effect in {@link
- * #isItemParallaxScrollable(int, int)} and do the parallax effect in {@link
- * #doParallaxScrolling(RecyclerView.ViewHolder, int, int, int)}
+ * Specify the view types that should get the parallax effect in {@link #isItemParallaxScrollable(int, int)} and do the parallax effect
+ * in {@link #doParallaxScrolling(RecyclerView.ViewHolder, int, int, int)}
  * </p>
  *
  * @author Christian Bahl
@@ -74,18 +73,16 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
 
   /**
    * <p>
-   * This method gets called to do the real parallax scrolling. So implement
-   * here your parallax scrolling implementation by manipulating the view.
+   * This method gets called to do the real parallax scrolling. So implement here your parallax scrolling implementation by manipulating
+   * the view.
    * </p>
    *
    * @param viewHolder view holder on top of the screen
    * @param position The position (index) in the adapters dataset
    * @param viewType The viewType
-   * @param pixelAlreadyScrolledOut The number of pixels, that are already scrolled out or in on
-   * top of the listview
+   * @param pixelAlreadyScrolledOut The number of pixels, that are already scrolled out or in on top of the listview
    */
-  public abstract void doParallaxScrolling(RecyclerView.ViewHolder viewHolder, int position,
-      int viewType, int pixelAlreadyScrolledOut);
+  public abstract void doParallaxScrolling(RecyclerView.ViewHolder viewHolder, int position, int viewType, int pixelAlreadyScrolledOut);
 
   private class CBRecyclerViewParallaxListener extends RecyclerView.OnScrollListener {
     @Override public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -93,8 +90,7 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
           // reset parallax
           if (isItemParallaxScrollable(lastViewHolderPosition, lastViewType)) {
-            if (lastViewHolderPosition != recyclerView.getChildLayoutPosition(
-                recyclerView.getChildAt(0))) {
+            if (lastViewHolderPosition != recyclerView.getChildLayoutPosition(recyclerView.getChildAt(0))) {
               RecyclerView.ViewHolder vh = recyclerView.getChildViewHolder(lastTopView);
               if (vh != null) {
                 doParallaxScrolling(vh, lastViewHolderPosition, lastViewType, 0);
@@ -104,17 +100,14 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
 
           lastTopView = recyclerView.getChildAt(0);
           lastViewHolderPosition = recyclerView.getChildLayoutPosition(lastTopView);
-          lastViewType = recyclerView.findViewHolderForLayoutPosition(lastViewHolderPosition)
-              .getItemViewType();
+          lastViewType = recyclerView.findViewHolderForLayoutPosition(lastViewHolderPosition).getItemViewType();
 
-          RecyclerView.ViewHolder viewHolder =
-              recyclerView.findViewHolderForLayoutPosition(lastViewHolderPosition);
+          RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForLayoutPosition(lastViewHolderPosition);
 
           if (viewHolder != null) {
-            if (isItemParallaxScrollable(viewHolder.getLayoutPosition(),
-                viewHolder.getItemViewType())) {
-              doParallaxScrolling(viewHolder, viewHolder.getLayoutPosition(),
-                  viewHolder.getItemViewType(), -recyclerView.getChildAt(0).getTop());
+            if (isItemParallaxScrollable(viewHolder.getLayoutPosition(), viewHolder.getItemViewType())) {
+              doParallaxScrolling(viewHolder, viewHolder.getLayoutPosition(), viewHolder.getItemViewType(),
+                  -recyclerView.getChildAt(0).getTop());
             }
           }
         }
@@ -124,7 +117,6 @@ public abstract class CBAdapterRecyclerViewParallax<M> extends CBAdapterRecycler
     }
 
     @Override public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-
     }
   }
 }

@@ -1,5 +1,6 @@
 package com.christianbahl.appkit.samplecore.fragment_recyclerview;
 
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerView;
 import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
@@ -15,7 +16,7 @@ public class FragmentRecyclerViewFragment extends
     return new FragmentRecyclerViewFragment();
   }
 
-  @Override protected FragmentRecyclerViewAdapter createAdapter() {
+  @NonNull @Override protected FragmentRecyclerViewAdapter createAdapter() {
     return new FragmentRecyclerViewAdapter(getActivity());
   }
 

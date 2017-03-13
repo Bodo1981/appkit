@@ -26,12 +26,12 @@ import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture.
+ * A fragment which uses the Model-View-Presenter architecture with a {@link RecyclerView} and {@link SwipeRefreshLayout}
  * </p>
  *
  * <p>
- * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pullToRefresh</code>.
- * After the refresh is started the function {@link #onRefreshStarted()} is called. In the default
+ * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pullToRefresh</code> but can also be overridden by {@link
+ * #getSwipeRefreshLayoutRes()}. After the refresh is started the function {@link #onRefreshStarted()} is called. In the default
  * implementation {@link #loadData(boolean)} is called but you can override this if you need to.
  * </p>
  *
@@ -43,17 +43,13 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends MvpLceView<M>, P
 
   public SwipeRefreshLayout swipeRefreshLayout;
 
-  @Override @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_fragment_recycler_view_ptr;
-  }
-
   @Override protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
     super.onMvpViewCreated(view, savedInstanceState);
 
-    swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.pullToRefresh);
+    swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(getSwipeRefreshLayoutRes());
     if (swipeRefreshLayout == null) {
       throw new NullPointerException(
-          "No SwipeRefreshLayout found. Did you forget to add it to your layout with R.id.pullToRefresh?");
+          "No SwipeRefreshLayout found. Did you forget to add it to your layout with id specified in getSwipeRefreshLayoutRes()?");
     }
 
     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -61,6 +57,14 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends MvpLceView<M>, P
         onRefreshStarted();
       }
     });
+  }
+
+  @Override @NonNull protected Integer getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view_ptr;
+  }
+
+  @NonNull protected Integer getSwipeRefreshLayoutRes() {
+    return R.id.pullToRefresh;
   }
 
   @Override public void showContent() {

@@ -28,14 +28,12 @@ import com.christianbahl.appkit.core.R;
  * </p>
  *
  * <p>
- * This activity also enables {@link ActionBar#setDisplayShowHomeEnabled(boolean)} so the
- * toolbar will show the title. If you do not want this in your activity you can override this
- * in {@link #isDisplayShowTitleEnabled()}.
+ * The standard layout implements all necessary views. You can override the default layout in
+ * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * You have to provide a toolbar. Default id <code>R.id.toolbar</code> but it can also be overriden {@link #getToolbarRes()}.
  * </p>
  *
  * @author Christian Bahl
@@ -61,28 +59,12 @@ public abstract class CBActivityToolbar extends AppCompatActivity {
   @Override public void onContentChanged() {
     super.onContentChanged();
 
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
+    toolbar = (Toolbar) findViewById(getToolbarRes());
     if (toolbar == null) {
       throw new NullPointerException(
-          "No Toolbar found. Did you forget to add it to your layout file with the id R.id.toolbar?");
+          "No Toolbar found. Did you forget to add it to your layout file with the id specified in getToolbarRes()?");
     }
     setSupportActionBar(toolbar);
-
-    ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) {
-      actionBar.setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
-    }
-  }
-
-  /**
-   * <p>
-   * Should the title be displayed in the toolbar.
-   * </p>
-   *
-   * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
-   */
-  protected boolean isDisplayShowTitleEnabled() {
-    return true;
   }
 
   /**
@@ -98,12 +80,22 @@ public abstract class CBActivityToolbar extends AppCompatActivity {
 
   /**
    * <p>
+   * Provide the toolbar id
+   * </p>
+   *
+   * @return toolbar id
+   */
+  @NonNull protected Integer getToolbarRes() {
+    return R.id.toolbar;
+  }
+
+  /**
+   * <p>
    * Handle extra bundle data.
    * </p>
    *
    * @param bundle bundle with extras passed to activity
    */
   protected void readExtras(@NonNull Bundle bundle) {
-
   }
 }

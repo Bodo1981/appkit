@@ -23,20 +23,19 @@ import java.util.List;
 
 /**
  * <p>
- * A base {@link RecyclerView.Adapter}with a {@link Context}, {@link LayoutInflater} and
- * a {@link List} of {@link M} which you would like to display.
+ * A base {@link RecyclerView.Adapter} with a {@link Context}, {@link LayoutInflater} and a {@link List} of {@link M} which you would like
+ * to display.
  * </p>
  *
  * <p>
- * This activity has an additional implementation of {@link #onBindViewHolder(RecyclerView.ViewHolder,
- * int, int)} which has the view type as parameter.
+ * This activity has an additional implementation of {@link #onBindViewHolder(RecyclerView.ViewHolder, int, int)} which has the view type
+ * as parameter.
  * </p>
  *
  * @author Christian Bahl
  * @see RecyclerView.Adapter
  */
-public abstract class CBAdapterRecyclerView<M>
-    extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class CBAdapterRecyclerView<M> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   protected LayoutInflater inflater;
   protected Context context;
@@ -136,8 +135,7 @@ public abstract class CBAdapterRecyclerView<M>
    * @param position position
    * @param viewType view type
    */
-  public abstract void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position,
-      int viewType);
+  public abstract void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, int viewType);
 
   @Override public int getItemViewType(int position) {
     return super.getItemViewType(position);

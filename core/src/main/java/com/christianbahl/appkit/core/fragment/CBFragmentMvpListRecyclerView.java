@@ -22,20 +22,7 @@ import java.util.List;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture.
- * </p>
- *
- * <p>
- * The content view is a {@link RecyclerView} with the id <code>R.layout.contentView</code>
- * </p>
- *
- * <p>
- * You have to implement the {@link A} for the {@link RecyclerView} in {@link #createAdapter()}.
- * </p>
- *
- * <p>
- * Some simplifications are added to handle {@link List} data for the {@link RecyclerView}, e.g
- * you only have to define the data of the list in generics and not always the list.
+ * A fragment which uses the Model-View-Presenter architecture and displays a list of items in a {@link RecyclerView}.
  * </p>
  *
  * @author Christian Bahl
@@ -43,5 +30,4 @@ import java.util.List;
  */
 public abstract class CBFragmentMvpListRecyclerView<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
     extends CBFragmentMvpRecyclerView<List<M>, V, P, A> implements CBMvpView<M> {
-
 }

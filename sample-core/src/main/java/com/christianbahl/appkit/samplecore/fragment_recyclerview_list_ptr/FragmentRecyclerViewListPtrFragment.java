@@ -18,7 +18,7 @@ public class FragmentRecyclerViewListPtrFragment extends
     return new FragmentRecyclerViewListPtrFragment();
   }
 
-  @Override protected FragmentRecyclerViewAdapter createAdapter() {
+  @NonNull @Override protected FragmentRecyclerViewAdapter createAdapter() {
     return new FragmentRecyclerViewAdapter(getActivity());
   }
 

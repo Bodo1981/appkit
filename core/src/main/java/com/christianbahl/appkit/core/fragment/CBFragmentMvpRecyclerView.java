@@ -18,6 +18,8 @@ package com.christianbahl.appkit.core.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.transition.Transition;
+import android.support.transition.TransitionManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,11 +32,12 @@ import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture.
+ * A fragment which uses the Model-View-Presenter architecture with a {@link RecyclerView}.
  * </p>
  *
  * <p>
- * The content view is a {@link RecyclerView} with the id <code>R.layout.contentView</code>
+ * The content view MUST be a {@link RecyclerView}. The default id for the {@link RecyclerView} is <code>R.layout.contentView</code> but
+ * can be changed by overriding {@link #createContentView(View)}
  * </p>
  *
  * <p>
@@ -50,8 +53,7 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
   public A adapter;
   public View emptyView;
 
-  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
+  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     Integer layoutRes = getLayoutRes();
     if (layoutRes == null) {
       throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes()?");
@@ -60,24 +62,12 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
     return inflater.inflate(layoutRes, container, false);
   }
 
-  /**
-   * <p>
-   * Provide the layout res id for the activity.
-   * </p>
-   *
-   * @return layout res id
-   */
-  @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_fragment_recycler_view;
-  }
-
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
     adapter = createAdapter();
     if (adapter == null) {
-      throw new NullPointerException(
-          "No Adapter found. Did you forget to create it in createAdapter()?");
+      throw new NullPointerException("No Adapter found. Did you forget to create it in createAdapter()?");
     }
     contentView.setAdapter(adapter);
     contentView.setHasFixedSize(hasFixedSize());
@@ -85,16 +75,15 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
     RecyclerView.LayoutManager layoutManager = createRecyclerViewLayoutManager();
     if (layoutManager == null) {
       throw new IllegalStateException(
-          "The RecyclerView.LayoutManager is not specified. You have to provide a "
-              + "RecyclerView.LayoutManager by #createRecyclerViewLayoutManager()");
+          "The RecyclerView.LayoutManager is not specified. You have to provide a RecyclerView.LayoutManager by createRecyclerViewLayoutManager()");
     }
     contentView.setLayoutManager(layoutManager);
 
     if (isEmptyViewEnabled()) {
-      emptyView = view.findViewById(R.id.emptyView);
+      emptyView = view.findViewById(getEmptyViewRes());
       if (emptyView == null) {
         throw new NullPointerException(
-            "No emptyView found. Did you forget to add it to your layout with R.id.emptyView?");
+            "No emptyView found. Did you forget to add it to your layout with id specified in getEmptyViewRes()?");
       }
     }
 
@@ -129,6 +118,28 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
     if (isContentVisible && emptyView.getVisibility() == View.VISIBLE) {
       emptyView.setVisibility(View.GONE);
     }
+  }
+
+  /**
+   * <p>
+   * Provides the layout res id for the activity.
+   * </p>
+   *
+   * @return layout res id
+   */
+  @NonNull protected Integer getLayoutRes() {
+    return R.layout.cb_fragment_recycler_view;
+  }
+
+  /**
+   * <p>
+   * Provides the res id for the empty view. <b>default: <code>R.id.emptyView</code></b>
+   * </p>
+   *
+   * @return res id for empty view
+   */
+  @NonNull protected Integer getEmptyViewRes() {
+    return R.id.emptyView;
   }
 
   @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
@@ -173,14 +184,14 @@ public abstract class CBFragmentMvpRecyclerView<M, V extends MvpLceView<M>, P ex
 
   /**
    * <p>
-   * Called after the mvp views and the recycler view are created.
+   * Called after mvp views and toolbar are created in {@link #onViewCreated(View, Bundle)}, directly before {@link #loadData(boolean)}
+   * happens.
    * </p>
    *
    * @param view view
    * @param savedInstanceState saved instance state
    */
   protected void onMvpViewCreated(View view, Bundle savedInstanceState) {
-
   }
 
   /**

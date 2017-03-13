@@ -1,5 +1,6 @@
 package com.christianbahl.appkit.samplecore.fragment_recyclerview_parallax;
 
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerViewPtr;
 import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentRecyclerViewPresenter;
@@ -16,7 +17,7 @@ public class FragmentRecyclerViewParallaxFragment extends
     return new FragmentRecyclerViewParallaxFragment();
   }
 
-  @Override protected FragmentRecyclerViewParallaxAdapter createAdapter() {
+  @NonNull @Override protected FragmentRecyclerViewParallaxAdapter createAdapter() {
     return new FragmentRecyclerViewParallaxAdapter(getActivity(), contentView);
   }
 

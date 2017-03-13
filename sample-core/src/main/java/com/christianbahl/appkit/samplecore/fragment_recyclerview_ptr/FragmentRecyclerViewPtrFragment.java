@@ -1,5 +1,6 @@
 package com.christianbahl.appkit.samplecore.fragment_recyclerview_ptr;
 
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 import com.christianbahl.appkit.core.fragment.CBFragmentMvpRecyclerViewPtr;
 import com.christianbahl.appkit.samplecore.fragment_recyclerview.FragmentRecyclerViewAdapter;
@@ -17,7 +18,7 @@ public class FragmentRecyclerViewPtrFragment extends
     return new FragmentRecyclerViewPtrFragment();
   }
 
-  @Override protected FragmentRecyclerViewAdapter createAdapter() {
+  @NonNull @Override protected FragmentRecyclerViewAdapter createAdapter() {
     return new FragmentRecyclerViewAdapter(getActivity());
   }
 

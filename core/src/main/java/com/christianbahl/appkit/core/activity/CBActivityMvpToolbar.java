@@ -38,9 +38,13 @@ import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
  * </p>
  *
  * <p>
+ * You have to provide a toolbar. Default id <code>R.id.toolbar</code> but it can also be overriden {@link #getToolbarRes()}.
+ * </p>
+ *
+ * <p>
  * As loadingView a {@link ContentLoadingProgressBar} will be used. This can be changed by overriding {@link #createLoadingView()}. If you
  * only want to change the loading view color for the default loadingView you have to override the color attribute
- * <code>R.color.cb_progress_color</code>
+ * <code>R.color.cb_progress_color</code>.
  * </p>
  *
  * <p>
@@ -73,9 +77,10 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   @Override public void onContentChanged() {
     super.onContentChanged();
 
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
+    toolbar = (Toolbar) findViewById(getToolbarRes());
     if (toolbar == null) {
-      throw new NullPointerException("No Toolbar found. Did you forget to add it to your layout file with the id R.id.toolbar?");
+      throw new NullPointerException(
+          "No Toolbar found. Did you forget to add it to your layout file with the id specified in getToolbarRes()?");
     }
     setSupportActionBar(toolbar);
 
@@ -122,7 +127,18 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
 
   /**
    * <p>
-   * Called after mvp views and toolbar are created in {@link #onContentChanged()}.
+   * Provide the toolbar id
+   * </p>
+   *
+   * @return toolbar id
+   */
+  @NonNull protected Integer getToolbarRes() {
+    return R.id.toolbar;
+  }
+
+  /**
+   * <p>
+   * Called after mvp views and toolbar are created in {@link #onContentChanged()}, directly before {@link #loadData(boolean)} happens.
    * </p>
    */
   protected void onMvpViewCreated() {

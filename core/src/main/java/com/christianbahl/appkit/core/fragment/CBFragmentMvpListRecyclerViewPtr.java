@@ -23,18 +23,8 @@ import java.util.List;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture.
- * </p>
- *
- * <p>
- * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pullToRefresh</code>.
- * After the refresh is started the function {@link #onRefreshStarted()} is called. In the default
- * implementation {@link #loadData(boolean)} is called but you can override this if you need to.
- * </p>
- *
- * <p>
- * Some simplifications are added to handle {@link List} data for the {@link RecyclerView}, e.g
- * you only have to define the data of the list in generics and not always the list.
+ * A fragment which uses the Model-View-Presenter architecture and displays a list of items in a {@link RecyclerView} with
+ * {@link SwipeRefreshLayout}.
  * </p>
  *
  * @author Christian Bahl
