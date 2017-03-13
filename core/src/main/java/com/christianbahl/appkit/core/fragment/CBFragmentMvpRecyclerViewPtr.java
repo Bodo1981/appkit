@@ -63,6 +63,14 @@ public abstract class CBFragmentMvpRecyclerViewPtr<M, V extends MvpLceView<M>, P
     return R.layout.cb_fragment_recycler_view_ptr;
   }
 
+  /**
+   * <p>
+   * Provides the res id for the swipe refresh layout<br/>
+   * <b>Default: </b><code>R.id.pullToRefresh</code>
+   * </p>
+   *
+   * @return res id for swipe refresh layout
+   */
   @NonNull protected Integer getSwipeRefreshLayoutRes() {
     return R.id.pullToRefresh;
   }

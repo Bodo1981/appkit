@@ -23,15 +23,8 @@ import java.util.List;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support.
- * </p>
- *
- * <p>
- * The content view is a {@link RecyclerView} with the id <code>R.layout.contentView</code>
- * </p>
- *
- * <p>
- * You have to implement the {@link A} for the {@link RecyclerView} in {@link #createAdapter()}.
+ * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support and displays a list of items in a {@link
+ * RecyclerView}.
  * </p>
  *
  * @author Christian Bahl

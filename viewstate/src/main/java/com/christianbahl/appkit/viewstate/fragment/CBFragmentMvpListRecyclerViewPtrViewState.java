@@ -24,13 +24,8 @@ import java.util.List;
 
 /**
  * <p>
- * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support.
- * </p>
- *
- * <p>
- * You have to specify a {@link SwipeRefreshLayout} with the id <code>R.layout.pullToRefresh</code>.
- * After the refresh is started the function {@link #onRefreshStarted()} is called. In the default
- * implementation {@link #loadData(boolean)} is called but you can override this if you need to.
+ * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support and displays a list of items in a {@link
+ * RecyclerView} and has a {@link SwipeRefreshLayout}.
  * </p>
  *
  * @author Christian Bahl
@@ -38,5 +33,4 @@ import java.util.List;
  */
 public abstract class CBFragmentMvpListRecyclerViewPtrViewState<M, V extends CBMvpView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
     extends CBFragmentMvpRecyclerViewPtrViewState<List<M>, V, P, A> implements CBMvpView<M> {
-
 }
