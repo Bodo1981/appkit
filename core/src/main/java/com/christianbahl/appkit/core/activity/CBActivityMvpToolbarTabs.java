@@ -34,14 +34,15 @@ import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes()}. But be careful, you have to provide the necessary views!
+ * The standard layout implements all necessary views. You can override the default layout in {@link #getLayoutRes()}. But be careful, you
+ * have to provide the necessary views!
  * </p>
  *
  * <p>
  * The layout has to contain a {@link ViewPager} view with id specified in {@link #createContentView()} <b>default:</b>
  * <code>R.id.contentView</code>.
  * </p>
+ *
  * <p>
  * You also have to provide a {@link TabLayout} with id specified in {@link #getTabsLayoutRes()} <b>default:</b> <code>R.id.tabs</code>.
  * </p>

@@ -32,18 +32,17 @@ import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * The standard layout implements all necessary views. You can override the default layout in {@link #getLayoutRes}. But be careful, you
+ * have to provide the necessary views!
  * </p>
  *
  * <p>
- * The layout must have a {@link ViewGroup} for the {@link Fragment}. Its default layout id is
- * <code>R.layout.contentView</code> but can also be overridden {@link #getFragmentContainerViewRes}.
+ * The layout must have a {@link ViewGroup} for the {@link Fragment}. Its default layout id is <code>R.layout.contentView</code> but can
+ * also be overridden {@link #getFragmentContainerViewRes}.
  * </p>
  *
  * <p>
- * You have to override the {@link #createFragmentToDisplay} to create the {@link Fragment} which
- * should be displayed.
+ * You have to override the {@link #createFragmentToDisplay} to create the {@link Fragment} which should be displayed.
  * </p>
  *
  * @author Christian Bahl
@@ -74,6 +73,7 @@ public abstract class CBActivityMvpToolbarFragment<CV extends View, M, V extends
    * <p>
    * Provide the content view res id for the fragment container.
    * </p>
+   *
    * <p>
    * <b>Default: </b> <code>R.id.contentView</code>
    * </p>

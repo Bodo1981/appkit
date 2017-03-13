@@ -28,18 +28,17 @@ import com.christianbahl.appkit.core.R;
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * The standard layout implements all necessary views. You can override the default layout in {@link #getLayoutRes}. But be careful, you
+ * have to provide the necessary views!
  * </p>
  *
  * <p>
- * The layout must have a {@link ViewGroup} for the {@link Fragment}. Its default layout id is
- * <code>R.layout.contentView</code> but can also be overridden {@link #getFragmentContainerViewRes}.
+ * The layout must have a {@link ViewGroup} for the {@link Fragment}. Its default layout id is <code>R.layout.contentView</code> but can
+ * also be overridden {@link #getFragmentContainerViewRes}.
  * </p>
  *
  * <p>
- * You have to override the {@link #createFragmentToDisplay} to create the {@link Fragment} which
- * should be displayed.
+ * You have to override the {@link #createFragmentToDisplay} to create the {@link Fragment} which should be displayed.
  * </p>
  *
  * @author Christian Bahl
@@ -88,6 +87,7 @@ public abstract class CBActivityFragment extends AppCompatActivity {
    * <p>
    * Provide the content view res id for the fragment container.
    * </p>
+   *
    * <p>
    * <b>Default: </b> <code>R.id.contentView</code>
    * </p>
@@ -99,7 +99,7 @@ public abstract class CBActivityFragment extends AppCompatActivity {
   /**
    * <p>
    * Handle extra bundle data. Is only called if {@link #getIntent()} != null and intent has extras. If there are any extras in the intent
-   * this method is called directly before {@link #setContentView(int)}.
+   * this method is called directly before {@link #setContentView(int)} in {@link #onCreate(Bundle)}.
    * </p>
    *
    * @param bundle bundle with extras passed to activity

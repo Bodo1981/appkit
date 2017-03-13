@@ -31,20 +31,26 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
 /**
  * <p>
- * An activity which uses the Model-View-Presenter architecture with {@link ViewState} support.
- * It also adds a {@link Toolbar} on top and has a {@link ViewPager} with {@link
- * TabLayout}.
+ * An activity which uses the Model-View-Presenter architecture with {@link ViewState} support. It also adds a {@link Toolbar} on top and
+ * has a {@link ViewPager} with {@link TabLayout}.
  * </p>
  *
  * <p>
- * The layout has to contain a view with id <code>R.layout.content_view</code> which must be of
- * type {@link ViewPager}. You also have to provide a view with id <code>R.layout.tabs</code> of
- * type {@link TabLayout}.
+ * The standard layout implements all necessary views. You can override the default layout in {@link #getLayoutRes()}. But be careful, you
+ * have to provide the necessary views!
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes()}. But be careful, you have to provide the necessary views!
+ * The layout has to contain a {@link ViewPager} view with id specified in {@link #createContentView()} <b>default:</b>
+ * <code>R.id.contentView</code>.
+ * </p>
+ *
+ * <p>
+ * You also have to provide a {@link TabLayout} with id specified in {@link #getTabsLayoutRes()} <b>default:</b> <code>R.id.tabs</code>.
+ * </p>
+ *
+ * <p>
+ * Implement {@link #createAdapter()} to provide your {@link PagerAdapter} for displaying the tabs
  * </p>
  *
  * <p>
@@ -55,7 +61,7 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
  * </p>
  *
  * @author Christian Bahl
- * @see CBActivityMvpToolbar
+ * @see CBActivityMvpToolbarViewState
  */
 public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends PagerAdapter>
     extends CBActivityMvpToolbarViewState<ViewPager, D, V, P> {
@@ -66,21 +72,19 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
   @Override public void onContentChanged() {
     super.onContentChanged();
 
-    tabs = (TabLayout) findViewById(R.id.tabs);
-
+    tabs = (TabLayout) findViewById(getTabsLayoutRes());
     if (tabs == null) {
-      throw new IllegalStateException("The tabs is not specified. "
-          + "You have to provide a View with R.id.tabs in your inflated xml layout");
+      throw new IllegalStateException(
+          "No tabs found. Did you forget to add it to your layout file with the id specified in getTabsLayoutRes()?");
     }
 
     adapter = createAdapter();
     if (adapter == null) {
-      throw new NullPointerException(
-          "No adapter found. Did you forget to create own in createAdapter()?");
+      throw new NullPointerException("No adapter found. Did you forget to create own in createAdapter()?");
     }
 
     contentView.setAdapter(adapter);
-    tabs.setupWithViewPager(contentView);
+    tabs.setupWithViewPager(contentView, true);
 
     int margin = Math.max(getPageMargin(), 0);
     if (margin > 0) {
@@ -95,6 +99,17 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
 
   @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_tabs;
+  }
+
+  /**
+   * <p>
+   * Layout id for the tabs. <b>MUST<b/> be a {@link TabLayout}
+   * </p>
+   *
+   * @return layout id for the tabs
+   */
+  @NonNull protected Integer getTabsLayoutRes() {
+    return com.christianbahl.appkit.core.R.id.tabs;
   }
 
   /**

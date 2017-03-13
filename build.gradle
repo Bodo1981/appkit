@@ -5,7 +5,7 @@ ext {
   minSdk = 14
   targetSdk = 25
   versionCode = 1
-  versionName = "2.0.33"
+  versionName = "3.0.0"
 
   bintrayRepo = 'maven'
   bintrayName = 'appkit'
@@ -19,7 +19,7 @@ ext {
   gitIssueUrl = 'https://github.com/Bodo1981/appkit/issues'
   gitUrl = 'https://github.com/Bodo1981/appkit.git'
 
-  libraryVersion = '2.0.33'
+  libraryVersion = '3.0.0'
 
   developerId = 'Bodo1981'
   developerName = 'Christian Bahl'
@@ -54,4 +54,4 @@ task clean(type: Delete) {
   delete rootProject.buildDir
 }
 
-apply from: "lib-dependencies.gradle"
+apply from: "dependencies.gradle"

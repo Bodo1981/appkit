@@ -33,8 +33,8 @@ import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * The standard layout implements all necessary views. You can override the default layout in {@link #getLayoutRes}. But be careful, you
+ * have to provide the necessary views!
  * </p>
  *
  * <p>
@@ -147,7 +147,7 @@ public abstract class CBActivityMvpToolbar<CV extends View, M, V extends MvpLceV
   /**
    * <p>
    * Handle extra bundle data. Is only called if {@link #getIntent()} != null and intent has extras. If there are any extras in the intent
-   * this method is called directly before {@link #setContentView(int)}.
+   * this method is called directly before {@link #setContentView(int)} in {@link #onCreate(Bundle)}.
    * </p>
    *
    * @param bundle bundle with extras passed to activity

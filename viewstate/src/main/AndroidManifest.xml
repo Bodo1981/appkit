@@ -1,5 +1,2 @@
-<manifest package="com.christianbahl.appkit.viewstate">
-
-  <application/>
-
-</manifest>
+<manifest
+    package="com.christianbahl.appkit.viewstate"/>

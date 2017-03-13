@@ -17,6 +17,7 @@ package com.christianbahl.appkit.viewstate.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -28,19 +29,27 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateActivity;
 
 /**
  * <p>
- * An activity which uses the Model-View-Presenter architecture with {@link ViewState} support.
- * It also adds a {@link Toolbar} on top.
+ * An activity which uses the Model-View-Presenter architecture with {@link ViewState} support. It also adds a {@link Toolbar} on top.
  * </p>
  *
  * <p>
- * This activity also enables {@link ActionBar#setDisplayShowHomeEnabled(boolean)} so the
- * toolbar will show the title. If you do not want this in your activity you can override this
- * in {@link #isDisplayShowTitleEnabled()}.
+ * The standard layout implements all necessary views. You can override the default layout in {@link #getLayoutRes}. But be careful, you
+ * have to provide the necessary views!
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * You have to provide a toolbar. Default id <code>R.id.toolbar</code> but it can also be overriden {@link #getToolbarRes()}.
+ * </p>
+ *
+ * <p>
+ * As loadingView a {@link ContentLoadingProgressBar} will be used. This can be changed by overriding {@link #createLoadingView()}. If you
+ * only want to change the loading view color for the default loadingView you have to override the color attribute
+ * <code>R.color.cb_progress_color</code>.
+ * </p>
+ *
+ * <p>
+ * The errorView as default displays the {@link Throwable#getLocalizedMessage()}. Override {@link #getErrorMessage(Throwable, boolean)} to
+ * change the default behavior.
  * </p>
  *
  * @author Christian Bahl
@@ -68,19 +77,13 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
   @Override public void onContentChanged() {
     super.onContentChanged();
 
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+    toolbar = (Toolbar) findViewById(getToolbarRes());
     if (toolbar == null) {
-      throw new IllegalStateException("The toolbar is null. "
-          + "You have to provide a View with R.id.toolbar in your inflated xml layout");
+      throw new NullPointerException(
+          "No Toolbar found. Did you forget to add it to your layout file with the id specified in getToolbarRes()?");
     }
 
     setSupportActionBar(toolbar);
-
-    ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) {
-      actionBar.setDisplayShowTitleEnabled(isDisplayShowTitleEnabled());
-    }
   }
 
   @Override public void onNewViewStateInstance() {
@@ -91,17 +94,6 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
 
   @Override protected String getErrorMessage(Throwable throwable, boolean isContentVisible) {
     return throwable.getLocalizedMessage();
-  }
-
-  /**
-   * <p>
-   * Should the title be displayed in the toolbar.
-   * </p>
-   *
-   * @return <code>true</code> if title should be displayed in toolbar otherwise <code>false</code>
-   */
-  protected boolean isDisplayShowTitleEnabled() {
-    return true;
   }
 
   /**
@@ -130,12 +122,23 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
 
   /**
    * <p>
-   * Handle extra bundle data.
+   * Provide the toolbar id
+   * </p>
+   *
+   * @return toolbar id
+   */
+  @NonNull protected Integer getToolbarRes() {
+    return R.id.toolbar;
+  }
+
+  /**
+   * <p>
+   * Handle extra bundle data. Is only called if {@link #getIntent()} != null and intent has extras. If there are any extras in the intent
+   * this method is called directly before {@link #setContentView(int)} in {@link #onCreate(Bundle)}.
    * </p>
    *
    * @param bundle bundle with extras passed to activity
    */
   protected void readExtras(@NonNull Bundle bundle) {
-
   }
 }

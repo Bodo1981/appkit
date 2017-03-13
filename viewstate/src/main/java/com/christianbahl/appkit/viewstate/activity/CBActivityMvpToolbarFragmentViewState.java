@@ -28,24 +28,22 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
 /**
  * <p>
- * An activity which uses the Model-View-Presenter architecture with {@link ViewState}
- * support.<br/>
+ * An activity which uses the Model-View-Presenter architecture with {@link ViewState} support.<br/>
  * It also adds a {@link Toolbar} on top and has a container for the {@link Fragment}.
  * </p>
  *
  * <p>
- * The layout must have a {@link ViewGroup} for the {@link Fragment} with the id
- * <code>R.layout.contentView</code>
+ * The standard layout implements all necessary views. You can override the default layout in {@link #getLayoutRes}. But be careful, you
+ * have to provide the necessary views!
  * </p>
  *
  * <p>
- * The standard layout implements all necessary views. You can override the default layout in
- * {@link #getLayoutRes}. But be careful, you have to provide the necessary views!
+ * The layout must have a {@link ViewGroup} for the {@link Fragment}. Its default layout id is <code>R.layout.contentView</code> but can
+ * also be overridden {@link #getFragmentContainerViewRes}.
  * </p>
  *
  * <p>
- * You have to override the {@link #createFragmentToDisplay} to create the {@link Fragment} which
- * should be displayed.
+ * You have to override the {@link #createFragmentToDisplay} to create the {@link Fragment} which should be displayed.
  * </p>
  *
  * @author Christian Bahl
@@ -61,16 +59,28 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, 
       Fragment fragment = createFragmentToDisplay();
 
       if (fragment == null) {
-        throw new IllegalArgumentException(
-            "Fragment is null. Did you forget to create the Fragment in the createFragmentToDisplay()?");
+        throw new IllegalArgumentException("Fragment is null. Did you forget to create the Fragment in the createFragmentToDisplay()?");
       }
 
-      getSupportFragmentManager().beginTransaction().replace(R.id.contentView, fragment).commit();
+      getSupportFragmentManager().beginTransaction().replace(getFragmentContainerViewRes(), fragment).commit();
     }
   }
 
   @Override @NonNull protected Integer getLayoutRes() {
     return R.layout.cb_activity_mvp_toolbar_fragment;
+  }
+
+  /**
+   * <p>
+   * Provide the content view res id for the fragment container.
+   * </p>
+   *
+   * <p>
+   * <b>Default: </b> <code>R.id.contentView</code>
+   * </p>
+   */
+  @NonNull protected Integer getFragmentContainerViewRes() {
+    return com.christianbahl.appkit.core.R.id.contentView;
   }
 
   /**
