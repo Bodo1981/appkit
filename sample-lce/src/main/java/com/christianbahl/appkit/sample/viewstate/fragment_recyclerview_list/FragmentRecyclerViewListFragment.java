@@ -3,9 +3,10 @@ package com.christianbahl.appkit.sample.viewstate.fragment_recyclerview_list;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
-import com.christianbahl.appkit.core.view.CBMvpView;
-import com.christianbahl.appkit.sampleviewstate.fragment_recyclerview.FragmentRecyclerViewAdapter;
-import com.christianbahl.appkit.lce.viewstate.fragment.CBFragmentMvpListRecyclerViewViewState;
+import com.christianbahl.appkit.lce.view.CBLceView;
+import com.christianbahl.appkit.lce.viewstate.fragment.CBFragmentLceListRecyclerViewViewState;
+import com.christianbahl.appkit.sample.common.StringListPresenter;
+import com.christianbahl.appkit.sample.viewstate.fragment_recyclerview.FragmentRecyclerViewAdapter;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import java.util.List;
@@ -13,8 +14,8 @@ import java.util.List;
 /**
  * @author Christian Bahl
  */
-public class FragmentRecyclerViewListFragment extends
-    CBFragmentMvpListRecyclerViewViewState<String, CBMvpView<String>, FragmentRecyclerViewListPresenter, FragmentRecyclerViewAdapter> {
+public class FragmentRecyclerViewListFragment
+    extends CBFragmentLceListRecyclerViewViewState<String, CBLceView<String>, StringListPresenter, FragmentRecyclerViewAdapter> {
 
   private List<String> data;
 
@@ -31,8 +32,8 @@ public class FragmentRecyclerViewListFragment extends
     return new FragmentRecyclerViewAdapter(getActivity());
   }
 
-  @NonNull @Override public FragmentRecyclerViewListPresenter createPresenter() {
-    return new FragmentRecyclerViewListPresenter();
+  @NonNull @Override public StringListPresenter createPresenter() {
+    return new StringListPresenter();
   }
 
   @Override public void setData(List<String> data) {
@@ -46,7 +47,7 @@ public class FragmentRecyclerViewListFragment extends
     presenter.loadData(pullToRefresh);
   }
 
-  @NonNull @Override public LceViewState<List<String>, CBMvpView<String>> createViewState() {
+  @NonNull @Override public LceViewState<List<String>, CBLceView<String>> createViewState() {
     return new RetainingLceViewState<>();
   }
 

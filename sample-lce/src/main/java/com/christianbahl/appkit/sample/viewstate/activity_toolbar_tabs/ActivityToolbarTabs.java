@@ -3,8 +3,8 @@ package com.christianbahl.appkit.sample.viewstate.activity_toolbar_tabs;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import com.christianbahl.appkit.lce.viewstate.activity.CBActivityMvpToolbarTabsViewState;
-import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import com.christianbahl.appkit.lce.view.CBLceView;
+import com.christianbahl.appkit.lce.viewstate.activity.CBActivityLceToolbarTabsViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import java.util.List;
@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbarTabs extends
-    CBActivityMvpToolbarTabsViewState<List<String>, MvpLceView<List<String>>, ActivityToolbarTabsPresenter, ActivityToolbarTabsAdapter> {
+public class ActivityToolbarTabs
+    extends CBActivityLceToolbarTabsViewState<List<String>, CBLceView<String>, ActivityToolbarTabsPresenter, ActivityToolbarTabsAdapter> {
 
   private List<String> data;
 
@@ -25,7 +25,7 @@ public class ActivityToolbarTabs extends
     return new ActivityToolbarTabsAdapter(getSupportFragmentManager());
   }
 
-  @NonNull @Override public LceViewState<List<String>, MvpLceView<List<String>>> createViewState() {
+  @NonNull @Override public LceViewState<List<String>, CBLceView<String>> createViewState() {
     return new RetainingLceViewState<>();
   }
 
@@ -42,7 +42,6 @@ public class ActivityToolbarTabs extends
 
     adapter.setItems(data);
     adapter.notifyDataSetChanged();
-    tabs.setupWithViewPager(contentView, true);
   }
 
   @Override public void loadData(boolean pullToRefresh) {

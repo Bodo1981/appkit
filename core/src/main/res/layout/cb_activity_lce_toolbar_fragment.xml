@@ -2,7 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
   <include
       layout="@layout/cb_base_toolbar"/>
@@ -10,18 +11,11 @@
   <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_below="@id/toolbar">
-
-    <FrameLayout
-        android:id="@+id/contentView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+      android:layout_below="@id/toolbar"
+      >
 
     <include
-        layout="@layout/cb_base_error_view"/>
-
-    <include
-        layout="@layout/cb_base_loading_view"/>
+        layout="@layout/cb_base_lce_fragment"/>
 
   </FrameLayout>
 </RelativeLayout>

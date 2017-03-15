@@ -1,13 +1,16 @@
-package com.christianbahl.appkit.sample.viewstate.activity_toolbar_fragment;
+package com.christianbahl.appkit.sample.common;
 
+import com.christianbahl.appkit.lce.view.CBLceView;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
- * @author Christian Bahl
+ * Created by bodo on 15.03.17.
  */
-public class ActivityToolbarFragmentPresenter extends MvpBasePresenter<MvpLceView<String>> {
+
+public class StringListPresenter extends MvpBasePresenter<CBLceView<String>> {
 
   public void loadData(boolean contentPresent) {
     if (isViewAttached()) {
@@ -20,9 +23,19 @@ public class ActivityToolbarFragmentPresenter extends MvpBasePresenter<MvpLceVie
       }
     } else {
       if (isViewAttached()) {
-        getView().setData("Activity Toolbar Fragment (Viewstate) data loaded");
+        getView().setData(getItems());
         getView().showContent();
       }
     }
+  }
+
+  private List<String> getItems() {
+    List<String> items = new ArrayList<>();
+
+    for (int i = 1; i <= 30; i++) {
+      items.add("Item " + i);
+    }
+
+    return items;
   }
 }

@@ -4,14 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import com.christianbahl.appkit.lce.activity.CBActivityLceToolbarTabs;
-import com.christianbahl.appkit.lce.view.CBMvpView;
+import com.christianbahl.appkit.lce.view.CBLceView;
 import java.util.List;
 
 /**
  * @author Christian Bahl
  */
 public class ActivityToolbarTabsMvp
-    extends CBActivityLceToolbarTabs<List<String>, CBMvpView<String>, ActivityToolbarTapsMvpPresenter, ActivityToolbarTabsMvpAdapter> {
+    extends CBActivityLceToolbarTabs<List<String>, CBLceView<String>, ActivityToolbarTapsMvpPresenter, ActivityToolbarTabsMvpAdapter> {
 
   public static Intent getStartIntent(Context context) {
     return new Intent(context, ActivityToolbarTabsMvp.class);

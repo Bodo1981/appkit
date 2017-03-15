@@ -9,7 +9,6 @@
       layout="@layout/cb_base_toolbar"/>
 
   <FrameLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
       android:id="@+id/contentView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"

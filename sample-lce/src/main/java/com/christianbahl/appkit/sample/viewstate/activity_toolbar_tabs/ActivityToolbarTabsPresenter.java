@@ -1,7 +1,7 @@
 package com.christianbahl.appkit.sample.viewstate.activity_toolbar_tabs;
 
+import com.christianbahl.appkit.lce.view.CBLceView;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbarTabsPresenter extends MvpBasePresenter<MvpLceView<List<String>>> {
+public class ActivityToolbarTabsPresenter extends MvpBasePresenter<CBLceView<String>> {
 
   public void loadData(boolean contentPresent) {
     if (isViewAttached()) {

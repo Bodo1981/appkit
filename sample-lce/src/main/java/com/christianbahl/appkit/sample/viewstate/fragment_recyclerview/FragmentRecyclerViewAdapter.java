@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.sampleviewstate.R;
+import com.christianbahl.appkit.sample.R;
+
 /**
  * @author Christian Bahl
  */
@@ -16,8 +17,7 @@ public class FragmentRecyclerViewAdapter extends CBAdapterRecyclerView<String> {
     super(context);
   }
 
-  @Override
-  public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, int viewType) {
+  @Override public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position, int viewType) {
     ((StringViewHolder) viewHolder).bindView(items.get(position));
   }
 

@@ -29,8 +29,8 @@ import java.util.List;
  * </p>
  *
  * @author Christian Bahl
- * @see CBFragmentMvpRecyclerViewPtrViewState
+ * @see CBFragmentLceRecyclerViewPtrViewState
  */
-public abstract class CBFragmentMvpListRecyclerViewPtrViewState<M, V extends MvpLceView<List<M>>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
-    extends CBFragmentMvpRecyclerViewPtrViewState<List<M>, V, P, A> implements MvpLceView<List<M>> {
+public abstract class CBFragmentLceListRecyclerViewPtrViewState<M, V extends MvpLceView<List<M>>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
+    extends CBFragmentLceRecyclerViewPtrViewState<List<M>, V, P, A> implements MvpLceView<List<M>> {
 }

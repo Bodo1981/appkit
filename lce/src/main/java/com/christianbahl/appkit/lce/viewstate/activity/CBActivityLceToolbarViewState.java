@@ -54,7 +54,7 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateActivity;
  * @author Christian Bahl
  * @see MvpLceViewStateActivity
  */
-public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
+public abstract class CBActivityLceToolbarViewState<CV extends View, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
     extends MvpLceViewStateActivity<CV, D, V, P> {
 
   public Toolbar toolbar;
@@ -116,7 +116,7 @@ public abstract class CBActivityMvpToolbarViewState<CV extends View, D, V extend
    * @return layout res id
    */
   @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar_fragment;
+    return R.layout.cb_activity_lce_toolbar_fragment;
   }
 
   /**

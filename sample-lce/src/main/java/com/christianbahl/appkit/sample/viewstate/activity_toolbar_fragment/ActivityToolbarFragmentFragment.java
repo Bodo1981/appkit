@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.christianbahl.appkit.sampleviewstate.R;
+import com.christianbahl.appkit.sample.R;
 
 /**
  * @author Christian Bahl
@@ -18,11 +18,10 @@ public class ActivityToolbarFragmentFragment extends Fragment {
     return new ActivityToolbarFragmentFragment();
   }
 
-  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
+  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View v = inflater.inflate(R.layout.fragment_to_display, container, false);
 
-    ((TextView)v.findViewById(R.id.textView)).setText("Fragment");
+    ((TextView) v.findViewById(R.id.textView)).setText("Fragment");
 
     return v;
   }

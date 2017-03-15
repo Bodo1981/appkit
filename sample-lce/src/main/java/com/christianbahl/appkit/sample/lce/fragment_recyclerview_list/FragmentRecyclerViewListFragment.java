@@ -3,8 +3,8 @@ package com.christianbahl.appkit.sample.lce.fragment_recyclerview_list;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 import com.christianbahl.appkit.lce.fragment.CBFragmentLceListRecyclerView;
-import com.christianbahl.appkit.lce.view.CBMvpView;
-import com.christianbahl.appkit.sample.lce.common.StringListPresenter;
+import com.christianbahl.appkit.lce.view.CBLceView;
+import com.christianbahl.appkit.sample.common.StringListPresenter;
 import com.christianbahl.appkit.sample.lce.fragment_recyclerview.FragmentRecyclerViewAdapter;
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @author Christian Bahl
  */
 public class FragmentRecyclerViewListFragment
-    extends CBFragmentLceListRecyclerView<String, CBMvpView<String>, StringListPresenter, FragmentRecyclerViewAdapter> {
+    extends CBFragmentLceListRecyclerView<String, CBLceView<String>, StringListPresenter, FragmentRecyclerViewAdapter> {
 
   public static FragmentRecyclerViewListFragment newInstance() {
     return new FragmentRecyclerViewListFragment();

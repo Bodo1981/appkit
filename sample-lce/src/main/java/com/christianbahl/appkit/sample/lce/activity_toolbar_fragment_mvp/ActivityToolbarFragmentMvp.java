@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.christianbahl.appkit.lce.activity.CBActivityLceToolbarFragment;
 import com.christianbahl.appkit.sample.lce.activity_fragment.FragmentToDisplay;
-import com.christianbahl.appkit.sample.lce.common.StringPresenter;
+import com.christianbahl.appkit.sample.common.StringPresenter;
 import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 
 /**

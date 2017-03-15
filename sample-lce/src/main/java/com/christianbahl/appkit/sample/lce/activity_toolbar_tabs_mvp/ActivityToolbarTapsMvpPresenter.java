@@ -1,6 +1,6 @@
 package com.christianbahl.appkit.sample.lce.activity_toolbar_tabs_mvp;
 
-import com.christianbahl.appkit.lce.view.CBMvpView;
+import com.christianbahl.appkit.lce.view.CBLceView;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbarTapsMvpPresenter extends MvpBasePresenter<CBMvpView<String>> {
+public class ActivityToolbarTapsMvpPresenter extends MvpBasePresenter<CBLceView<String>> {
 
   public void loadData(boolean contentPresent) {
     if (isViewAttached()) {

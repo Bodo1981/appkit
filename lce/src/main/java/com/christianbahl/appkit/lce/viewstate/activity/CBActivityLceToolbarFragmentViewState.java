@@ -47,10 +47,10 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
  * </p>
  *
  * @author Christian Bahl
- * @see CBActivityMvpToolbarViewState
+ * @see CBActivityLceToolbarViewState
  */
-public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
-    extends CBActivityMvpToolbarViewState<CV, D, V, P> {
+public abstract class CBActivityLceToolbarFragmentViewState<CV extends View, D, V extends MvpLceView<D>, P extends MvpPresenter<V>>
+    extends CBActivityLceToolbarViewState<CV, D, V, P> {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -67,7 +67,7 @@ public abstract class CBActivityMvpToolbarFragmentViewState<CV extends View, D, 
   }
 
   @Override @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar_fragment;
+    return R.layout.cb_activity_lce_toolbar_fragment;
   }
 
   /**

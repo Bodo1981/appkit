@@ -3,15 +3,15 @@ package com.christianbahl.appkit.sample.lce.fragment_recyclerview;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 import com.christianbahl.appkit.lce.fragment.CBFragmentLceRecyclerView;
-import com.christianbahl.appkit.lce.view.CBMvpView;
-import com.christianbahl.appkit.sample.lce.common.StringListPresenter;
+import com.christianbahl.appkit.lce.view.CBLceView;
+import com.christianbahl.appkit.sample.common.StringListPresenter;
 import java.util.List;
 
 /**
  * @author Christian Bahl
  */
 public class FragmentRecyclerViewFragment
-    extends CBFragmentLceRecyclerView<List<String>, CBMvpView<String>, StringListPresenter, FragmentRecyclerViewAdapter> {
+    extends CBFragmentLceRecyclerView<List<String>, CBLceView<String>, StringListPresenter, FragmentRecyclerViewAdapter> {
 
   public static FragmentRecyclerViewFragment newInstance() {
     return new FragmentRecyclerViewFragment();

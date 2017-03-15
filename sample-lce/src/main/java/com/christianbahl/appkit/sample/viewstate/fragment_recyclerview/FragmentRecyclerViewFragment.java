@@ -3,8 +3,9 @@ package com.christianbahl.appkit.sample.viewstate.fragment_recyclerview;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
-import com.christianbahl.appkit.lce.viewstate.fragment.CBFragmentMvpRecyclerViewViewState;
-import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
+import com.christianbahl.appkit.lce.view.CBLceView;
+import com.christianbahl.appkit.lce.viewstate.fragment.CBFragmentLceRecyclerViewViewState;
+import com.christianbahl.appkit.sample.common.StringListPresenter;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 import java.util.List;
@@ -12,8 +13,8 @@ import java.util.List;
 /**
  * @author Christian Bahl
  */
-public class FragmentRecyclerViewFragment extends
-    CBFragmentMvpRecyclerViewViewState<List<String>, MvpLceView<List<String>>, FragmentRecyclerViewPresenter, FragmentRecyclerViewAdapter> {
+public class FragmentRecyclerViewFragment
+    extends CBFragmentLceRecyclerViewViewState<List<String>, CBLceView<String>, StringListPresenter, FragmentRecyclerViewAdapter> {
 
   private List<String> data;
 
@@ -30,8 +31,8 @@ public class FragmentRecyclerViewFragment extends
     return new FragmentRecyclerViewAdapter(getActivity());
   }
 
-  @NonNull @Override public FragmentRecyclerViewPresenter createPresenter() {
-    return new FragmentRecyclerViewPresenter();
+  @NonNull @Override public StringListPresenter createPresenter() {
+    return new StringListPresenter();
   }
 
   @Override public void setData(List<String> data) {
@@ -45,7 +46,7 @@ public class FragmentRecyclerViewFragment extends
     presenter.loadData(pullToRefresh);
   }
 
-  @NonNull @Override public LceViewState<List<String>, MvpLceView<List<String>>> createViewState() {
+  @NonNull @Override public LceViewState<List<String>, CBLceView<String>> createViewState() {
     return new RetainingLceViewState<>();
   }
 

@@ -19,83 +19,87 @@ public class MainActivity extends AppCompatActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(com.christianbahl.appkit.samplecore.R.layout.activity_main);
+    setContentView(R.layout.activity_main);
 
     // Activity with Fragment
-    findViewById(com.christianbahl.appkit.samplecore.R.id.activity_fragment).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.activity_fragment).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(ActivityFragment.getStartIntent(MainActivity.this));
       }
     });
 
     // Activity with Toolbar
-    findViewById(com.christianbahl.appkit.samplecore.R.id.activity_toolbar).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.activity_toolbar).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(ActivityToolbar.getStartIntent(MainActivity.this));
       }
     });
 
     // Activity with Toolbar and Fragment
-    findViewById(com.christianbahl.appkit.samplecore.R.id.activity_toolbar_fragment).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.activity_toolbar_fragment).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(ActivityToolbarFragment.getStartIntent(MainActivity.this));
       }
     });
 
     // Activity with Toolbar (MVP)
-    findViewById(com.christianbahl.appkit.samplecore.R.id.activity_mvp_toolbar).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.activity_mvp_toolbar).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(ActivityToolbarMvp.getStartIntent(MainActivity.this));
       }
     });
 
     // Activity with Toolbar and Fragment (MVP)
-    findViewById(com.christianbahl.appkit.samplecore.R.id.activity_mvp_toolbar_fragment).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.activity_mvp_toolbar_fragment).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(ActivityToolbarFragmentMvp.getStartIntent(MainActivity.this));
       }
     });
 
     // Activity with Toolbar and Tabs (MVP)
-    findViewById(com.christianbahl.appkit.samplecore.R.id.activity_mvp_toolbar_tabs).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.activity_mvp_toolbar_tabs).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(ActivityToolbarTabsMvp.getStartIntent(MainActivity.this));
       }
     });
 
     // Fragment RecyclerView
-    findViewById(com.christianbahl.appkit.samplecore.R.id.fragment_recyclerview).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.fragment_recyclerview).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(FragmentActivityRecyclerView.getStartIntent(MainActivity.this));
       }
     });
 
     // Fragment RecyclerView (List)
-    findViewById(com.christianbahl.appkit.samplecore.R.id.fragment_recyclerview_list).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.fragment_recyclerview_list).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(FragmentActivityRecyclerViewList.getStartIntent(MainActivity.this));
       }
     });
 
     // Fragment RecyclerView PullToRefresh
-    findViewById(com.christianbahl.appkit.samplecore.R.id.fragment_recyclerview_ptr).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.fragment_recyclerview_ptr).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(FragmentActivityRecyclerViewPtr.getStartIntent(MainActivity.this));
       }
     });
 
     // Fragment RecyclerView PullToRefresh (List)
-    findViewById(com.christianbahl.appkit.samplecore.R.id.fragment_recyclerview_ptr_list).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.fragment_recyclerview_ptr_list).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(FragmentActivityRecyclerViewListPtr.getStartIntent(MainActivity.this));
       }
     });
 
     // Fragment RecyclerView Parallax
-    findViewById(com.christianbahl.appkit.samplecore.R.id.fragment_recyclerview_parallax).setOnClickListener(new View.OnClickListener() {
+    findViewById(R.id.fragment_recyclerview_parallax).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(FragmentActivityRecyclerViewParallax.getStartIntent(MainActivity.this));
       }
     });
+
+
+    /* VIEWSTATE */
+
   }
 }

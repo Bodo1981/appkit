@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.christianbahl.appkit.adapter.CBAdapterRecyclerView;
-import com.christianbahl.appkit.samplecore.R;
+import com.christianbahl.appkit.sample.R;
 
 /**
  * @author Christian Bahl

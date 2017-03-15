@@ -6,7 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-import com.christianbahl.appkit.lce.viewstate.activity.CBActivityMvpToolbarFragmentViewState;
+import com.christianbahl.appkit.lce.viewstate.activity.CBActivityLceToolbarFragmentViewState;
+import com.christianbahl.appkit.sample.common.StringPresenter;
 import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.LceViewState;
 import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
@@ -14,8 +15,8 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.lce.data.RetainingLceViewState;
 /**
  * @author Christian Bahl
  */
-public class ActivityToolbarFragment extends
-    CBActivityMvpToolbarFragmentViewState<FrameLayout, String, MvpLceView<String>, ActivityToolbarFragmentPresenter> {
+public class ActivityToolbarFragment
+    extends CBActivityLceToolbarFragmentViewState<FrameLayout, String, MvpLceView<String>, StringPresenter> {
 
   private String data;
 
@@ -35,8 +36,8 @@ public class ActivityToolbarFragment extends
     return data;
   }
 
-  @NonNull @Override public ActivityToolbarFragmentPresenter createPresenter() {
-    return new ActivityToolbarFragmentPresenter();
+  @NonNull @Override public StringPresenter createPresenter() {
+    return new StringPresenter();
   }
 
   @Override public void setData(String data) {

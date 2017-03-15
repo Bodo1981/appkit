@@ -13,24 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.christianbahl.appkit.lce.viewstate.fragment;
+package com.christianbahl.appkit.lce.view;
 
-import android.support.v7.widget.RecyclerView;
-import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
-import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 import java.util.List;
 
 /**
- * <p>
- * A fragment which uses the Model-View-Presenter architecture with {@link ViewState} support and displays a list of items in a {@link
- * RecyclerView}.
- * </p>
+ * An extension of the {@link MvpLceView} which uses a list of {@link M} for the model.
  *
  * @author Christian Bahl
- * @see CBFragmentMvpRecyclerViewViewState
+ * @see MvpLceView
  */
-public abstract class CBFragmentMvpListRecyclerViewViewState<M, V extends MvpLceView<List<M>>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
-    extends CBFragmentMvpRecyclerViewViewState<List<M>, V, P, A> implements MvpLceView<List<M>> {
-
+public interface CBLceView<M> extends MvpLceView<List<M>> {
 }

@@ -1,16 +1,13 @@
-package com.christianbahl.appkit.sample.lce.common;
+package com.christianbahl.appkit.sample.common;
 
-import com.christianbahl.appkit.lce.view.CBMvpView;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-import java.util.ArrayList;
-import java.util.List;
+import com.hannesdorfmann.mosby3.mvp.lce.MvpLceView;
 import java.util.Random;
 
 /**
- * Created by bodo on 15.03.17.
+ * @author Christian Bahl
  */
-
-public class StringListPresenter extends MvpBasePresenter<CBMvpView<String>> {
+public class StringPresenter extends MvpBasePresenter<MvpLceView<String>> {
 
   public void loadData(boolean contentPresent) {
     if (isViewAttached()) {
@@ -23,19 +20,9 @@ public class StringListPresenter extends MvpBasePresenter<CBMvpView<String>> {
       }
     } else {
       if (isViewAttached()) {
-        getView().setData(getItems());
+        getView().setData("Activity Toolbar Mvp data loaded");
         getView().showContent();
       }
     }
-  }
-
-  private List<String> getItems() {
-    List<String> items = new ArrayList<>();
-
-    for (int i = 1; i <= 30; i++) {
-      items.add("Item " + i);
-    }
-
-    return items;
   }
 }

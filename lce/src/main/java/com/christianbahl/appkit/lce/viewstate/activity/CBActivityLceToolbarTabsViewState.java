@@ -60,10 +60,10 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
  * </p>
  *
  * @author Christian Bahl
- * @see CBActivityMvpToolbarViewState
+ * @see CBActivityLceToolbarViewState
  */
-public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends PagerAdapter>
-    extends CBActivityMvpToolbarViewState<ViewPager, D, V, P> {
+public abstract class CBActivityLceToolbarTabsViewState<D, V extends MvpLceView<D>, P extends MvpPresenter<V>, A extends PagerAdapter>
+    extends CBActivityLceToolbarViewState<ViewPager, D, V, P> {
 
   public TabLayout tabs;
   public A adapter;
@@ -97,7 +97,7 @@ public abstract class CBActivityMvpToolbarTabsViewState<D, V extends MvpLceView<
   }
 
   @Override @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar_tabs;
+    return R.layout.cb_activity_lce_toolbar_tabs;
   }
 
   /**

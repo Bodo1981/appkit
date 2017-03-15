@@ -66,7 +66,7 @@ public abstract class CBActivityLceToolbarFragment<CV extends View, M, V extends
   }
 
   @Override @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar_fragment;
+    return R.layout.cb_activity_lce_toolbar_fragment;
   }
 
   /**

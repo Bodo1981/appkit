@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.christianbahl.appkit.sample.lce">
+    package="com.christianbahl.appkit.sample">
 
   <application
       android:allowBackup="true"
@@ -18,7 +18,7 @@
     </activity>
 
     <activity
-        android:name=".activity_fragment.ActivityFragment"/>
+        android:name=".lce.activity_fragment.ActivityFragment"/>
 
     <activity
         android:name=".activity_toolbar.ActivityToolbar"/>

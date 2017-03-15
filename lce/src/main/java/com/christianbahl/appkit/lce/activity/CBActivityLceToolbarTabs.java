@@ -97,7 +97,7 @@ public abstract class CBActivityLceToolbarTabs<M, V extends MvpLceView<M>, P ext
   }
 
   @Override @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar_tabs;
+    return R.layout.cb_activity_lce_toolbar_tabs;
   }
 
   /**

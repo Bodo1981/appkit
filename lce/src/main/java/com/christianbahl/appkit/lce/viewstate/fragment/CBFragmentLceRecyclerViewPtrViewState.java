@@ -38,10 +38,10 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
  * </p>
  *
  * @author Christian Bahl
- * @see CBFragmentMvpRecyclerViewViewState
+ * @see CBFragmentLceRecyclerViewViewState
  */
-public abstract class CBFragmentMvpRecyclerViewPtrViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
-    extends CBFragmentMvpRecyclerViewViewState<M, V, P, A> {
+public abstract class CBFragmentLceRecyclerViewPtrViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
+    extends CBFragmentLceRecyclerViewViewState<M, V, P, A> {
 
   protected SwipeRefreshLayout swipeRefreshLayout;
 

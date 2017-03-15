@@ -46,7 +46,7 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.lce.MvpLceViewStateFragment;
  * @author Christian Bahl
  * @see MvpLceViewStateFragment
  */
-public abstract class CBFragmentMvpRecyclerViewViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
+public abstract class CBFragmentLceRecyclerViewViewState<M, V extends MvpLceView<M>, P extends MvpPresenter<V>, A extends RecyclerView.Adapter>
     extends MvpLceViewStateFragment<RecyclerView, M, V, P> {
 
   protected A adapter;
