@@ -115,7 +115,7 @@ public abstract class CBActivityMviToolbar<CV extends View, V extends MvpView, P
    * @return layout res id
    */
   @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar;
+    return R.layout.cb_activity_lce_toolbar;
   }
 
   /**

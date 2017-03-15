@@ -122,7 +122,7 @@ public abstract class CBActivityLceToolbar<CV extends View, M, V extends MvpLceV
    * @return layout res id
    */
   @NonNull protected Integer getLayoutRes() {
-    return R.layout.cb_activity_mvp_toolbar;
+    return R.layout.cb_activity_lce_toolbar;
   }
 
   /**
