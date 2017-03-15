@@ -1,1 +1,3 @@
-include ':core-common', ':core', ':viewstate', ':sample-core', ':sample-viewstate', ':rx', ':rx2'
+include ':core', ':lce', ':sample-lce', ':rx', ':rx2', ':mvi', ':adapter'
+
+//':sample-mvi'

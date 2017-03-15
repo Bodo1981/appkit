@@ -1,6 +1,6 @@
 ext {
   mosbyVersion = "3.0.0"
-  supportVersion = "25.2.0"
+  supportVersion = "25.3.0"
   rxAndroid1Version = "1.2.1"
   rxJava1Version = "1.2.7"
   rxAndroid2Version = "2.0.1"
@@ -8,9 +8,9 @@ ext {
 
   dependencies = [appCompat     : "com.android.support:appcompat-v7:$supportVersion",
                   design        : "com.android.support:design:$supportVersion",
-                  mosbyViewstate: "com.hannesdorfmann.mosby3:viewstate:$mosbyVersion",
-                  mosbyMvp      : "com.hannesdorfmann.mosby3:mvp:$mosbyVersion",
+                  recyclerView  : "com.android.support:recyclerview-v7:$supportVersion",
                   mosbyLce      : "com.hannesdorfmann.mosby3:mvp-lce:$mosbyVersion",
+                  mosbyMvi      : "com.hannesdorfmann.mosby3:mvi:$mosbyVersion",
                   rxAndroid1    : "io.reactivex:rxandroid:$rxAndroid1Version",
                   rxJava1       : "io.reactivex:rxjava:$rxJava1Version",
                   rxAndroid2    : "io.reactivex.rxjava2:rxandroid:$rxAndroid2Version",

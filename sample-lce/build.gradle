@@ -1,8 +1,4 @@
-apply plugin: 'com.android.library'
-
-ext {
-  artifact = 'core'
-}
+apply plugin: 'com.android.application'
 
 def globalConf = rootProject.ext
 
@@ -11,6 +7,7 @@ android {
   buildToolsVersion globalConf.buildToolsVersion
 
   defaultConfig {
+    applicationId "com.christianbahl.appkit.samplecore"
     minSdkVersion globalConf.minSdk
     targetSdkVersion globalConf.targetSdk
     versionCode globalConf.versionCode
@@ -33,9 +30,7 @@ android {
 dependencies {
   Map<String, String> dependencies = globalConf.dependencies
 
-  // Support
-  compile dependencies.design
+  // Submodules
+  compile project(':lce')
+  compile project(':adapter')
 }
-
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/Bodo1981/bintray/master/bintray.gradle'

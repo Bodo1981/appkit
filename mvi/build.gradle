@@ -1,7 +1,7 @@
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
 
 ext {
-  artifact = 'core'
+  artifact = 'mvi'
 }
 
 def globalConf = rootProject.ext
@@ -33,9 +33,15 @@ android {
 dependencies {
   Map<String, String> dependencies = globalConf.dependencies
 
-  // Support
-  compile dependencies.design
-}
+  // submodules
+  compile project(':core')
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/Bodo1981/bintray/master/bintray.gradle'
+  // android
+  compile dependencies.appCompat
+
+  // mosby
+  compile(dependencies.mosbyMvi) {
+    exclude module: "support-annotations"
+    exclude module: "appcompat-v7"
+  }
+}
