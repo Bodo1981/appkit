@@ -1,3 +1,18 @@
+/*
+ * Copyright 2015 Christian Bahl
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.christianbahl.appkit.mvi;
 
 import android.graphics.PorterDuff;
@@ -13,7 +28,27 @@ import com.hannesdorfmann.mosby3.mvi.MviPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 
 /**
- * Created by bodo on 15.03.17.
+ * <p>
+ * An activity which uses the Model-View-Intent architecture and adds a {@link Toolbar} on top.
+ * </p>
+ *
+ * <p>
+ * The standard layout implements all necessary views. You can override the default layout in {@link #getLayoutRes}. But be careful, you
+ * have to provide the necessary views!
+ * </p>
+ *
+ * <p>
+ * You have to provide a toolbar. Default id <code>R.id.toolbar</code> but it can also be overriden {@link #createToolbar()}.
+ * </p>
+ *
+ * <p>
+ * As loadingView a {@link ContentLoadingProgressBar} will be used. This can be changed by overriding {@link #createLoadingView()}. If you
+ * only want to change the loading view color for the default loadingView you have to override the color attribute
+ * <code>R.color.cb_progress_color</code>.
+ * </p>
+ *
+ * @author Christian Bahl
+ * @see MviActivity
  */
 public abstract class CBActivityMviToolbar<CV extends View, V extends MvpView, P extends MviPresenter<V, ?>> extends MviActivity<V, P> {
 
@@ -31,7 +66,7 @@ public abstract class CBActivityMviToolbar<CV extends View, V extends MvpView, P
 
     Integer layoutRes = getLayoutRes();
     if (layoutRes == null) {
-      throw new NullPointerException("LayoutRes is null. Did you return null in getLayoutRes()?");
+      throw new NullPointerException("LayoutRes is null! Did you return null in getLayoutRes()?");
     }
     setContentView(layoutRes);
   }
@@ -57,6 +92,15 @@ public abstract class CBActivityMviToolbar<CV extends View, V extends MvpView, P
     setSupportActionBar(toolbar);
 
     onViewCreated();
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+
+    loadingView = null;
+    contentView = null;
+    errorView = null;
+    toolbar = null;
   }
 
   /**

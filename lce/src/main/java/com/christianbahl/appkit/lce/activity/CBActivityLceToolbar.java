@@ -91,6 +91,12 @@ public abstract class CBActivityLceToolbar<CV extends View, M, V extends MvpLceV
     }
   }
 
+  @Override protected void onDestroy() {
+    super.onDestroy();
+
+    toolbar = null;
+  }
+
   @NonNull @Override protected View createLoadingView() {
     ContentLoadingProgressBar loadingView = (ContentLoadingProgressBar) super.createLoadingView();
     loadingView.getIndeterminateDrawable()
